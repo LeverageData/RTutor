@@ -1273,7 +1273,7 @@ name.rmd.chunks = function(rmd.file=NULL, txt=readLines(rmd.file, warn=FALSE), o
       ex.name = gsub("#","", ex.name, fixed=TRUE)
       #ex.name = str.left.of(ex.name," --", not.found="all")
       ex.name = str.left.of(ex.name," --", not.found=ex.name)
-      ex.name = substring(str.to.valid.chunk.name(ex.name),1,20)
+      ex.name = substring(str.to.valid.chunk.name(ex.name),1,99)
       if (!valid.file.name)
         counter = 1
       part.name = ""

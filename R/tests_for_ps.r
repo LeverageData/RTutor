@@ -397,8 +397,8 @@ check.assign = function(
       ignore.arg=ignore.arg, success.message=success.message, failure.message = failure.message,no.command.failure.message = no.command.failure.message, ok.if.same.val = ok.if.same.val, verbose=verbose, only.check.assign.exists=only.check.assign.exists, noeval=noeval, check.cols=check.cols, sort.cols=sort.cols))
   }
   
-  
   restore.point("check.assign")
+  
 
   part.str = if (isTRUE(ps$is.shiny)) "" else paste0(" in chunk ",  ps$chunk.name)
 
@@ -498,6 +498,7 @@ check.assign = function(
 #' check.assign.with.multiple.sol(x<-5, x<-10)
 #' @export
 check.assign.with.multiple.sol = function(sol1, sol2, sol3, sol4, sol5, ..., sol.list=list()) {
+  restore.point("check.assign.with.multiple.sol")
   if (!missing(sol1)) {
     sol.list[[length(sol.list)+1]] = substitute(sol1)
   }

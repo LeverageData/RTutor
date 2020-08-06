@@ -42,3 +42,17 @@ rtutorAlert = function(session=getApp()$session, id,title=NULL, content=message,
       ), silent=TRUE)
     }
 }
+
+#md2html adds <p> and </p>\n to our output and selections. That is not wanted as the <p> are not interpreted by radioButton and checkboxGroupInput interpret those verbatim.
+trim.html = function(charvec){
+  charvec %>%
+    stringr::str_sub(start=stringr::str_length("<p>")+1, end=-stringr::str_length("</p>\n")-1)
+}
+
+#takes list of character values written in rmd and transforms them to an html interpretable vector
+transform.save.html = function(charlist){
+  charlist %>%
+    as.character() %>% #in the case the answer is a simple number or otherwise md2html throws an error
+    sapply(rmdtools::md2html, USE.NAMES = FALSE) %>% #format to html
+    trim.html() #delete <p> and \n which where introduced by md2html
+}

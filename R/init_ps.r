@@ -95,7 +95,7 @@ init.ps = function(ps.name,user.name="", dir=getwd(), stud.short.file = paste0(p
     copy.into.env(source=rps$extra.code.env, dest = ps$ps.baseenv)
   }
 
-
+  
   cdt = as_tibble(rps$cdt)
 
 
@@ -123,9 +123,13 @@ init.ps = function(ps.name,user.name="", dir=getwd(), stud.short.file = paste0(p
   }
 
   if (!ps$precomp) {
-    cdt[["stud.env"]] =lapply(1:NROW(cdt), function(chunk.ind) {
-      new.stud.env(chunk.ind)
-    })
+    if(nrow(cdt)>0){
+      cdt[["stud.env"]] =lapply(1:NROW(cdt), function(chunk.ind) {
+        new.stud.env(chunk.ind)
+      })
+    } else {
+      cdt = bind_cols(cdt, stud.env=logical())
+    }
   } 
   cdt$old.stud.code = cdt$task.txt
 

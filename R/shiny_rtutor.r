@@ -51,7 +51,9 @@ examples.show.shiny.ps = function() {
 #' @param dir your working directory for the problem set, by default getwd()
 #' @param rps.dir directory of rps.files by default equal to dir
 show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,clear.user=FALSE,run.solved=FALSE,sample.solution=FALSE, prev.chunks.sample.solution = show.solution.btn,launch.browser=TRUE, catch.errors = TRUE,  dir=getwd(), rps.dir=dir, offline=!can.connect.to.MathJax(), left.margin=2, right.margin=2, is.solved, make.web.app=FALSE, make.session.ps=make.web.app, save.nothing=FALSE, show.revert.btn=FALSE, show.solution.btn = NA, show.data.exp=TRUE, show.download.rmarkdown=TRUE, disable.graphics.dev=TRUE,  check.whitelist=!is.null(wl), wl=NULL, verbose=FALSE, html.data.frame=TRUE,table.max.rows=25, round.digits=8, signif.digits=8, knit.print.opts=make.knit.print.opts(html.data.frame=html.data.frame,table.max.rows=table.max.rows, round.digits=round.digits, signif.digits=signif.digits,print.data.frame.fun=print.data.frame.fun,print.matrix.fun=print.matrix.fun), print.data.frame.fun = NULL, print.matrix.fun=NULL, precomp=FALSE, noeval=FALSE, need.login=FALSE, login.dir = paste0(dir,"/login"), show.points=TRUE,  stop.app.if.window.closes=!make.session.ps,sav.file=paste0(user.name, "_", ps.name,".sav"), load.sav = FALSE,  show.save.btn=FALSE,   import.rmd=FALSE, rmd.file = paste0(ps.name,"_",user.name,"_export.rmd"),  ...) {
-
+  
+  restore.point("show.ps")
+  
   cat("\nInitialize problem set, this may take a while...")
   app = eventsApp(verbose = verbose)
 
@@ -75,6 +77,7 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
     precomp=precomp, noeval=noeval, 
     auto.save.code=auto.save.code, ...
   )
+  restore.point("show.ps_after_init.shiny.ps")
   
   ps$show.points = show.points
   ps$need.login = need.login
@@ -115,9 +118,11 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
   #ex.inds = 1:2
   for (ex.ind in ex.inds)
     show.ex.ui(ex.ind)
-
-  for (chunk.ind in 1:n) {
-    make.chunk.handlers(chunk.ind=chunk.ind)
+  
+  if(n>0){
+    for (chunk.ind in 1:n) {
+      make.chunk.handlers(chunk.ind=chunk.ind)
+    }
   }
   make.load.save.handlers()
 
@@ -137,8 +142,9 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
       ps$input = input
       ps$output = output
       # autocomplete in first open chunk
-      set.chunk.autocomp.observer(inputId = ps$cdt$nali[[1]]$editor, chunk.ind = 1)
-
+      if(n>0){
+        set.chunk.autocomp.observer(inputId = ps$cdt$nali[[1]]$editor, chunk.ind = 1)
+      }
     }
   } else {
     app$initHandler = function(session, input, output,...) {
@@ -150,7 +156,9 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
       ps$output = output
       
       # autocomplete in first open chunk
-      set.chunk.autocomp.observer(inputId = ps$cdt$nali[[1]]$editor, chunk.ind = 1)
+      if(n>0){
+        set.chunk.autocomp.observer(inputId = ps$cdt$nali[[1]]$editor, chunk.ind = 1)
+      }
       if (stop.app.if.window.closes) {
         session$onSessionEnded(function() {stopApp()})
       }

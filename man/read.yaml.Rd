@@ -4,10 +4,64 @@
 \alias{read.yaml}
 \title{Reads a yaml file and returns as a list}
 \usage{
-read.yaml(file = NULL, verbose = FALSE, keep.quotes = TRUE,
-  quote.char = "__QUOTE__", text = NULL, catch.error = TRUE,
-  check.by.row = FALSE, space.after.colon = FALSE, utf8 = TRUE)
+read.yaml(
+  file = NULL,
+  text = NULL,
+  verbose = FALSE,
+  keep.quotes = TRUE,
+  quote.char = "__QUOTE__",
+  colon.handling = c("replace.colon.char", "replace.all", "none"),
+  colon.replace.exceptions = c(),
+  space.after.colon = FALSE,
+  colon.char = "__COLON__",
+  check.by.row = FALSE,
+  utf8 = TRUE
+)
+}
+\arguments{
+\item{file}{A character vector specifying a file to read from.}
+
+\item{text}{A character vector to directly interpret with yaml syntax. Takes precedent over \code{file} if both are provided.}
+
+\item{verbose}{Shall the input vector after modifications be shown? This vector is given to \code{load_yaml()}}
+
+\item{keep.quotes}{Normally quotes are interpreted by yaml. This allows to write quotes as normal and they are handled seperately.}
+
+\item{quote.char}{For internal handling quotes are replaced by \code{quote.char} and retransformed afterwards. The usage of \code{quote.char} within \code{text} or \code{file} is therefore forbidden if \code{keep.quotes} is \code{TRUE}.}
+
+\item{colon.handling}{There exists the following ways to deal with colons, with \code{replace.colon.char} being the default:
+\itemize{
+ \item \strong{replace.colon.char}: If one wants a colon within the generated text without it being interpreted by yaml, just use this option and write \code{colon.char} everywhere where a colon should be. 
+ \item \strong{replace.all}: This allows to use colons within the yaml text as normal, e.g. for quizzes. The first colon in each line is interpreted by yaml and all others are taken verbatim. When the line starts with - \strong{all} colons are replaced. This implies that this option breaks multi-level yaml structure, so use with care! To keep specified multi-level yaml structures, one may provide allowed code words to \code{colon.replace.exceptions}. Providing for example \emph{"question"} here allows using several quizzes with only one check button.
+ \item \strong{none}: No replacement takes place. All colons are interpreted as yaml-colons.
+}}
+
+\item{colon.replace.exceptions}{A vector with exceptions to allow for specified multi-level-yaml structures}
+
+\item{space.after.colon}{Should a space after a colon be forced? \strong{Caution:} This only applies to actually \emph{written} ":" within the text and not those provided by \code{replace.colon.char}.}
+
+\item{colon.char}{For internal handling colons are replaced by \code{colon.char} and retransformed afterwards. The usage of \code{colon.char} for verbatim usage within \code{text} or \code{file} is therefore forbidden if \code{colon.handling} is anything other than \code{none}.}
+
+\item{check.by.row}{Allows better error handling by singling through the lines.}
+
+\item{utf8}{If \code{TRUE} (Default) the provided character vector is forced to UTF-8 Encoding which is necessary for yaml.}
+}
+\value{
+A list according to the provided yaml-structure
 }
 \description{
-Reads a yaml file and returns as a list
+Provide either \code{file} or \code{test}. This input will be interpreted as yaml code, barring the exceptions given by the other options.
+}
+\examples{
+text.char = "question: What is 20*20?
+sc:
+ - 100
+ - 200
+ - 400*
+ - 500
+success: Great, your answer is correct__COLON__ Super!
+failure: Try again."
+
+read.yaml(text=text.char)
+
 }

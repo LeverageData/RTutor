@@ -2,13 +2,15 @@
 
 Example of different quiz formats in a shiny based RTutor problemset
 
-Adapt the working directory below and run the setup chunk in RStudio. This creates the problem set files and the sample solution from this solution file. 
+Run the setup chunk in RStudio. This creates the problem set files and the sample solution from this solution file. 
 
 #< ignore
 ```{r "create_ps",include=TRUE , eval=TRUE}
 library(RTutor)
-setwd("D:/libraries/RTutor/RTutor/inst/examples")
+setwd(get.current.file.path()) #Has to be executed using RStudio. Replace with specific string to work with console or RGui
 ps.name = "QuizExample"; sol.file = paste0(ps.name,"_sol.Rmd")
+libs = c()
+
 # Important to add the parameter addons="quiz" !
 create.ps(sol.file=sol.file, ps.name=ps.name,libs=libs, addons="quiz")
 show.ps(ps.name)
@@ -16,9 +18,23 @@ stop()
 ```
 #>
 
-## Exercise 1 -- Quiz
+<!-- The following code block overwrites the shiny defaults and allows for wider quizzes. You can set to a lower value than 100% if you want to -->
+<style>
+.shiny-input-radiogroup {
+  width: 100% !important;
+}
+.shiny-input-checkboxgroup {
+ width: 100% !important;
+}
+</style>
+<!-- End optional code block for wide quizzes -->
+
+
+## Exercise Quizexamples
 
 ### A single choice quiz
+
+A single choice quiz has the identifier *sc*. The star defines the correct answer.
 
 #< quiz "single"
 question: What is 20*20?
@@ -31,7 +47,53 @@ success: Great, your answer is correct!
 failure: Try again.
 #>
 
+### A single choice quiz which is long
+
+In the default setting quizzes are optimized for short one-word answers. Using a longer paragraph however introduces a linebreak. Using the css styles at the top of this file (directly above *Exercise Quizexamples*) it is possible to set the quiz width to the same width as the rest of the problem set.
+
+Additionally we see in this example, that the name of the quiz (here: *longsingle*) has no bearing on the type of quiz, but should be unique. 
+
+#< quiz "longsingle"
+question: What is the longest name of a settlement?
+sc:
+    - Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+    - Llanfairpwllgwyngyll*
+
+success: Yes indeed. This a village in Wales, United Kingdom.
+failure: No. This is a hill in New Zealand.
+#>
+
+### A single choice quiz with RMD and HTML
+
+It is possible to include RMD or HTML into the quiz, allowing for mathematical questions using latex syntax, syntax highlighting outside of RMD and non-ASCII characters. Even though the quizzes work with yaml which seperates fields using a <code>:</code> character, RTutor allows for answers using <code>:</code>. This is especially useful in the context of HTML commands.
+#< quiz "rmdhtml"
+question: What is the formula for the <span style="color: red;">**geometric series**</span>. Assume $q \in \mathbb{R}$ but $|q| < 1$?
+sc:
+    - This: $a^2 = b^2 + c^2$
+    - Or <span style="color: green;">that</span>: $\sum \limits_{k=0}^\infty a_0 q^k = \frac{a_0}{1-q}$*
+
+success: Yay. You are quite educated. &#x1F600;
+failure: No, unfortunately not. &#x1F615;
+#>
+<br>
+
+This allows it also to use images as answers:
+
+#< quiz "images"
+question: Only one of those buildings has the highest church tower of the world (as of 2020). Which one?
+sc:
+    - <img src="images/luis-fernando-felipe-alves-free-image-unsplash.jpg" />*
+    - <img src="images/peter-gonzalez-free-image-unsplash.jpg" />
+
+success: Exactly! The Ulm Minster measures a height of 161.5 metres. 
+failure: Thats wrong. This is the Cologne Cathedral, only measuring a measily 157 metres. 
+#>
+
+Note: Both pictures are free of use under the [Unsplash](https://unsplash.com/license) license. The first picture is from Luis Fernando Felipe Alves, the second one from Peter Gonzales. 
+
 ### A multiple choice quiz
+
+A multiple choice quiz has the identifier *mc*.
 
 #< quiz "multi"
 question: Check all prime numbers
@@ -46,7 +108,6 @@ mc:
 success: Great, all answers are correct!
 failure: Not all answers correct. Try again.
 #>
-
 
 ### An open question
 
@@ -86,16 +147,3 @@ parts:
 #< award "Quiz master"
 You solved the quiz!
 #>
-
-Note that every problem set must have at least at one chunk in order to compile without error. Yeah... I was simply to lazy to implement all extra handling for problem sets without chunks, since the whole idea of RTutor is to have chunks. 
-
-Therefore one chunk at the end...
-```{r}
-#< task_notest
-(0.3-0.2-0.1)==0
-#>
-```
-<a href="http://ta.twi.tudelft.nl/users/vuik/wi211/disasters.html" target="_blank">So better don't build rockets with R...</a>
-
-
-

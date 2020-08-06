@@ -138,7 +138,7 @@ shinyQuiz = function(id=paste0("quiz_",sample.int(10e10,1)),qu=NULL, yaml,  quiz
 
   if (is.null(qu)) {
     yaml = enc2utf8(yaml)
-    qu = try(mark_utf8(read.yaml(text=yaml)), silent=TRUE)
+    qu = try(mark_utf8(read.yaml(text=yaml, colon.handling = c("replace.all"), colon.replace.exceptions=c("question"))), silent=TRUE)
     if (is(qu,"try-error")) {
       err = paste0("When importing quiz:\n",paste0(yaml, collapse="\n"),"\n\n",as.character(qu))
       stop(err,call. = FALSE)
@@ -275,7 +275,15 @@ quiz.ui = function(qu, solution=FALSE) {
 }
 
 quiz.part.ui = function(part, solution=FALSE, add.button=!is.null(part$checkBtnId)) {
+  restore.point("quiz.part.ui")
+  
   question = rmdtools::md2html(part$question)
+
+  # Allow RMD Formatting (e.g. bolding and MathJax) with single choice and multiple choice
+  if(part$type %in% c("sc","mc")){
+    choices = lapply(transform.save.html(part$choices),HTML)
+    answer = lapply(transform.save.html(part$answer),HTML)
+  }
   
   head = list(
     HTML(paste0("<p>",question,"</p>"))
@@ -286,9 +294,9 @@ quiz.part.ui = function(part, solution=FALSE, add.button=!is.null(part$checkBtnI
     } else if (part$type =="text") {
       answer = textInput(part$answerId, label = "",value = part$answer)
     } else if (part$type=="mc") {
-      answer = checkboxGroupInput(part$answerId, "",part$choices,selected = part$answer)
+      answer = checkboxGroupInput(part$answerId, "",choiceNames=choices,choiceValues = as.list(1:length(choices)),selected = answer)
     } else if (part$type=="sc") {
-      answer = radioButtons(part$answerId, "",part$choices, selected=part$answer)
+      answer = radioButtons(part$answerId, "",choiceNames=choices,choiceValues = as.list(1:length(choices)), selected=answer)
     }
   } else {
     if (part$type=="numeric") {
@@ -296,9 +304,9 @@ quiz.part.ui = function(part, solution=FALSE, add.button=!is.null(part$checkBtnI
     } else if (part$type =="text") {
       answer = textInput(part$answerId, label = "",value = "")
     } else if (part$type=="mc") {
-      answer = checkboxGroupInput(part$answerId, "",part$choices)
+      answer = checkboxGroupInput(part$answerId, "",choiceNames=choices,choiceValues = as.list(1:length(choices)))
     } else if (part$type=="sc") {
-      answer = radioButtons(part$answerId, "",part$choices, selected=NA)
+      answer = radioButtons(part$answerId, "",choiceNames=choices,choiceValues = as.list(1:length(choices)), selected=NA)
     }
   }
 
@@ -385,8 +393,12 @@ click.check.quiz = function(app=getApp(), part.ind, qu, quiz.handler=NULL, ...) 
   if (part$type =="numeric") {
     answer = as.numeric(answer)
     correct = is.true(abs(answer-part$answer)<part$roundto)
-  } else {
+  } else if (part$type == "text"){
     correct = setequal(answer,part$answer)
+  } else if (part$type %in% c("sc","mc")){
+    correct = setequal(answer, part$correct.choices)
+  } else {
+    stop(stringr::str_c("Invalid part$type provided in click.check.quiz. Tried: ",part$type, " but only numeric, text, sc and mc are allowed."))
   }
   if (correct) {
     cat("Correct!")

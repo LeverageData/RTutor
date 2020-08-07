@@ -76,11 +76,11 @@ read.yaml = function(file=NULL, text=NULL, verbose=FALSE, keep.quotes=TRUE, quot
    # str = enc2utf8(str)
     Encoding(str) <- "UTF-8"
   }
-
-
-  #message(paste("read.yam:", file))
+  
   # Convert tabs to spaces
   str = gsub("\t","   ",str)
+  
+  #message(paste("read.yam:", file))
   # Convert ":text" into ": text"
   if (space.after.colon) {
     str = gsub(":",": ",str)
@@ -97,9 +97,9 @@ read.yaml = function(file=NULL, text=NULL, verbose=FALSE, keep.quotes=TRUE, quot
       if(stringr::str_length(x)==0){
         return(x)
       } #noting to do
-      if(stringr::str_sub(x,start=1,end=1)=="-"){ #choices of quiz -> keep colons, except in the case of exceptions
+      if(stringr::str_sub(x,start=1,end=1)=="-"){ #choices of quiz, new questions (if multiple) or choice commentaries -> keep colons, except in the case of exceptions
         colons = stringr::str_locate_all(x,":")[[1]][,"end"]
-        keep.colons = stringr::str_locate_all(x,stringr::str_c(colon.replace.exceptions,":",collapse=""))[[1]][,"end"]
+        keep.colons = stringr::str_locate_all(x,stringr::str_c(stringr::str_c(colon.replace.exceptions,":"),collapse="|"))[[1]][,"end"]
         transform.colons = colons[!(colons %in% keep.colons)]
         if(length(transform.colons)==0){
           return(x)

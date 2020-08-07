@@ -138,9 +138,14 @@ shinyQuiz = function(id=paste0("quiz_",sample.int(10e10,1)),qu=NULL, yaml,  quiz
 
   if (is.null(qu)) {
     yaml = enc2utf8(yaml)
-    qu = try(mark_utf8(read.yaml(text=yaml, colon.handling = c("replace.all"), colon.replace.exceptions=c("question"))), silent=TRUE)
+    yaml.prepared = try(prepare.yaml.quiz(yaml))
+    if (is(yaml.prepared,"try-error")) {
+      err = paste0("When preprocessing and transforming choice_comments of quiz:\n",paste0(yaml, collapse="\n"),"\n\n",as.character(yaml.prepared))
+      stop(err,call. = FALSE)
+    }
+    qu = try(mark_utf8(read.yaml(text=yaml.prepared, colon.handling = c("replace.all"), colon.replace.exceptions=c("question","choice_commentary_single","choice_expr", "choice_text"))), silent=TRUE)
     if (is(qu,"try-error")) {
-      err = paste0("When importing quiz:\n",paste0(yaml, collapse="\n"),"\n\n",as.character(qu))
+      err = paste0("When importing quiz:\n",paste0(yaml.prepared, collapse="\n"),"\n\n",as.character(qu))
       stop(err,call. = FALSE)
     }
   }
@@ -277,6 +282,12 @@ quiz.ui = function(qu, solution=FALSE) {
 quiz.part.ui = function(part, solution=FALSE, add.button=!is.null(part$checkBtnId)) {
   restore.point("quiz.part.ui")
   
+  #R Markdown insists on starting numbered lists with 1. This is undesired behavior, especially given multi-part quizzes where one might want to label them and md2html doesn't know about the other questions. 
+  if(stringr::str_detect(part$question,pattern="^([:space:]*)(\\d+)\\.(.*)")){
+    quest.split = stringr::str_match(part$question,pattern="^([:space:]*\\d+)\\.(.*)")[-1]
+    part$question = stringr::str_c(quest.split[1],"\\.",quest.split[2])
+  }
+  
   question = rmdtools::md2html(part$question)
 
   # Allow RMD Formatting (e.g. bolding and MathJax) with single choice and multiple choice
@@ -389,7 +400,7 @@ click.check.quiz = function(app=getApp(), part.ind, qu, quiz.handler=NULL, ...) 
   answer = getInputValue(part$answerId)
   restore.point("click.check.quiz.inner")
 
-
+  choice.commentary.text = NULL
   if (part$type =="numeric") {
     answer = as.numeric(answer)
     correct = is.true(abs(answer-part$answer)<part$roundto)
@@ -397,6 +408,9 @@ click.check.quiz = function(app=getApp(), part.ind, qu, quiz.handler=NULL, ...) 
     correct = setequal(answer,part$answer)
   } else if (part$type %in% c("sc","mc")){
     correct = setequal(answer, part$correct.choices)
+    if(!correct){
+      choice.commentary.text = generate.choice.commentary(as.numeric(answer), part)
+    }
   } else {
     stop(stringr::str_c("Invalid part$type provided in click.check.quiz. Tried: ",part$type, " but only numeric, text, sc and mc are allowed."))
   }
@@ -404,8 +418,9 @@ click.check.quiz = function(app=getApp(), part.ind, qu, quiz.handler=NULL, ...) 
     cat("Correct!")
     setUI(part$resultId,withMathJax(HTML(part$success)))
   } else {
+    wrong.output = stringr::str_c(part$failure,colored.html(choice.commentary.text,color=part$failure_color),sep = "\n")
     cat("Wrong")
-    setUI(part$resultId,withMathJax(HTML(part$failure)))
+    setUI(part$resultId,withMathJax(HTML(wrong.output)))
   }
   qu$state$part.solved[part.ind] = correct
   qu$state$solved = all(qu$state$part.solved)
@@ -414,4 +429,136 @@ click.check.quiz = function(app=getApp(), part.ind, qu, quiz.handler=NULL, ...) 
     quiz.handler(app=app, qu=qu, part.ind=part.ind, part.correct=correct, solved=qu$state$solved)
   }
 
+}
+
+generate.choice.commentary = function(chosen, part){
+  restore.point("generate.choice.commentary")
+  
+  #only if commentary exists
+  if(is.null(part$choice_commentary)){
+    return(NULL)
+  }
+  
+  pos.commentary = part$choice_commentary
+  commentary = lapply(pos.commentary, FUN=function(x){
+    expr.str = x[[1]][[1]]$choice_expr
+    text = x[[1]][[2]]$choice_text
+    is.valid = try(eval(parse(text=expr.str)))
+    if (is(is.valid,"try-error")) {
+      err = paste0("When evaluating quiz:\n",paste0(part$answerId),"\n","the following expression could not be evaluated:",expr.str,"\n")
+      stop(err,call. = FALSE)
+    }
+    if(is.valid){
+      return(text)
+    } else {
+      return(NULL)
+    }
+  }) %>% unlist() %>% stringr::str_c(collapse="<br>")
+  
+  return(rmdtools::md2html(transform.save.html(commentary)))
+}
+
+prepare.yaml.quiz = function(str, colon.char = "__COLON__"){
+  restore.point("prepare.yaml.quiz")
+
+    #To have a controlled environment we do not allow blank lines. 
+  str.split = stringr::str_split(str, "\n")[[1]]
+  str.blank = str.split %>% sapply(FUN=stringr::str_length, USE.NAMES = FALSE) == 0
+  str.split = str.split[!str.blank]  
+  
+  #There might be multiple questions, so we want to deal with them separately.
+  questions = stringr::str_detect(str.split,pattern="^([:space:]|-)*question:")
+  question.ind = questions %>%
+    as_tibble() %>%
+    transmute(ind=cumsum(value)) %>%
+    unlist(use.names=FALSE)
+  
+  #to have compatibilty with lists-numeration in the case we do not start with a question (e.g. due to parts:)
+  if(question.ind[1]==0){
+    question.ind = question.ind+1 
+  }
+  
+  question.tbl = tibble(lines=str.split, question.ind=question.ind) %>%
+    group_by(question.ind)
+  
+  #We can now work within each question within the grouping.
+  question.tbl.choice.ident = question.tbl %>%
+    mutate(is.choice.com = stringr::str_detect(lines,pattern="^([:space:]|-)*choice_commentary\\{.+\\}:"))
+  
+  #Prepare yaml
+  if(any(question.tbl.choice.ident$is.choice.com)){
+    
+    #Without choice commentary base
+    question.tbl.wo.choice = question.tbl.choice.ident %>%
+      filter(!is.choice.com) %>%
+      select(-is.choice.com)
+    question.tbl.li = question.tbl.wo.choice %>%
+      group_by(question.ind) %>%
+      group_split() %>%
+      lapply(FUN=function(x){x %>% select(-question.ind)})
+    
+    #extract expression and text
+    question.tbl.choice = question.tbl.choice.ident %>%
+      filter(is.choice.com) %>%
+      select(-is.choice.com) %>%
+      mutate(regex = as.data.frame(stringr::str_match(lines,pattern="(^([:space:]*-*[:space:]*)choice_commentary\\{)(.+)(\\}:)[:space:]*(.*)"))[,c(3,4,6)]) %>%
+      mutate(choice.trail=if_else(is.na(regex[,1]),"",regex[,1]),choice.expr = regex[,2], choice.text = regex[,3]) %>%
+      select(-regex)
+    
+    #Shorthand: If there is only a single number, we want to change the expression
+    question.tbl.choice = question.tbl.choice %>%
+      mutate(shorthand=stringr::str_detect(choice.expr,"^[0-9]$")) %>%
+      mutate(choice.expr = if_else(shorthand,stringr::str_c("any(chosen %in% c(",choice.expr,"))"),choice.expr))
+    
+    #Colons make problems -> change to MACRO
+    question.tbl.choice = question.tbl.choice %>%
+      mutate(choice.expr=stringr::str_replace_all(choice.expr,":",colon.char)) %>%
+      mutate(choice.text=stringr::str_replace_all(choice.text,":",colon.char))
+    
+    #out of this generate a commentary yaml
+    commentary.yaml = list()
+    for(i in 1:length(question.tbl.li)){
+      my.quest = question.tbl.choice %>% filter(question.ind == i)
+      
+      if(nrow(my.quest)==0){ #not a question with commentary
+        commentary.yaml[[i]] = NULL
+        next
+      }
+      
+      #sanity check:
+      if(length(unique(my.quest$choice.trail))!=1){
+        warning(stringr::str_c("The leading white spaces of choice_commentary differ. This might lead to a wrong interpretation."))
+      }
+      my.trailing = my.quest$choice.trail[1]
+      
+      start = stringr::str_c(my.trailing,"choice_commentary:",collapse="")
+      li = lapply(1:nrow(my.quest),FUN=function(x){
+        line = my.quest[x,]
+        line.c = c( stringr::str_c(my.trailing,"    - ",stringr::str_c("choice_commentary_single:",collapse="")),
+              stringr::str_c(my.trailing,"          - ",stringr::str_c("choice_expr: ",line$choice.expr,collapse="")),
+              stringr::str_c(my.trailing,"          - ",stringr::str_c("choice_text: ",line$choice.text,collapse=""))
+        )
+      }) %>% unlist()
+      commentary.yaml[[i]] = tibble(lines=c(start,li))
+    }
+    
+    final.tbl.li = list()
+    #Combine them again
+    for(i in 1:length(question.tbl.li)){
+      if(length(commentary.yaml)>=i){ #R automatically shortens lists and doesn't like trailing NULLs
+        final.tbl.li[[i]] = bind_rows(question.tbl.li[[i]],commentary.yaml[[i]])
+      } else {
+        final.tbl.li[[i]] = question.tbl.li[[i]]
+      }
+    }
+    final.str = bind_rows(final.tbl.li) %>%
+      unlist() %>%
+      stringr::str_c(collapse="\n")
+    cat(final.str)
+  } else {
+    final.str = str.split %>%
+      stringr::str_c(collapse="\n")
+  }
+  
+  final.str
 }

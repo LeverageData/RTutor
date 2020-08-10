@@ -79,6 +79,10 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
   )
   restore.point("show.ps_after_init.shiny.ps")
   
+  if (is.null(ps$rps$cdt$task.html)) {
+    stop("This problem set has been compiled without any HTML information. It cannot be solved in the web browser by calling show.ps(). You need the empty problem set Rmd file and solve it inside RStudio.")
+  }
+  
   ps$show.points = show.points
   ps$need.login = need.login
   ps$login.dir = login.dir
@@ -114,16 +118,14 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
   ps$view.in.container = FALSE
   ui = make.rtutor.ui()
   
-  ex.inds = 1:NROW(ps$edt)
-  #ex.inds = 1:2
+  ex.inds = seq_len(NROW(ps$edt))
+
   for (ex.ind in ex.inds)
     show.ex.ui(ex.ind)
   
-  if(n>0){
-    for (chunk.ind in 1:n) {
+  for (chunk.ind in seq_len(n)) {
       make.chunk.handlers(chunk.ind=chunk.ind)
     }
-  }
   make.load.save.handlers()
 
   txt = as.character(ui)
@@ -434,7 +436,7 @@ rerun.solved.chunks = function(ps = get.ps()) {
   # Could not rerun a chunk that was supposed to be solved
   # flag all later chunks as not solved
   if (!ok) {
-    inds = which((1:NROW(ps$cdt$is.solved))>=chunk.ind)
+    inds = which((seq_len(NROW(ps$cdt$is.solved)))>=chunk.ind)
     ps$cdt$is.solved[inds] = FALSE
   }
 }

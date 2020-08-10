@@ -77,6 +77,10 @@ For the web-based interface, several students at Ulm University have created ver
   - Github: https://github.com/mwentz93/RTutorWallStreet
   - shinyapps.io: https://mwentz93.shinyapps.io/RTutorWallStreet/
   
+### How much less effective are publicly assigned lawyers? (by Artemij Cadov)
+  - Github: [https://github.com/KendamaQQ/LawyersLemon](https://github.com/KendamaQQ/LawyersLemon)
+  - shinyapps.io: [https://kendamaqq.shinyapps.io/RTutorLawyers/](https://kendamaqq.shinyapps.io/RTutorLawyers/)
+  
 ### Air pollution and house prices (by Moritz Sporer)
   - Github: [https://github.com/msporer/RTutorEnvironmentalRegulation](https://github.com/msporer/RTutorEnvironmentalRegulation)
   - shinyapps.io: [https://msporer.shinyapps.io/RTutorEnvironmentalRegulations/](https://msporer.shinyapps.io/RTutorEnvironmentalRegulations/)
@@ -93,6 +97,10 @@ For the web-based interface, several students at Ulm University have created ver
 ### The impact of emmission trading on green innovation (by Arthur Schäfer)
   - Github: https://github.com/ArthurS90/RTutorEmissionTrading
   - shinyapps.io: https://arthurs90.shinyapps.io/RTutorEmissionTrading/
+  
+### Social Spillovers in Movie Consumption (by Lara Santak)
+  - Github: https://github.com/larasantak/RTutorSomethingToTalkAbout
+  - shinyapps.io: https://lara-santak.shinyapps.io/RTutorSomethingToTalkAbout/
 
 ### Building Codes and Energy Efficiency (2 versions, by Simon Hertle and Lisa Eilts)
   - Github (Simon Hertle): https://github.com/simonhertle/RTutorBuildingCodes

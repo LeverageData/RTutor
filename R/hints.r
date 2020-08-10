@@ -1,7 +1,7 @@
 info = function(info.name, ps = get.ps()) {
   restore.point("info")
   if (is.null(ps)) {
-    hdisplay("Please check your problem set once with Ctrl-Alt-R. Then you can see infos.")
+    hdisplay("Please check your problem set once. Then you can see infos.")
     return()
   }
   infos = ps$rps$infos
@@ -89,7 +89,7 @@ hint = function(..., ps=get.ps()) {
     if (length(hint.expr)==0) {
       if (!is.null(chunk.hint)) {
         res = try(eval.fun(chunk.hint, hint.env))
-        if (is("res","try-error")) {
+        if (is(res,"try-error")) {
           if (ps$e.ind==0) {
             cat("\nI could not evaluate your chunk without error. The hint may therefore not have worked properly.")
           } else {
@@ -103,7 +103,7 @@ hint = function(..., ps=get.ps()) {
       }
     } else {
       res = try(eval.fun(hint.expr, hint.env))
-      if (is("res","try-error")) {
+      if (is(res,"try-error")) {
         if (ps$e.ind==0) {
           cat("\nI could not evaluate your chunk without error. The hint may therefore not have worked properly.")
         } else {
@@ -114,7 +114,7 @@ hint = function(..., ps=get.ps()) {
         res = try(eval.fun(chunk.hint, hint.env))
         if (is("res","try-error")) {
           if (ps$e.ind==0) {
-            hdisplay("\nI could not evaluate your chunk without error. The hint may therefore not have worked properly.")
+            display("\nI could not evaluate your chunk without error. The hint may therefore not have worked properly.")
           } else {
             cat("\nUps, there was some error when evaluating the hint.")
           }
@@ -313,7 +313,7 @@ hint.for.call = function(call, ps=get.ps(), env = ps$stud.env, stud.expr.li = ps
       #hdisplay("Let's take a look at your assignment to '", lhs, "', which should call the function '", check.na, "'",part.str,":\n", analyse.str,start.char=start.char, end.char=end.char)
       cat(analyse.str,"\n")
   } else if (cde$type == "chain") {
-    return(inner.hint.for.call.chain(stud.expr.li=stud.expr.li, cde=cde,ce=ce, assign.str=assign.str, ps = ps, env=env))
+    return(inner.hint.for.call.chain(stud.expr.li=stud.expr.li, cde=cde,ce=ce, assign.str=assign.str, ps = ps, env=env, call=call))
   }  else if (cde$type == "math" | cde$type == "formula") {
     #restore.point("math.fail")
     hint.str = scramble.text(deparse(call),"?",0.4, keep.char=c(" ","\n"))
@@ -440,7 +440,7 @@ hint.for.compute = function(expr, hints.txt=NULL,var="", ps=get.ps(), env = ps$s
     }
   }
   if (ret==FALSE & i < length(expr.li) & !isTRUE(ps$is.shiny)) {
-    hdisplay("Note: If you have finished this step and want a hint for the next step. Check your problem set with Ctrl-Alt-R before you type hint() again.")
+    hdisplay("Note: If you have finished this step and want a hint for the next step. Check your problem set before you type hint() again.")
   }
   if (ret==TRUE) {
     hdisplay("Great, all steps seem correct. Check your solution to proceed.")

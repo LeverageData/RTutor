@@ -20,6 +20,7 @@ create.ps(
   fragment.only = TRUE,
   add.enter.code.here = FALSE,
   add.shiny = TRUE,
+  make.rmd = TRUE,
   addons = NULL,
   whitelist.report = FALSE,
   wl = rtutor.default.whitelist(),
@@ -63,6 +64,10 @@ create.ps(
 \item{var.txt.file}{name of the file that contains variable descriptions (see thee vignette for an explanation of the file format)}
 
 \item{rps.has.sol}{shall the sample solution be stored in the .rps file. Set this option to FALSE if you use problem sets in courses and don't want to assess students the sample solution easily}
+
+\item{add.shiny}{shall we compile the ps so that it can be shown as a web-based shiny app. Default is TRUE. Set FALSE if not needed to speed up compilation}
+
+\item{make.rmd}{Shall a Rmd problem set file and sample solution file be generated. Default is TRUE You can set to FALSE if you only want a shiny version to slightly speed up compilation and avoid file clutter.}
 
 \item{use.memoise}{shall functions like read.csv be memoised? Data sets then only have to be loaded once. This can make problem sets run faster. Debugging may be more complicated, however.}
 

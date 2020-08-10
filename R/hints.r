@@ -112,7 +112,7 @@ hint = function(..., ps=get.ps()) {
       }
       if (!is.null(chunk.hint)) {
         res = try(eval.fun(chunk.hint, hint.env))
-        if (is("res","try-error")) {
+        if (is(res,"try-error")) {
           if (ps$e.ind==0) {
             display("\nI could not evaluate your chunk without error. The hint may therefore not have worked properly.")
           } else {

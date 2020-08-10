@@ -44,8 +44,10 @@ inner.hint.for.call.chain = function(stud.expr.li, cde, ps = get.ps(), ce=NULL, 
   } else {
     check.res.li = NULL
   }
+  
   has.error = FALSE
   compare.li = vector("list", length(sde.li))
+  
   for (i in seq_along(sde.li)) {
     res = try(compare.pipe.chains(
       check.chain = ce, cde=cde,

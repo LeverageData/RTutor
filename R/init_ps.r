@@ -13,7 +13,7 @@ copy.ps.for.session = function(ps, empty.stud.env=TRUE) {
   ps$edt = copy(ops$edt)
 
   cdt = ps$cdt; edt = ps$edt
-  if(nrow(cdt)>0){
+  if(NROW(cdt)>0){
     cdt[["stud.env"]] = lapply(1:NROW(cdt), function(chunk.ind) {
       new.stud.env(chunk.ind)
     })

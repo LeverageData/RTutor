@@ -1355,7 +1355,7 @@ get.chunk.lines = function(txt) {
   chunk.start = which(chunk.start)
   chunk.end = remove.verbatim.end.chunks(chunk.start,chunk.end)
   
-  if(length(chunk.start)!=0) {
+  if(length(chunk.start)>0) {
     header = txt[chunk.start]
     chunk.name = sapply(header,USE.NAMES=FALSE, function(str) chunk.opt.string.to.list(str, keep.name=TRUE)[[1]])
     chunk.df = quick.df(chunk.name=chunk.name, start.line=chunk.start, end.line=chunk.end)
@@ -1419,7 +1419,7 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
   df
   
   #?? Not obvious whats happening here, but having a task start after the txt file ends leads to errors, so we will remove those
-  df <- df[df$start<=length(txt),]
+  df = df[df$start<=length(txt),]
 
   in.note = cumsum(df$type=="note.start") - cumsum(df$type=="note.end")
   df$note.ind = cumsum(df$type=="note.start")*in.note
@@ -1447,8 +1447,8 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
   dt = data.table(fragment.ind = 1:n,ex.ind=df$ex.ind, view.ind=df$view.ind, type=df$type, type.ind=df$type.ind, chunk.name="",chunk.ind=0,info.name="", html=vector("list", n), code="", note.ind = df$note.ind, note.label=df$note.label, addon.id="")
   keep.row = rep(TRUE, NROW(dt))
 
-  i = 19
-  for (i in 1:n) {
+  i = 5
+  for (i in seq_len(n)) {
     if (dt$type[i]=="chunk") {
       header = txt[df$start[i]]
       opt = chunk.opt.string.to.list(header, keep.name=TRUE)

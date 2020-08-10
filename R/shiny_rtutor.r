@@ -144,7 +144,7 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
       ps$input = input
       ps$output = output
       # autocomplete in first open chunk
-      if(nrow(ps$cdt)>0){
+      if(NROW(ps$cdt)>0){
         set.chunk.autocomp.observer(inputId = ps$cdt$nali[[1]]$editor, chunk.ind = 1)
       }
     }
@@ -158,7 +158,7 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
       ps$output = output
       
       # autocomplete in first open chunk
-      if(nrow(ps$cdt)>0){
+      if(NROW(ps$cdt)>0){
         set.chunk.autocomp.observer(inputId = ps$cdt$nali[[1]]$editor, chunk.ind = 1)
       }
       if (stop.app.if.window.closes) {

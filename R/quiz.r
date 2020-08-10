@@ -288,8 +288,9 @@ quiz.part.ui = function(part, solution=FALSE, add.button=!is.null(part$checkBtnI
     part$question = stringr::str_c(quest.split[1],"\\.",quest.split[2])
   }
   
-  question = rmdtools::md2html(part$question)
-
+  question = markdownToHTML(text=part$question, fragment.only=TRUE,encoding="UTF-8")
+  #question = rmdtools::md2html(part$question)
+  
   # Allow RMD Formatting (e.g. bolding and MathJax) with single choice and multiple choice
   if(part$type %in% c("sc","mc")){
     choices = lapply(transform.save.html(part$choices),HTML)
@@ -455,6 +456,7 @@ generate.choice.commentary = function(chosen, part){
     }
   }) %>% unlist() %>% stringr::str_c(collapse="<br>")
   
+  #return(question = markdownToHTML(text=transform.save.html(commentary), fragment.only=FALSE,encoding="UTF-8"))
   return(rmdtools::md2html(transform.save.html(commentary)))
 }
 

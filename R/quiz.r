@@ -626,7 +626,6 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__"){
     final.str = bind_rows(final.tbl.li) %>%
       unlist() %>%
       stringr::str_c(collapse="\n")
-    cat(final.str)
   } else {
     final.str = str.split %>%
       stringr::str_c(collapse="\n")

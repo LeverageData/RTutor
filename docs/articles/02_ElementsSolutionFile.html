@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2 Elements of a Solution File • RTutor</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="2 Elements of a Solution File">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="RTutor">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.6.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.11</span>
       </span>
     </div>
 
@@ -42,38 +43,12 @@
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Manuals
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/01_RTutorOverview.html">1 RTutor Overview</a>
-    </li>
-    <li>
-      <a href="../articles/02_ElementsSolutionFile.html">2 Elements of a Solution File</a>
-    </li>
-    <li>
-      <a href="../articles/03_HintsAndTests.html">3 Hints and Tests</a>
-    </li>
-    <li>
-      <a href="../articles/04_Evaluation.html">4 Evaluation Order and Environments</a>
-    </li>
-    <li>
-      <a href="../articles/05_Deploy%20Problem%20Sets%20as%20Package%20on%20Github.html">5 Deploy RTutor Problem Set as a Package on Github</a>
-    </li>
-    <li>
-      <a href="../articles/06_Deploy%20problem%20set%20on%20shinyapps.io.html">6 Deploy a problem set on shinyapps.io</a>
-    </li>
-    <li>
-      <a href="../articles/FAQ_and_Sneaky_Errors.html">Sneaky Errors</a>
-    </li>
-  </ul>
-</li>
+<li class="dropdown-header">Manuals</li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/RTutor.html">Get started</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -92,13 +67,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>2 Elements of a Solution File</h1>
+      <h1 data-toc-skip>2 Elements of a Solution File</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/LeverageData/RTutor/blob/master/vignettes/02_ElementsSolutionFile.Rmd"><code>vignettes/02_ElementsSolutionFile.Rmd</code></a></small>
       <div class="hidden name"><code>02_ElementsSolutionFile.Rmd</code></div>
 
     </div>
@@ -110,30 +86,30 @@
 <a href="#elements-of-solution-files" class="anchor"></a>Elements of Solution Files</h1>
 <p>Let us dig a bit deeper into the structure of the RMarkdown file that specify an RTutor problem set. Here is the code of a simple problem set.</p>
 <p>Important: If you want to run this example, copy the <a href="https://raw.githubusercontent.com/skranz/RTutor/master/inst/examples/SmallExample_sol.Rmd">Rmd file on Github</a>. Copy pasting the code below won’t work.</p>
-<pre><code>#&lt; ignore
-```{r "Create problem set files"}
-setwd("C:/folder_of_this_solution_file")
-ps.name = "SmallExample"; sol.file = paste0(ps.name,"_sol.Rmd")
-libs = NULL # character vector of all packages you load in the problem set
-create.ps(sol.file=sol.file, ps.name=ps.name, user.name=NULL,libs=libs)
-```
-#&gt;
-
-## Exercise 1 -- Summary statistics
-
-a) We often want to compute some summary statistic of a vector.
-For example:
-```{r}
-#&lt; task
-x = 10:20
-# Computing the sum of x
-sum(x)
-#&gt;
-```
-Now compute the mean of x.
-```{r}
-mean(x)
-```</code></pre>
+<pre><code>    #&lt; ignore
+    ```{r "Create problem set files"}
+    setwd("C:/folder_of_this_solution_file")
+    ps.name = "SmallExample"; sol.file = paste0(ps.name,"_sol.Rmd")
+    libs = NULL # character vector of all packages you load in the problem set
+    create.ps(sol.file=sol.file, ps.name=ps.name, user.name=NULL,libs=libs)
+    ```
+    #&gt;
+    
+    ## Exercise 1 -- Summary statistics
+    
+    a) We often want to compute some summary statistic of a vector.
+    For example:
+    ```{r}
+    #&lt; task
+    x = 10:20
+    # Computing the sum of x
+    sum(x)
+    #&gt;
+    ```
+    Now compute the mean of x.
+    ```{r}
+    mean(x)
+    ```</code></pre>
 <p>As in a normal RMarkdown down file we have text and code chunks intermingled. In addition RTutor recognizes several keywords with special meaning.</p>
 <p>In the example above, we have:</p>
 <ul>
@@ -142,9 +118,9 @@ mean(x)
 <li>Inside the first real chunk we have a task block starting with the line <code>#&lt; task</code> and ending with the line <code>#&gt;</code> Chunk code inside a task block will be shown to students. Chunk code outside any block describes the sample solution that will not be shown.</li>
 </ul>
 <p>Run the setup chunk and take a look at the empty problem set <code>SmallExample.Rmd</code> that you can give to students. Places where students have to enter code will be marked by.</p>
-<pre><code>```{r }
-# enter your code here ...
-```</code></pre>
+<pre><code>    ```{r }
+    # enter your code here ...
+    ```</code></pre>
 <p>Below we give an overview of the most important special keywords and blocks you can use to specify an RTutor problem set.</p>
 <div id="exercise-header" class="section level2">
 <h2 class="hasAnchor">
@@ -169,13 +145,13 @@ mean(x)
 <h2 class="hasAnchor">
 <a href="#task-blocks" class="anchor"></a>task blocks</h2>
 <p>Code inside a task block will be shown to the user. Here is an example:</p>
-<pre><code>```{r}
-#&lt; task
-x = 10:20
-# Compute the mean of x
-#&gt;
-mean(x)
-```</code></pre>
+<pre><code>    ```{r}
+    #&lt; task
+    x = 10:20
+    # Compute the mean of x
+    #&gt;
+    mean(x)
+    ```</code></pre>
 <p>The definition of <code>x</code> and the R comment describing is in the the task block and will be shown to the user. Yet the last line is outside the task block and will not be shown, but shall be entered by the user herself.</p>
 </div>
 <div id="task_notest-vs-task-blocks" class="section level2">
@@ -183,12 +159,12 @@ mean(x)
 <a href="#task_notest-vs-task-blocks" class="anchor"></a>task_notest vs task blocks</h2>
 <p>Code in a normal task block will still be checked by RTutor. This means if a user modifies the given code in a task block, RTutor will not accept the solution. This requirement is useful if the task block specifies variables that will be used in later computations.</p>
 <p>Other times, we just want to show some output and no harm is done if the user changes the code. You should then put such code in a task_notest block. Here is an example:</p>
-<pre><code>```{r}
-#&lt; task_notest
-# Here is a plot
-plot(x=1:10,y= (1:10)^2)
-#&gt;
-```</code></pre>
+<pre><code>    ```{r}
+    #&lt; task_notest
+    # Here is a plot
+    plot(x=1:10,y= (1:10)^2)
+    #&gt;
+    ```</code></pre>
 <p>Code in a task_notest block will never be checked and created variables will not be available in later blocks. This makes it also faster to evaluate task_notest blocks than task blocks.</p>
 </div>
 <div id="fill_in-blocks" class="section level2">
@@ -213,11 +189,13 @@ plot(x=1:10,y= (1:10)^2)
 <a class="sourceLine" id="cb8-12" title="12">  ggtitle(<span class="st">"My first ggplot!"</span>)</a></code></pre></div>
 <p>Please use three underscores <code>___</code> as placeholders or change the argument <code>placeholder</code> in <code>create.ps</code> if you want another placeholder string for your problem set. The problem is that most nice placeholder strings create syntactically incorrect R code, which would mess up hints. The default placeholder <code>___</code> will be internally converted to a variable name to allow parsing a student’s expression that still contains placeholders.</p>
 <p>You should try to set your placeholders such that you get a syntactically R expression if the placeholder were a valid R variable name. If that is not possible, you should add a <code>#</code> in front of <em>every</em> line of your <code>fill_in</code> block so that <code>create.ps</code> can correctly parse your expression. Here is an example:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co">#&lt; fill_in</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="co"># # Insert for ___ the correct operator to multiply x with y</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="co"># x ___ y</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb9-5" title="5">x<span class="op">*</span>y</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co">#&lt; fill_in</span>
+<span class="co"># # Insert for ___ the correct operator to multiply x with y</span>
+<span class="co"># x ___ y</span>
+<span class="co">#&gt;</span>
+<span class="kw">x</span><span class="op">*</span><span class="kw">y</span>
+</pre></div>
 <p>The initial <code>#</code> will be removed when shown to the student.</p>
 </div>
 <div id="notest-blocks" class="section level2">
@@ -273,16 +251,16 @@ plot(x=1:10,y= (1:10)^2)
 <a href="#notes-or-info-blocks-that-can-contain-chunks" class="anchor"></a>Notes – Or info blocks that can contain chunks</h2>
 <p>Info blocks cannot include chunks that the user shall solve. Notes are a variant of info blocks that can contain chunks for the user to be solved.</p>
 <p>The syntax for note blocks is non-standard, since I never updated RTutor to a parser that generally handles nested <code>#&lt;</code> … <code>#&gt;</code> blocks. Here is an example:</p>
-<pre><code>#! start_note "A note with a chunk"
-This is a note.
-
-```{r "1_1  6",optional=TRUE}
-#&lt; task
-# show that all integers between 0 and 10
-#&gt;
-1:10
-```
-#! end_note </code></pre>
+<pre><code>    #! start_note "A note with a chunk"
+    This is a note.
+    
+    ```{r "1_1  6",optional=TRUE}
+    #&lt; task
+    # show that all integers between 0 and 10
+    #&gt;
+    1:10
+    ```
+    #! end_note </code></pre>
 <p>Everything between the lines</p>
 <p><code>#! start_note "Title"</code></p>
 <p>and</p>
@@ -322,10 +300,10 @@ This is a note.
 <h2 class="hasAnchor">
 <a href="#optional-chunks" class="anchor"></a>Optional chunks</h2>
 <p>By default you have to solve all chunks in an exercise in the given order. If you set the chunk option <code>optional=TRUE</code>, a chunk need not be solved in order to continue. Example:</p>
-<pre><code>```{r "1_b", optional = TRUE}
-# Code here
-
-```</code></pre>
+<pre><code>    ```{r "1_b", optional = TRUE}
+    # Code here
+    
+    ```</code></pre>
 <p>This is in particular useful if you use notes that contain chunks. Note that variables that have been computed in optional chunks will not be known in later chunks.</p>
 <p>Note that <code>optional</code> is not a chunk option known by <code>knitr</code> but only used for RTutor.</p>
 </div>
@@ -333,30 +311,30 @@ This is a note.
 <h2 class="hasAnchor">
 <a href="#chunks-with-html-output" class="anchor"></a>Chunks with HTML output</h2>
 <p>You can specify chunks whose output is native HTML code, e.g. if you want to show an HTML table or show a motion plot. As in normal rmarkdown, you can do so by setting the chunk option <code>results= "asis"</code>. Here is an example from an interactive problem set that shows a motion plot:</p>
-<pre><code>```{r "2_1_a_example", results = 'asis'}
-#&lt; task
-library(googleVis)
-mp = gvisMotionChart(Int.data,
-       idvar = "country", timevar = "year")
-plot(mp, tag = "chart")
-#&gt;
-```</code></pre>
+<pre><code>    ```{r "2_1_a_example", results = 'asis'}
+    #&lt; task
+    library(googleVis)
+    mp = gvisMotionChart(Int.data,
+           idvar = "country", timevar = "year")
+    plot(mp, tag = "chart")
+    #&gt;
+    ```</code></pre>
 <p>There are a lot of R packages that help creating nice HTML tables, like <code>stargazer</code>, or <code>hwriter</code>.</p>
 </div>
 <div id="chunks-with-html-widgets-as-outputs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#chunks-with-html-widgets-as-outputs" class="anchor"></a>Chunks with HTML Widgets as outputs</h2>
 <p>It is also possible to have chunks that have HTML widgets as output. If you use the shiny based version of RTutor you then need some additional chunk options. Here is an example for the leaflet widget:</p>
-<pre><code>```{r output="htmlwidget", widget="leaflet"}
-#&lt; task_notest
-SFmap &lt;- leaflet() %&gt;% 
-  addTiles() %&gt;% 
-  setView(9.9620289,48.4251394, zoom = 11) %&gt;% 
-  addMarkers(9.963614702355699,48.42517242865929,
-    popup = 'RTutor was created here at Ulm University')
-SFmap
-#&gt;
-```</code></pre>
+<pre><code>    ```{r output="htmlwidget", widget="leaflet"}
+    #&lt; task_notest
+    SFmap &lt;- leaflet() %&gt;% 
+      addTiles() %&gt;% 
+      setView(9.9620289,48.4251394, zoom = 11) %&gt;% 
+      addMarkers(9.963614702355699,48.42517242865929,
+        popup = 'RTutor was created here at Ulm University')
+    SFmap
+    #&gt;
+    ```</code></pre>
 <p>The <code>widget</code> argument is typically the name of the R package in which the html widget is specified.</p>
 </div>
 <div id="customizing-data-frame-printer" class="section level2">
@@ -369,91 +347,40 @@ SFmap
 <h2 class="hasAnchor">
 <a href="#specifying-figure-width-and-height-and-other-knitr-chunk-options" class="anchor"></a>Specifying figure width and height and other knitr chunk options</h2>
 <p>If your chunk plots a figure, you may want to specify the width and height of the resulting figure. You can do this like for normal RMarkdown files with the chunk options <code>fig.width</code> and <code>fig.height</code> that specify width and height in inches.</p>
-<pre><code>```{r "1_a", fig.width=12, fig.height=5}
-#&lt; task
-plot(1:10,(1:10)^2)
-#&gt;
-```</code></pre>
+<pre><code>    ```{r "1_a", fig.width=12, fig.height=5}
+    #&lt; task
+    plot(1:10,(1:10)^2)
+    #&gt;
+    ```</code></pre>
 <p>You can also specify other chunk options of the <code>knitr</code> package. An overview is given here:</p>
 <p><a href="http://yihui.name/knitr/options/">http://yihui.name/knitr/options/</a></p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#elements-of-solution-files">Elements of Solution Files</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#exercise-header">Exercise header</a></li>
-      <li><a href="#parts-a-b">parts a), b) …</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#task-blocks-and-variants">Task blocks and variants</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#task-blocks">task blocks</a></li>
-      <li><a href="#task_notest-vs-task-blocks">task_notest vs task blocks</a></li>
-      <li><a href="#fill_in-blocks">fill_in blocks</a></li>
-      <li><a href="#notest-blocks">notest blocks</a></li>
-      </ul>
-</li>
-      <li><a href="#blocks-for-customized-hints-and-tests">Blocks for customized hints and tests</a></li>
-      <li>
-<a href="#block-types-used-outside-of-chunks">Block types used outside of chunks</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#ignore-blocks">ignore blocks</a></li>
-      <li><a href="#quiz-blocks">quiz blocks</a></li>
-      <li><a href="#info-blocks">info blocks</a></li>
-      <li><a href="#notes-or-info-blocks-that-can-contain-chunks">Notes – Or info blocks that can contain chunks</a></li>
-      <li><a href="#preknit-blocks-just-knit-as-rmarkdown">preknit blocks (just knit as RMarkdown)</a></li>
-      <li><a href="#award-blocks">award blocks</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#special-chunks-options">Special chunks options</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#optional-chunks">Optional chunks</a></li>
-      <li><a href="#chunks-with-html-output">Chunks with HTML output</a></li>
-      <li><a href="#chunks-with-html-widgets-as-outputs">Chunks with HTML Widgets as outputs</a></li>
-      <li><a href="#customizing-data-frame-printer">Customizing data frame printer</a></li>
-      <li><a href="#specifying-figure-width-and-height-and-other-knitr-chunk-options">Specifying figure width and height and other knitr chunk options</a></li>
-      </ul>
-</li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
-  <p>Developed by Sebastian Kranz.</p>
+  <p>Developed by Martin Kies.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
 
 
-  <script type="text/javascript">
-  var sc_project=12051162; 
-  var sc_invisible=1; 
-  var sc_security="60139410"; 
-  </script>
-  <script type="text/javascript"
-  src="https://www.statcounter.com/counter/counter.js"
-  async></script>
-  <noscript><div class="statcounter"><a title="Web Analytics
-  Made Easy - StatCounter" href="https://statcounter.com/"
-  target="_blank"><img class="statcounter"
-  src="https://c.statcounter.com/12051162/0/60139410/1/"
-  alt="Web Analytics Made Easy -
-  StatCounter"></a></div></noscript>
-  
-  
   </body>
 </html>

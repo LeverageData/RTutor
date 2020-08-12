@@ -467,27 +467,29 @@ is.dplyr.fun = function(na) {
   na %in% c("mutate","filter","select","arrange","summarise","summarize")
 }
 
-make.stud.expr.li.info = function(stud.expr.li = get.ps()$stud.expr.li) {
-  restore.point("make.stud.expr.li.info")
+make.expr.li.info = function(expr.li, do.unlist=FALSE) {
+  restore.point("make.expr.li.info")
   
-  n = length(stud.expr.li)
-  is.assign = sapply(stud.expr.li, is.assignment)
+  if (do.unlist)
+    expr.li = unlist(as.list(expr.li))
+  n = length(expr.li)
+  is.assign = sapply(expr.li, is.assignment)
   
-  matched.stud.expr.li = vector("list",n)
+  matched.expr.li = vector("list",n)
   var = rep("",n)
   
   for (row in seq_len(n)) {
-    stud.expr = stud.expr.li[[row]]
+    expr = expr.li[[row]]
     if (is.assign[row]) {
-      matched.stud.expr.li[[row]] = match.call.object(stud.expr[[3]])
-      var[row] = deparse.assign.var(stud.expr)                         
+      matched.expr.li[[row]] = match.call.object(expr[[3]])
+      var[row] = deparse.assign.var(expr)                         
     } else {
-      matched.stud.expr.li[[row]] = match.call.object(stud.expr)
+      matched.expr.li[[row]] = match.call.object(expr)
     }
   }
   
   tibble(
-    matched.stud.expr = matched.stud.expr.li,
+    matched.expr = matched.expr.li,
     var = var,
     is.assign = is.assign
   )
@@ -508,6 +510,39 @@ hint.stud.assign = function(var, call,msg , ps=get.ps(), env=parent.frame()) {
 }
 
 
+#' Show the hint if the student calls a specific function
+#' 
+#' Show the hint message if the student has called
+#' a certain function (not nested in another function)
+#' somewhere in the chunk. If you also want to consider
+#' the call arguments use hint.stud.call or hint.stud.assign
+#' instead. 
+#' 
+#' @param fun.name the function name as string.
+#' @param msg a string that shall be shown as hint if the student made the call in his code
+hint.stud.fun = function(fun.name, msg, ps=get.ps(), env=parent.frame()) {
+  restore.point("hint.stud.fun")
+  has.fun = FALSE
+  for (call in ps$stud.expr.li) {
+    if (!is.call(call)) next
+    stud.fun = as.character(call[1])
+    if (stud.fun == "=" | stud.fun == "<-") {
+      call = call[[3]]
+      if (!is.call(call)) next
+      stud.fun = as.character(call[1])
+    }
+    if (identical(fun.name,stud.fun)) {
+      has.fun = TRUE
+      break
+    }
+  }
+  if (has.fun) {
+    cat(paste0("\n",msg,"\n"))
+    ps$shown.custom.hints = ps$shown.custom.hints+1 
+  }
+  
+}
+
 #' Show the hint if the student made the specified wrong call
 #' 
 #' @param call an unquoted call that we check whether the student makes it
@@ -522,7 +557,7 @@ hint.stud.call = function(call, msg="", ps=get.ps(), env=parent.frame(), qcall, 
   restore.point("hint_stud_call_inner")
   
   if (is.null(ps$stud.expr.li.info)) {
-    ps$stud.expr.li.info =  make.stud.expr.li.info(ps$stud.expr.li)
+    ps$stud.expr.li.info =  make.expr.li.info(ps$stud.expr.li)
   }
   
   stud.expr.li.info = ps$stud.expr.li.info
@@ -534,7 +569,7 @@ hint.stud.call = function(call, msg="", ps=get.ps(), env=parent.frame(), qcall, 
   }
   if (length(rows)==0) return(invisible())
   
-  stud.expr.li = ps$stud.expr.li.info$matched.stud.expr[rows]
+  stud.expr.li = ps$stud.expr.li.info$matched.expr[rows]
   
   has.call = FALSE
   for (scall in stud.expr.li) {
@@ -546,7 +581,42 @@ hint.stud.call = function(call, msg="", ps=get.ps(), env=parent.frame(), qcall, 
   }
 }
 
+#' Get or set whether hint.else or
+#' auto.hint.else would be triggered.
+#' 
+#' If a hint.stud.call or hint.stud.assign is shown
+#' then a hint.else or auto.hint.else would not be
+#' triggered. This function returns TRUE if hint.else
+#' would still be triggered or otherwise FALSE.
+#' 
+#' If you set the argument activate you can change this status. 
+hint.else.active = function(activate=NULL, ps = get.ps()) {
+  if (is.null(activate)) {
+    return(true(ps$shown.custom.hints==0))
+  } else {
+    if (activate) {
+      ps$shown.custom.hints=0
+    } else {
+      ps$shown.custom.hints=1
+    }
+    return(activate)
+  }
+}
+
+#' Show a hint only if no hint.stud.call or hint.stud.assign 
+#' was triggered.
+#' 
+#' It says that the automatic hint should be shown unless
+#' some hint with hint.stud.call has been shown (or ps$shown.custom.hints has been manually assigned a value above 0.)
+hint.else = function(msg,add.line.breaks=TRUE, ps = get.ps()) {
+  if (hint.else.active()) {
+    cat(paste0(if (add.line.breaks) "\n",msg, if (add.line.breaks) "\n")) 
+  }
+}
+
 #' This is just a place holder in a hint block
+#' 
+#' Only used inside a hint block.
 #' 
 #' It says that the automatic hint should be shown unless
 #' some hint with hint.stud.call has been shown (or ps$shown.custom.hints has been manually assigned a value above 0.)
@@ -555,6 +625,8 @@ auto.hint.else = function() {
 }
 
 #' This is just a place holder in a hint block
+#' 
+#' Only used inside a hint block.
 #' 
 #' It says that the automatic hint shall be shown. This
 #' makes sense if you want to show the automatic hint in

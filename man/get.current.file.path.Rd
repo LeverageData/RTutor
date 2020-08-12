@@ -13,6 +13,6 @@ A character value defining the current path.
 When called out of RStudio API returns the current path of the active file without the file name.
 }
 \examples{
-setwd(get.current.file.path())
+if(rstudioapi::isAvailable()) get.current.file.path()
 
 }

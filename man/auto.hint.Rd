@@ -7,6 +7,9 @@
 auto.hint()
 }
 \description{
+Only used inside a hint block.
+}
+\details{
 It says that the automatic hint shall be shown. This
 makes sense if you want to show the automatic hint in
 addition to a custom hint. Also see auto_hint_else()

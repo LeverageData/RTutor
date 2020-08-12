@@ -7,6 +7,9 @@
 auto.hint.else()
 }
 \description{
+Only used inside a hint block.
+}
+\details{
 It says that the automatic hint should be shown unless
 some hint with hint.stud.call has been shown (or ps$shown.custom.hints has been manually assigned a value above 0.)
 }

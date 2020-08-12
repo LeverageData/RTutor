@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3 Hints and Tests • RTutor</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="3 Hints and Tests">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="RTutor">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.6.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.11</span>
       </span>
     </div>
 
@@ -42,38 +43,12 @@
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Manuals
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/01_RTutorOverview.html">1 RTutor Overview</a>
-    </li>
-    <li>
-      <a href="../articles/02_ElementsSolutionFile.html">2 Elements of a Solution File</a>
-    </li>
-    <li>
-      <a href="../articles/03_HintsAndTests.html">3 Hints and Tests</a>
-    </li>
-    <li>
-      <a href="../articles/04_Evaluation.html">4 Evaluation Order and Environments</a>
-    </li>
-    <li>
-      <a href="../articles/05_Deploy%20Problem%20Sets%20as%20Package%20on%20Github.html">5 Deploy RTutor Problem Set as a Package on Github</a>
-    </li>
-    <li>
-      <a href="../articles/06_Deploy%20problem%20set%20on%20shinyapps.io.html">6 Deploy a problem set on shinyapps.io</a>
-    </li>
-    <li>
-      <a href="../articles/FAQ_and_Sneaky_Errors.html">Sneaky Errors</a>
-    </li>
-  </ul>
-</li>
+<li class="dropdown-header">Manuals</li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/RTutor.html">Get started</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -92,13 +67,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>3 Hints and Tests</h1>
+      <h1 data-toc-skip>3 Hints and Tests</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/LeverageData/RTutor/blob/master/vignettes/03_HintsAndTests.Rmd"><code>vignettes/03_HintsAndTests.Rmd</code></a></small>
       <div class="hidden name"><code>03_HintsAndTests.Rmd</code></div>
 
     </div>
@@ -174,55 +150,143 @@ differs from my solution, where I call the function mean.</code></pre>
 <a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;</span></a>
 <a class="sourceLine" id="cb6-5" title="5">m</a></code></pre></div>
 </div>
-<div id="adaptive-custom-hints" class="section level2">
+<div id="adaptive-custom-hints-for-specific-user-calls" class="section level2">
 <h2 class="hasAnchor">
-<a href="#adaptive-custom-hints" class="anchor"></a>Adaptive Custom Hints</h2>
-<p>The hints described above always show the same message, independent of the student’s code. Automatic hints already adapt to the student’s input and from RTutor version 2019.07.23 it is also more simple to make custom hints adaptive.</p>
+<a href="#adaptive-custom-hints-for-specific-user-calls" class="anchor"></a>Adaptive custom hints for specific user calls</h2>
+<p>If you use <a href="https://github.com/skranz/RTutorSAGI/">RTutorSAGI</a> you may find that repeatedly many users make some specific errors. You can create custom hints that are only shown if a user made a specific call using <code>hint.stud.assign</code>. Here is an example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb7-1" title="1"><span class="co">#&lt; task_notest</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co"># Draw a vector of 10 normally distributed random variables with mean 0 and variance 4.</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb7-4" title="4">rnorm(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&lt; hint</span></a>
+<a class="sourceLine" id="cb7-6" title="6">hint.stud.call(rnorm(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">4</span>),<span class="st">"Remember that R expects the standard deviation, not the variance, as 3rd argument of rnorm."</span>)</a>
+<a class="sourceLine" id="cb7-7" title="7"></a>
+<a class="sourceLine" id="cb7-8" title="8">hint.stud.call(rnorm(<span class="dv">10</span>,mean=<span class="dv">0</span>),<span class="st">"You did not specify the standard deviation."</span>)</a>
+<a class="sourceLine" id="cb7-9" title="9"></a>
+<a class="sourceLine" id="cb7-10" title="10">auto.hint.else()</a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;</span></a></code></pre></div>
+<p>So whenever the student mixes up variance and standard deviation in his call, the customized hint is shown. If she forgot to specify the standard deviation another customized hint is shown. (Whether arguments are named or not does not matter when comparing to the student’s solution.).</p>
+<p>The line <code><a href="../reference/auto.hint.else.html">auto.hint.else()</a></code> means that if no customized hint is shown, the automatic hint is shown.</p>
+<p>There is also a function <code>hint.stud.assign</code> that works similarly for assignments. Look at the following example that also illustrates some other features.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb8-1" title="1"><span class="co">#&lt; task_notest</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># Let x be a vector of 10 normally distributed random variables with mean 0 and variance 4.</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co"># </span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co"># Let y be a transformation of x that is lognormally distributed.</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb8-6" title="6">x = rnorm(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&lt; hint</span></a>
+<a class="sourceLine" id="cb8-8" title="8">hint.stud.assign(<span class="st">"x"</span>,rnorm(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">4</span>),<span class="st">"Remember that R uses the standard deviation not the variance as 3rd argument of rnorm."</span>)</a>
+<a class="sourceLine" id="cb8-9" title="9">auto.hint.else()</a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb8-11" title="11">y = exp(x)</a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&lt; hint</span></a>
+<a class="sourceLine" id="cb8-13" title="13">hint.stud.assign(<span class="st">"y"</span>,log(x),<span class="st">"Yeah, looks intuitive to take the log of x. But that is how you transform a log-normally distributed variable to a normally distributed one. Here you have to use the inverse operation."</span>)</a>
+<a class="sourceLine" id="cb8-14" title="14">hint.else(<span class="st">"Take a look at the Wikipedia page of the log normal distribution."</span>)</a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt;</span></a></code></pre></div>
+<p>The adaptive hints will still be matched to a particular command in the sample solution. The command <code>hint.else</code> allows to show a custom hint instead of the automatic hint in case that no previous adaptive custom hint was triggered. (You could also add an additional line <code>auto.hint.else</code> to show both.)</p>
+<p>Note that <code>hint.stud.assign</code> compares the call expression not the resulting value.</p>
+<p>If you just want to give a hint if the student uses some function in its code irrespective of the function arguments, you can use <code>hint.stud.fun</code> instead. Here is an example:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co">#&lt; task_notest</span>
+<span class="co"># Add the vectors x and y together</span>
+<span class="kw">x</span> <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span>
+<span class="kw">y</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>
+<span class="co">#&gt;</span>
+<span class="kw">x</span><span class="op">+</span><span class="kw">y</span>
+<span class="co">#&lt; hint</span>
+<span class="fu"><a href="../reference/hint.stud.fun.html">hint.stud.fun</a></span>(<span class="st">"sum"</span>,<span class="st">"Please don't use the function 'sum'. A simple plus sign '+' is enough."</span>)
+<span class="fu"><a href="../reference/auto.hint.else.html">auto.hint.else</a></span>()
+<span class="co">#&gt;</span>
+</pre></div>
+<p>Note that it also works if the function is called in an assignment. If you have nested function calls, it only looks at the outer call.</p>
+</div>
+<div id="more-flexible-adaptive-custom-hints" class="section level2">
+<h2 class="hasAnchor">
+<a href="#more-flexible-adaptive-custom-hints" class="anchor"></a>More flexible adaptive custom hints</h2>
+<p>You can also define more flexible adaptive hints that evaluate the value of a student’s assignment.</p>
 <p>Here is an example, where the task is to assign the first 100 square numbers to the variable <code>z</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb7-1" title="1">z = <span class="kw">1:</span><span class="dv">100</span> * <span class="kw">1:</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co">#&lt; hint</span></a>
-<a class="sourceLine" id="cb7-3" title="3">if (true(identical(z,<span class="kw">1:</span><span class="dv">10</span>*<span class="kw">1:</span><span class="dv">10</span>))) {</a>
-<a class="sourceLine" id="cb7-4" title="4">  cat(<span class="st">"Huh, you made a common mistake. Read the task precisely.</span></a>
-<a class="sourceLine" id="cb7-5" title="5">  You shall assign to z the first <span class="dv">100</span> square numbers,</a>
-<a class="sourceLine" id="cb7-6" title="6">not only all square numbers that are less or equal to <span class="dv">100</span><span class="st">")</span></a>
-<a class="sourceLine" id="cb7-7" title="7">} else if (true(length(z)!=<span class="dv">100</span>)) {</a>
-<a class="sourceLine" id="cb7-8" title="8">  cat(<span class="st">"Your variable z must have 100 elements,</span></a>
-<a class="sourceLine" id="cb7-9" title="9">  but in your solution z has<span class="st">", length(z),"</span>elements.<span class="st">")  </span></a>
-<a class="sourceLine" id="cb7-10" title="10">} else {</a>
-<a class="sourceLine" id="cb7-11" title="11">  cat(<span class="st">"There is a simple one-line formula to compute the first 100 square numbers.</span></a>
-<a class="sourceLine" id="cb7-12" title="12">  Just combine what you have learned in exercise <span class="dv">2</span> f) and in exercise <span class="dv">3</span> b).</a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="st">")</span></a>
-<a class="sourceLine" id="cb7-14" title="14">}</a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb10-1" title="1">z = <span class="kw">1:</span><span class="dv">100</span> * <span class="kw">1:</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&lt; hint</span></a>
+<a class="sourceLine" id="cb10-3" title="3">if (true(identical(z,<span class="kw">1:</span><span class="dv">10</span>*<span class="kw">1:</span><span class="dv">10</span>))) {</a>
+<a class="sourceLine" id="cb10-4" title="4">  cat(<span class="st">"Huh, you made a common mistake. Read the task precisely.</span></a>
+<a class="sourceLine" id="cb10-5" title="5">  You shall assign to z the first <span class="dv">100</span> square numbers,</a>
+<a class="sourceLine" id="cb10-6" title="6">not only all square numbers that are less or equal to <span class="dv">100</span><span class="st">")</span></a>
+<a class="sourceLine" id="cb10-7" title="7">} else if (true(length(z)!=<span class="dv">100</span>)) {</a>
+<a class="sourceLine" id="cb10-8" title="8">  cat(<span class="st">"Your variable z must have 100 elements,</span></a>
+<a class="sourceLine" id="cb10-9" title="9">  but in your solution z has<span class="st">", length(z),"</span>elements.<span class="st">")  </span></a>
+<a class="sourceLine" id="cb10-10" title="10">} else {</a>
+<a class="sourceLine" id="cb10-11" title="11">  cat(<span class="st">"There is a simple one-line formula to compute the first 100 square numbers.</span></a>
+<a class="sourceLine" id="cb10-12" title="12">  Just combine what you have learned in exercise <span class="dv">2</span> f) and in exercise <span class="dv">3</span> b).</a>
+<a class="sourceLine" id="cb10-13" title="13"><span class="st">")</span></a>
+<a class="sourceLine" id="cb10-14" title="14">}</a>
+<a class="sourceLine" id="cb10-15" title="15"><span class="co">#&gt;</span></a></code></pre></div>
 <p>The code in the hint block will be evaluated in an environment in which all variables defined in earlier solved chunks are known. Also (at least if you use the default tests) the student’s current code has been already be evaluated in the hint environment.</p>
 <p>This means whether whether <code>z</code> exists in the hint environment depends on whether the user has defined it in her solution for the chunk or not. The function <code>true</code> is a robust version of <code>isTRUE</code> that never throws an error. This means even if <code>z</code> does not exist and thus the expression cannot be evaluated, we just get a <code>FALSE</code>.</p>
 </div>
-<div id="add_to_hint-blocks-to-combine-automatic-and-custom-hints" class="section level2">
+<div id="combine-automatic-and-custom-hints" class="section level2">
 <h2 class="hasAnchor">
-<a href="#add_to_hint-blocks-to-combine-automatic-and-custom-hints" class="anchor"></a>add_to_hint blocks to combine automatic and custom hints</h2>
-<p>There are many situations were you want to keep the automatic hint but just add some additional hint. Then write your hint code in an <code>add_to_hint</code>block.</p>
+<a href="#combine-automatic-and-custom-hints" class="anchor"></a>Combine automatic and custom hints</h2>
+<p>To combine automatic and custom hints, you can add a line that only contains</p>
+<p><code><a href="../reference/auto.hint.html">auto.hint()</a></code></p>
+<p>in your hint block (possibly inside an if block). Then also the automatic hint is shown.</p>
+<p>If you add a line</p>
+<p><code><a href="../reference/auto.hint.else.html">auto.hint.else()</a></code></p>
+<p>then the automatic hint is only shown if no <code>hint.stud.call</code> or <code>hint.stud.assign</code> above showed a hint.</p>
+<p>There is also an alternative way carried over from previous RTutor versions to combine custom and automatic hints. It is simpler if you just always want to combine automatic hint with an additional custom hint. Then write your hint code in an <code>add_to_hint</code>block.</p>
 <p>Here is an example for an adaptive custom hint in an <code>#&lt; add_to_hint</code> block from one of my problem sets:</p>
 <blockquote>
 <p>Task: Using the command <code>cbind</code>, generate the matrix X of explanatory variable whose first column consists of 1 and the second column consists of p.</p>
 </blockquote>
-<div class="sourceCode" id="cb8"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb8-1" title="1">X = cbind(<span class="dv">1</span>,p)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="co">#&lt; add_to_hint</span></a>
-<a class="sourceLine" id="cb8-3" title="3">if (exists(<span class="st">"x"</span>) &amp; !exists(<span class="st">"X"</span>)) {</a>
-<a class="sourceLine" id="cb8-4" title="4">  cat(<span class="st">"It looks like you assigned the value to 'x' (lowercase), but you shall assign the value to 'X' (uppercase)."</span>)</a>
-<a class="sourceLine" id="cb8-5" title="5">}</a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb11-1" title="1">X = cbind(<span class="dv">1</span>,p)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="co">#&lt; add_to_hint</span></a>
+<a class="sourceLine" id="cb11-3" title="3">if (exists(<span class="st">"x"</span>) &amp; !exists(<span class="st">"X"</span>)) {</a>
+<a class="sourceLine" id="cb11-4" title="4">  cat(<span class="st">"It looks like you assigned the value to 'x' (lowercase), but you shall assign the value to 'X' (uppercase)."</span>)</a>
+<a class="sourceLine" id="cb11-5" title="5">}</a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="co">#&gt;</span></a></code></pre></div>
 <p>Looking at the logs of students’ solution, it became apparent that many mixed up X with x. The automatic hint did not help for this problem, yet in other cases, it was helpful. So I just wanted to add this specific custom hint to the automatic hint.</p>
 </div>
 <div id="hints-at-the-beginning-of-chunk" class="section level2">
 <h2 class="hasAnchor">
 <a href="#hints-at-the-beginning-of-chunk" class="anchor"></a>Hints at the beginning of chunk</h2>
 <p>If you place a hint at the beginning of a chunk, the hint text will be added to all the hints of the individual commands.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb9-1" title="1"><span class="co">#&lt; hint</span></a>
-<a class="sourceLine" id="cb9-2" title="2">cat(<span class="st">"This hint will be added to the automatic hints</span></a>
-<a class="sourceLine" id="cb9-3" title="3">of all commands below.<span class="st">")</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb9-5" title="5">x = <span class="kw">1:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb9-6" title="6">y = x^<span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb12-1" title="1"><span class="co">#&lt; hint</span></a>
+<a class="sourceLine" id="cb12-2" title="2">cat(<span class="st">"This hint will be added to the automatic hints</span></a>
+<a class="sourceLine" id="cb12-3" title="3">of all commands below.<span class="st">")</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb12-5" title="5">x = <span class="kw">1:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb12-6" title="6">y = x^<span class="dv">2</span></a></code></pre></div>
+</div>
+<div id="a-complex-example" class="section level2">
+<h2 class="hasAnchor">
+<a href="#a-complex-example" class="anchor"></a>A complex example</h2>
+<p>The following example combines several of the aspects above. It also uses the function <code><a href="../reference/hint.else.active.html">hint.else.active()</a></code> to manually set whether an <code>hint.else</code> or <code>auto.hint.else</code> shall be shown. If you want to construct such complex hints (often there is no need, you can just go with the automatic hints), you may perhaps want to debug your code. For this you can use <a href="https://skranz.github.io/r/2015/02/15/restorepoint.html">restorepoints</a>, which you should later remove.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="co">#&lt; hint</span>
+<span class="co"># This sentence will always be shown at the bottom of each hint</span>
+<span class="co"># for this chunk</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"\nNote that you should be able to solve this exercise in an exam."</span>)
+<span class="co">#&gt;</span>
+<span class="co">#&lt; task_notest</span>
+<span class="co"># Let x be a vector of 10 normally distributed random variables with mean 0 and variance 4.</span>
+<span class="co"># </span>
+<span class="co"># Let y be a transformation of x that is lognormally distributed.</span>
+<span class="co">#&gt;</span>
+<span class="kw">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">2</span>)
+<span class="co">#&lt; hint</span>
+<span class="fu"><a href="../reference/hint.stud.assign.html">hint.stud.assign</a></span>(<span class="st">"x"</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">4</span>),<span class="st">"Remember that R uses the standard deviation not the variance as 3rd argument of rnorm."</span>)
+<span class="fu"><a href="../reference/auto.hint.else.html">auto.hint.else</a></span>()
+<span class="co">#&gt;</span>
+<span class="kw">y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="kw">x</span>)
+<span class="co">#&lt; hint</span>
+<span class="fu">restore.point</span>(<span class="st">"myhint"</span>) <span class="co"># for debugging purposes</span>
+<span class="fu"><a href="../reference/hint.stud.assign.html">hint.stud.assign</a></span>(<span class="st">"y"</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="kw">x</span>),<span class="st">"Yeah, looks intuitive to take the log of x. But that is how you transform a log-normally distributed variable to a normally distributed one. Here you have to use the inverse operation."</span>)
+<span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="../reference/true.html">true</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span>(<span class="kw">y</span>))) { <span class="co"># also triggers if y does not exist</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"\nYou should generate a numeric variable y."</span>)
+  <span class="fu"><a href="../reference/hint.else.active.html">hint.else.active</a></span>(<span class="fl">FALSE</span>) <span class="co"># turn off hint.else</span>
+}
+<span class="fu"><a href="../reference/hint.else.html">hint.else</a></span>(<span class="st">"Take a look at the Wikipedia page of the log normal distribution."</span>)
+<span class="co">#&gt;</span>
+</pre></div>
 </div>
 </div>
 <div id="customizing-tests" class="section level1">
@@ -235,11 +299,11 @@ differs from my solution, where I call the function mean.</code></pre>
 <a href="#specifying-parameters-of-automatic-tests" class="anchor"></a>Specifying parameters of automatic tests</h2>
 <p>Automatic tests either call <code>check.assign</code> (if a value is assigned to a variable), <code>check.call</code> (a statement that does not assign a variable), or <code>check.function</code> (if a function is generated). These test function have a number of arguments, that allow to customize the tests.</p>
 <p>A <code>test_arg</code> blocks allows you to change the arguments of a default test for the preceding statement. Consider the following example:</p>
-<pre><code>plot(x=p,y=q,main="A plot", xlab="Prices")
-#&lt; test_arg
-  ignore.arg = c("main","xlab")
-  allow.extra.arg=TRUE
-#&gt;</code></pre>
+<pre><code><a href="https://rdrr.io/r/graphics/plot.default.html">    plot(x=p,y=q,main="A plot", xlab="Prices")
+    #&lt; test_arg
+      ignore.arg = c("main","xlab")
+      allow.extra.arg=TRUE
+    #&gt;</a></code></pre>
 <p>The <code>#&lt; test_arg</code> block customizes the parameters <code>ignore.arg</code> and <code>allow.extra.arg</code> of the <code>check.call</code> function. The parameter <code>ignore.arg = c("main","xlab")</code> means that the student does not have to add these two arguments to the plot function or can use different values. The parameter <code>allow.extra.arg=TRUE</code> allows the student to specify additional arguments when calling plot, e.g. specifying a <code>ylab</code>. So essentially, it will now only be tested whether the x and y arguments of the plot are correct and any customization of the plot will still be considered a correct solution. See the help of <code>check.call</code> for a description of arguments.</p>
 </div>
 <div id="allowing-several-correct-solutions" class="section level2">
@@ -249,34 +313,36 @@ differs from my solution, where I call the function mean.</code></pre>
 <blockquote>
 <p>Task: Let x contain the square roots of 4</p>
 </blockquote>
-<div class="sourceCode" id="cb11"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb11-1" title="1">x = c(-<span class="dv">2</span>,<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="co">#&lt; test_arg</span></a>
-<a class="sourceLine" id="cb11-3" title="3">other.sols = list(quote(</a>
-<a class="sourceLine" id="cb11-4" title="4">  x&lt;-c(<span class="dv">2</span>,-<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb11-5" title="5">))</a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb11-7" title="7"><span class="co">#&lt; add_to_hint</span></a>
-<a class="sourceLine" id="cb11-8" title="8">if (true(identical(x,<span class="dv">2</span>) | identical(x,-<span class="dv">2</span>))) {</a>
-<a class="sourceLine" id="cb11-9" title="9">  cat(<span class="st">"Recall that 4 has two square roots: a positive and a negative one.)</span></a>
-<a class="sourceLine" id="cb11-10" title="10">}</a>
-<a class="sourceLine" id="cb11-11" title="11"><span class="co">#&gt;</span></a></code></pre></div>
-<p>The argument <code>other.sols</code> of the default test function <code>check.assign</code> takes a list of quoted assignments that consitute alternative correct solutions. In the example above, we don’t care about the order of the solution vector. Note that you must assign with <code>&lt;-</code> instead of <code>=</code> inside the <code>quote</code> function.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb15-1" title="1">x = c(-<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="co">#&lt; test_arg</span></a>
+<a class="sourceLine" id="cb15-3" title="3">other.sols = list(quote(</a>
+<a class="sourceLine" id="cb15-4" title="4">  x&lt;-c(<span class="dv">2</span>,-<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb15-5" title="5">))</a>
+<a class="sourceLine" id="cb15-6" title="6"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="co">#&lt; add_to_hint</span></a>
+<a class="sourceLine" id="cb15-8" title="8">if (true(identical(x,<span class="dv">2</span>) | identical(x,-<span class="dv">2</span>))) {</a>
+<a class="sourceLine" id="cb15-9" title="9">  cat(<span class="st">"Recall that 4 has two square roots: a positive and a negative one.)</span></a>
+<a class="sourceLine" id="cb15-10" title="10">}</a>
+<a class="sourceLine" id="cb15-11" title="11"><span class="co">#&gt;</span></a></code></pre></div>
+<p>The argument <code>other.sols</code> of the default test function <code>check.assign</code> takes a list of quoted assignments that consitute alternative correct solutions. In the example above, we don’t care about the order of the solution vector. Note that you must assign with <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> instead of <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> inside the <code>quote</code> function.</p>
 </div>
 <div id="testing-only-selected-columns-in-a-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#testing-only-selected-columns-in-a-data-frame" class="anchor"></a>Testing only selected columns in a data frame</h2>
 <p>Consider a data set <code>dat</code> were we observe the sales quantity <code>q</code> of all car models for different years and regions. The student has the task to create a new data frame <code>dat1</code> with an additional column that contains the market <code>share</code> of each car model in each year and region. We don’t care with which exact commands <code>share</code> is computed, however.</p>
 <p>Below is the specification in the solution file:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">dat1 =<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(year,region) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb12-4" title="4">    <span class="dt">Q =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(q), <span class="co"># Total sales</span></a>
-<a class="sourceLine" id="cb12-5" title="5">    <span class="dt">share =</span> q <span class="op">/</span><span class="st"> </span>Q   <span class="co"># Market share of each car</span></a>
-<a class="sourceLine" id="cb12-6" title="6">  )</a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="co">#&lt; test_arg</span></a>
-<a class="sourceLine" id="cb12-8" title="8">check.cols =<span class="st"> "share"</span></a>
-<a class="sourceLine" id="cb12-9" title="9">sort.cols =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"year"</span>,<span class="st">"market"</span>,<span class="st">"car_model"</span>)</a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="co">#&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="kw">dat1</span> <span class="op">=</span> <span class="kw">dat</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span>(<span class="kw">year</span>,<span class="kw">region</span>) <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span>(
+    Q = <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">q</span>), <span class="co"># Total sales</span>
+    share = <span class="kw">q</span> <span class="op">/</span> <span class="kw">Q</span>   <span class="co"># Market share of each car</span>
+  )
+<span class="co">#&lt; test_arg</span>
+<span class="kw">check.cols</span> <span class="op">=</span> <span class="st">"share"</span>
+<span class="kw">sort.cols</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"year"</span>,<span class="st">"market"</span>,<span class="st">"car_model"</span>)
+<span class="co">#&gt;</span>
+</pre></div>
 <p>In the sample solution, we compute an intermediate variable <code>Q</code>, which is not really neccessary to solve the exercise. The test argument <code>check.cols</code> can specify a subset of columns that will be checked. Here we only want to check the column <code>share</code>. The argument <code>sort.cols</code> specifies that both the sample solution and the student’s solution shall be sorted by the given columns. If the sort columns uniquely identify each row, this guarantees that solution is also accepted if the student has ordered the data frame in a different way than the sample solution. (If the student deletes one of the sort columns, the test will return <code>FALSE</code>.)</p>
 <p>While the correctness checks accept many different solutions, the automatic hints when <code><a href="../reference/hint.html">hint()</a></code> is typed will guide the student along the concrete given sample solution.</p>
 <p>Note that <code>check.cols</code> and <code>sort.cols</code> are only used if the sample solution computes a <code>data.frame</code> or <code>tibble</code>.</p>
@@ -286,11 +352,11 @@ differs from my solution, where I call the function mean.</code></pre>
 <a href="#custom-tests" class="anchor"></a>Custom tests</h2>
 <p>If you need more customization, e.g. because there is a large number of correct solutions, you can use a <code>test</code> block. Unlike a <code>hint</code> block you cannot just enter arbitrary code that will be evaluated in an approbriate environment. Instead you should call one or several given test functions like <code>holds.true</code>, <code>check.variable</code>, <code>check.expr</code>, <code>test.H0.rejected</code>, <code>test.H0</code> and <code>check.regression</code>.</p>
 <p>Consider the following an example:</p>
-<pre><code>#' b) Save in the variable u a vector of 4 different numbers
-u = c(3,6,7,99)  
-#&lt; test
-check.variable("u",c(3,6,7,99),values=FALSE)
-#&gt;</code></pre>
+<pre><code>    #' b) Save in the variable u a vector of 4 different numbers
+    u = c(3,6,7,99)  
+    #&lt; test
+    check.variable("u",c(3,6,7,99),values=FALSE)
+    #&gt;</code></pre>
 <p>The automatic test <code>check.assign</code> would pass if one of the following two conditions is met:</p>
 <ul>
 <li>
@@ -299,10 +365,10 @@ check.variable("u",c(3,6,7,99),values=FALSE)
 <code>u</code> is generated by an equivalent call as in the solution (equivalent means the function name should be the same and the arguments should have the same value). This is useful if the solution is a call that generates a random variable like <code>x = runif(1)</code>.</li>
 </ul>
 <p>Yet in this example, the automatic test is too restrictive. The student shall just generate some arbitrary vector consisting of 4 numbers. The block</p>
-<pre><code>#&lt; test
-check.variable("u",c(3,6,7,99),values=FALSE)
-#&gt;</code></pre>
-<p>replaces the automatic test with a test that just checks whether a variable <code>u</code> exists, and has the same length and class (numeric or integer) as an example solution <code><a href="https://www.rdocumentation.org/packages/base/topics/c">c(3,6,7,99)</a></code>.</p>
+<pre><code><a href="../reference/check.variable.html">    #&lt; test
+    check.variable("u",c(3,6,7,99),values=FALSE)
+    #&gt;</a></code></pre>
+<p>replaces the automatic test with a test that just checks whether a variable <code>u</code> exists, and has the same length and class (numeric or integer) as an example solution <code><a href="https://rdrr.io/r/base/c.html">c(3,6,7,99)</a></code>.</p>
 </div>
 <div id="an-more-complex-example-of-custom-tests" class="section level2">
 <h2 class="hasAnchor">
@@ -311,16 +377,18 @@ check.variable("u",c(3,6,7,99),values=FALSE)
 <blockquote>
 <p>Task: Simulate a vector p of T prices that are correlated (but not perfectly correlated) with the weather w but uncorrelated with the demand shock u.</p>
 </blockquote>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">p =<span class="st"> </span><span class="fl">1.1</span><span class="op">*</span>c <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span><span class="op">*</span>w</a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="co">#&lt; test</span></a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="kw"><a href="../reference/check.variable.html">check.variable</a></span>(<span class="st">"p"</span>,<span class="fl">1.1</span><span class="op">*</span>c <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span><span class="op">*</span>w,<span class="dt">values=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb15-4" title="4"><span class="kw"><a href="../reference/test.H0.rejected.html">test.H0.rejected</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(p,w),<span class="dt">failure.message=</span><span class="st">"I don't find a significant correlation between p and w (p-value=={{p_value}})"</span>)</a>
-<a class="sourceLine" id="cb15-5" title="5"><span class="kw"><a href="../reference/holds.true.html">holds.true</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(p,w)<span class="op">&lt;</span><span class="dv">1</span><span class="fl">-1e-14</span>, <span class="dt">failure.message=</span><span class="st">"p and w shall not be perfectly correlated!"</span>)</a>
-<a class="sourceLine" id="cb15-6" title="6"><span class="kw"><a href="../reference/test.H0.html">test.H0</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(p,u),<span class="dt">failure.message=</span><span class="st">"I do find a significant correlation between p and u (p-value=={{p_value}}), but they shall be uncorrelated."</span>)</a>
-<a class="sourceLine" id="cb15-7" title="7"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb15-8" title="8"><span class="co">#&lt; hint</span></a>
-<a class="sourceLine" id="cb15-9" title="9"><span class="kw"><a href="../reference/display.html">display</a></span>(<span class="st">"To make your prices correlated with w, you have to make w appear in the formula of p. To make p not perfectly correlated with p, there must also be other random factors that influence p, like cost c or some newly drawn vector of random price shocks."</span>)</a>
-<a class="sourceLine" id="cb15-10" title="10"><span class="co">#&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="kw">p</span> <span class="op">=</span> <span class="fl">1.1</span><span class="op">*</span><span class="kw">c</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span><span class="kw">w</span>
+<span class="co">#&lt; test</span>
+<span class="fu"><a href="../reference/check.variable.html">check.variable</a></span>(<span class="st">"p"</span>,<span class="fl">1.1</span><span class="op">*</span><span class="kw">c</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span><span class="kw">w</span>,values=<span class="fl">FALSE</span>)
+<span class="fu"><a href="../reference/test.H0.rejected.html">test.H0.rejected</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span>(<span class="kw">p</span>,<span class="kw">w</span>),failure.message=<span class="st">"I don't find a significant correlation between p and w (p-value=={{p_value}})"</span>)
+<span class="fu"><a href="../reference/holds.true.html">holds.true</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="kw">p</span>,<span class="kw">w</span>)<span class="op">&lt;</span><span class="fl">1</span><span class="op">-</span><span class="fl">1e-14</span>, failure.message=<span class="st">"p and w shall not be perfectly correlated!"</span>)
+<span class="fu"><a href="../reference/test.H0.html">test.H0</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span>(<span class="kw">p</span>,<span class="kw">u</span>),failure.message=<span class="st">"I do find a significant correlation between p and u (p-value=={{p_value}}), but they shall be uncorrelated."</span>)
+<span class="co">#&gt;</span>
+<span class="co">#&lt; hint</span>
+<span class="fu"><a href="../reference/display.html">display</a></span>(<span class="st">"To make your prices correlated with w, you have to make w appear in the formula of p. To make p not perfectly correlated with p, there must also be other random factors that influence p, like cost c or some newly drawn vector of random price shocks."</span>)
+<span class="co">#&gt;</span>
+</pre></div>
 <p>We still provide a sample solution <code>p = 1.1*c + 0.5*w</code>, but many other solutions are possible here.</p>
 <p>A feasible solution must pass all 4 tests in the test block to be accepted. The function <code>holds.true</code> is a quite general tool that can be used in custom tests.</p>
 <p>The functions <code>test.H0.rejected</code>, and <code>test.H0</code> are just examples for special purpose convenience test functions.</p>
@@ -331,53 +399,53 @@ check.variable("u",c(3,6,7,99),values=FALSE)
 <a href="#testing-a-function-written-by-the-student" class="anchor"></a>Testing a function written by the student</h2>
 <p>Personally, I find it very valuable if students learn to write own functions. However, it is not easy to nicely test functions and students with little programming experience can get stuck easily.</p>
 <p>Assume, you would like students to write an OLS function</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb16-1" title="1">ols = function(y,X) {</a>
-<a class="sourceLine" id="cb16-2" title="2">  Xt = t(X)</a>
-<a class="sourceLine" id="cb16-3" title="3">  invXtX = solve(Xt %*% X)</a>
-<a class="sourceLine" id="cb16-4" title="4">  beta.hat = invXtX %*% Xt %*% y</a>
-<a class="sourceLine" id="cb16-5" title="5">  as.numeric(beta.hat)</a>
-<a class="sourceLine" id="cb16-6" title="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb20-1" title="1">ols = function(y,X) {</a>
+<a class="sourceLine" id="cb20-2" title="2">  Xt = t(X)</a>
+<a class="sourceLine" id="cb20-3" title="3">  invXtX = solve(Xt %*% X)</a>
+<a class="sourceLine" id="cb20-4" title="4">  beta.hat = invXtX %*% Xt %*% y</a>
+<a class="sourceLine" id="cb20-5" title="5">  as.numeric(beta.hat)</a>
+<a class="sourceLine" id="cb20-6" title="6">}</a></code></pre></div>
 <p>Directly asking them to correctly write such a function will probably fail for many students.</p>
 <p>But you could first create one or several chunks, were students first develop the function body for an example. A solved chunk may look like</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Example arguments</span></a>
-<a class="sourceLine" id="cb17-2" title="2">x1 = <span class="kw">1:</span>T </a>
-<a class="sourceLine" id="cb17-3" title="3">y = <span class="dv">100</span> + <span class="dv">2</span>*x1 + rnorm(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb17-4" title="4">X = cbind(<span class="dv">1</span>,x1)</a>
-<a class="sourceLine" id="cb17-5" title="5"></a>
-<a class="sourceLine" id="cb17-6" title="6"><span class="co"># Code that we will put inside the function</span></a>
-<a class="sourceLine" id="cb17-7" title="7">Xt = t(X)</a>
-<a class="sourceLine" id="cb17-8" title="8">invXtX = solve(Xt %*% X)</a>
-<a class="sourceLine" id="cb17-9" title="9">beta.hat = invXtX %*% Xt %*% y</a>
-<a class="sourceLine" id="cb17-10" title="10">as.numeric(beta.hat)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Example arguments</span></a>
+<a class="sourceLine" id="cb21-2" title="2">x1 = <span class="kw">1:</span>T </a>
+<a class="sourceLine" id="cb21-3" title="3">y = <span class="dv">100</span> + <span class="dv">2</span>*x1 + rnorm(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb21-4" title="4">X = cbind(<span class="dv">1</span>,x1)</a>
+<a class="sourceLine" id="cb21-5" title="5"></a>
+<a class="sourceLine" id="cb21-6" title="6"><span class="co"># Code that we will put inside the function</span></a>
+<a class="sourceLine" id="cb21-7" title="7">Xt = t(X)</a>
+<a class="sourceLine" id="cb21-8" title="8">invXtX = solve(Xt %*% X)</a>
+<a class="sourceLine" id="cb21-9" title="9">beta.hat = invXtX %*% Xt %*% y</a>
+<a class="sourceLine" id="cb21-10" title="10">as.numeric(beta.hat)</a></code></pre></div>
 <p>Then provide a function stub like</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb18-1" title="1">ols = function(y,X) {</a>
-<a class="sourceLine" id="cb18-2" title="2">  <span class="co"># Insert your code here</span></a>
-<a class="sourceLine" id="cb18-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb22-1" title="1">ols = function(y,X) {</a>
+<a class="sourceLine" id="cb22-2" title="2">  <span class="co"># Insert your code here</span></a>
+<a class="sourceLine" id="cb22-3" title="3">}</a></code></pre></div>
 <p>and let students insert their code here.</p>
 <p>Here is an example how you might specify the second chunk in your solution file:</p>
-<pre><code>#&lt; fill_in
-ols = function(y,X) {
-  
-  # enter code to compute beta.hat here ...
-  
-  return(as.numeric(beta.hat))
-}
-#&gt;
-ols &lt;- function(y,X) {
-  beta.hat = solve(t(X) %*% X) %*% t(X) %*% y
-  as.numeric(beta.hat)
-}
-#&lt; test_arg
-  ols(
-    c(100,50,20,60),
-    cbind(1,c(20,30,15,20))
-  )
-#&gt;
-#&lt; add_to_hint
-display("Just insert inside the function ols the code to compute beta.hat from the previous task")
-#&gt;</code></pre>
+<pre><code>    #&lt; fill_in
+    ols = function(y,X) {
+      
+      # enter code to compute beta.hat here ...
+      
+      return(as.numeric(beta.hat))
+    }
+    #&gt;
+    ols &lt;- function(y,X) {
+      beta.hat = solve(t(X) %*% X) %*% t(X) %*% y
+      as.numeric(beta.hat)
+    }
+    #&lt; test_arg
+      ols(
+        c(100,50,20,60),
+        cbind(1,c(20,30,15,20))
+      )
+    #&gt;
+    #&lt; add_to_hint
+    display("Just insert inside the function ols the code to compute beta.hat from the previous task")
+    #&gt;</code></pre>
 <p>First, we have a <code>#&lt; fill_in</code> block that specifies an unfinished function that will be shown to the student. Afterward, we have an example of a correct function <code>ols</code>. Then the <code>#&lt; test_arg</code> block specifies parameters for the automatic test <code>check.function</code>. The unnamed parameter</p>
-<pre><code>ols(c(100,50,20,60),cbind(1,c(20,30,15,20)))</code></pre>
+<pre><code>    ols(c(100,50,20,60),cbind(1,c(20,30,15,20)))</code></pre>
 <p>Specifies a test call. <code>check.function</code> will run this test call for both the sample solution and the student’s solution. The test will only pass if the both versions of the ols function return the same value. Finally, the <code>#&lt; add_to_hint</code> add some information to the automatic hint.</p>
 </div>
 <div id="testing-a-function-that-generates-random-variables" class="section level2">
@@ -385,18 +453,18 @@ display("Just insert inside the function ols the code to compute beta.hat from t
 <a href="#testing-a-function-that-generates-random-variables" class="anchor"></a>Testing a function that generates random variables</h2>
 <p>If you want to check a function that creates random variables, you can compare the results of the student’s function and the official solution using the same random seed.</p>
 <p>Here is an example:</p>
-<pre><code>a) Write a function `runif.square` with parameters n, min and max
-that generates n random variables that are the square of variables
-that are uniform distributed on the interval from min to max.
-
-```{r}
-runif.square = function(n,min,max) {
-  runif(n,min,max)^2
-}
-#&lt; test_arg
-  with.random.seed(runif.square(n=20,min=4,max=9), seed=12345)
-#&gt;
-```</code></pre>
+<pre><code>    a) Write a function `runif.square` with parameters n, min and max
+    that generates n random variables that are the square of variables
+    that are uniform distributed on the interval from min to max.
+    
+    ```{r}
+    runif.square = function(n,min,max) {
+      runif(n,min,max)^2
+    }
+    #&lt; test_arg
+      with.random.seed(runif.square(n=20,min=4,max=9), seed=12345)
+    #&gt;
+    ```</code></pre>
 <p>Our test call is now embedded in the function <code>with.random.seed</code> that calls the function with a fixed random seed. Then the automatically called <code>check.function</code> only passes if the students function and official solution return the same value when called with the same random seed.</p>
 <p>If a function requires simulation of more than one random number, this testing procedure only works if the student draws the random numbers in the same order than the official solution. This means your task should specify already a lot of structure for the function and tell the student not to draw any additional random variables inside the function.</p>
 </div>
@@ -410,31 +478,19 @@ runif.square = function(n,min,max) {
 <li>Include all intermediate steps as part of the problem set</li>
 </ol>
 <p>A <code>#&lt; compute ... #&gt;</code> block allows an intermediate approach. Here is an example from a problem set of mine that asks a student to compute a matrix of choice probabilities from a conditional logit model.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb22-1" title="1">#&lt; compute P
-
-## Take a look at the formula for the choice probabilities P.nj of the logit discrete choice model in the slides.
-
-## Let exp.V be a matrix that contains the numerators of P.nj (use scale as sigma in your formula)
-exp.V = exp(V/scale)
-
-## Let sum.exp.V be a vector that contains for each person n the denominator in P.nj. You can use the function 'rowSums'. 
-sum.exp.V = rowSums(exp.V)
-
-## Compute P as ratio of the numerator and the denominator
-P = exp.V / sum.exp.V
-#&gt;<span class="co">#&lt; compute P</span></a>
-<a class="sourceLine" id="cb22-2" title="2">    </a>
-<a class="sourceLine" id="cb22-3" title="3">    <span class="co">## Take a look at the formula for the choice probabilities P.nj of the logit discrete choice model in the slides.</span></a>
-<a class="sourceLine" id="cb22-4" title="4">    </a>
-<a class="sourceLine" id="cb22-5" title="5">    <span class="co">## Let exp.V be a matrix that contains the numerators of P.nj (use scale as sigma in your formula)</span></a>
-<a class="sourceLine" id="cb22-6" title="6">    exp.V = exp(V/scale)</a>
-<a class="sourceLine" id="cb22-7" title="7">    </a>
-<a class="sourceLine" id="cb22-8" title="8">    <span class="co">## Let sum.exp.V be a vector that contains for each person n the denominator in P.nj. You can use the function 'rowSums'. </span></a>
-<a class="sourceLine" id="cb22-9" title="9">    sum.exp.V = rowSums(exp.V)</a>
-<a class="sourceLine" id="cb22-10" title="10">    </a>
-<a class="sourceLine" id="cb22-11" title="11">    <span class="co">## Compute P as ratio of the numerator and the denominator</span></a>
-<a class="sourceLine" id="cb22-12" title="12">    P = exp.V / sum.exp.V</a>
-<a class="sourceLine" id="cb22-13" title="13">    <span class="co">#&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb26-1" title="1">    <span class="co">#&lt; compute P</span></a>
+<a class="sourceLine" id="cb26-2" title="2">    </a>
+<a class="sourceLine" id="cb26-3" title="3">    <span class="co">## Take a look at the formula for the choice probabilities P.nj of the logit discrete choice model in the slides.</span></a>
+<a class="sourceLine" id="cb26-4" title="4">    </a>
+<a class="sourceLine" id="cb26-5" title="5">    <span class="co">## Let exp.V be a matrix that contains the numerators of P.nj (use scale as sigma in your formula)</span></a>
+<a class="sourceLine" id="cb26-6" title="6">    exp.V = exp(V/scale)</a>
+<a class="sourceLine" id="cb26-7" title="7">    </a>
+<a class="sourceLine" id="cb26-8" title="8">    <span class="co">## Let sum.exp.V be a vector that contains for each person n the denominator in P.nj. You can use the function 'rowSums'. </span></a>
+<a class="sourceLine" id="cb26-9" title="9">    sum.exp.V = rowSums(exp.V)</a>
+<a class="sourceLine" id="cb26-10" title="10">    </a>
+<a class="sourceLine" id="cb26-11" title="11">    <span class="co">## Compute P as ratio of the numerator and the denominator</span></a>
+<a class="sourceLine" id="cb26-12" title="12">    P = exp.V / sum.exp.V</a>
+<a class="sourceLine" id="cb26-13" title="13">    <span class="co">#&gt;</span></a></code></pre></div>
 <p>The solution will pass as correct if the final values of <code>P</code> are correct. The student is not obliged to perform the particular intermediate computations like <code>exp.V</code>. Yet, if the student has not yet correctly computed <code>P</code> and types <code><a href="../reference/hint.html">hint()</a></code>, the hint function tries to steer the student step by step through the sample solution described in the block. The comments starting with <code>##</code> will be transformed into text that will be shown in the hint.</p>
 </div>
 <div id="testing-ggplot-commands-or-other-plot-commands" class="section level1">
@@ -442,107 +498,63 @@ P = exp.V / sum.exp.V
 <a href="#testing-ggplot-commands-or-other-plot-commands" class="anchor"></a>Testing ggplot commands (or other plot commands)</h1>
 <p>RTutor is not good at providing sensible hints or automatic tests that allow a user build long ggplot chains from scratch.</p>
 <p>Assume you want to show in a problem set the following ggplot:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb23-1" title="1">ggplot(data = counties,aes(x=area, y=population, col=state)) +</a>
-<a class="sourceLine" id="cb23-2" title="2">  geom_point()+</a>
-<a class="sourceLine" id="cb23-3" title="3">  xlim(c(<span class="dv">0</span>, <span class="dv">0</span>.1)) + </a>
-<a class="sourceLine" id="cb23-4" title="4">  ylim(c(<span class="dv">0</span>, <span class="dv">500000</span>)) + </a>
-<a class="sourceLine" id="cb23-5" title="5">  labs(title=<span class="st">"Area vs Population"</span>, </a>
-<a class="sourceLine" id="cb23-6" title="6">       y=<span class="st">"Population"</span>, </a>
-<a class="sourceLine" id="cb23-7" title="7">       x=<span class="st">"Area"</span>) +</a>
-<a class="sourceLine" id="cb23-8" title="8">  theme_bw()</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb27-1" title="1">ggplot(data = counties,aes(x=area, y=population, col=state)) +</a>
+<a class="sourceLine" id="cb27-2" title="2">  geom_point()+</a>
+<a class="sourceLine" id="cb27-3" title="3">  xlim(c(<span class="dv">0</span>, <span class="dv">0</span>.1)) + </a>
+<a class="sourceLine" id="cb27-4" title="4">  ylim(c(<span class="dv">0</span>, <span class="dv">500000</span>)) + </a>
+<a class="sourceLine" id="cb27-5" title="5">  labs(title=<span class="st">"Area vs Population"</span>, </a>
+<a class="sourceLine" id="cb27-6" title="6">       y=<span class="st">"Population"</span>, </a>
+<a class="sourceLine" id="cb27-7" title="7">       x=<span class="st">"Area"</span>) +</a>
+<a class="sourceLine" id="cb27-8" title="8">  theme_bw()</a></code></pre></div>
 <p>One option would be to just provide the plotting commands in a <code>task_notest</code> block and don’t force the student to write anything.</p>
 <p>An alternative would be to specify in your solution a fill in block, like:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb24-1" title="1"><span class="co">#&lt; fill_in</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="co"># Fill in the ___</span></a>
-<a class="sourceLine" id="cb24-3" title="3">ggplot(data = counties,aes(x=___, y=population, colour=___)) +</a>
-<a class="sourceLine" id="cb24-4" title="4">  geom_point()+</a>
-<a class="sourceLine" id="cb24-5" title="5">  xlim(c(<span class="dv">0</span>, <span class="dv">0</span>.1)) + </a>
-<a class="sourceLine" id="cb24-6" title="6">  ylim(c(<span class="dv">0</span>, <span class="dv">500000</span>)) + </a>
-<a class="sourceLine" id="cb24-7" title="7">  labs(title=<span class="st">"Area vs Population"</span>, </a>
-<a class="sourceLine" id="cb24-8" title="8">       y=<span class="st">"Population"</span>, </a>
-<a class="sourceLine" id="cb24-9" title="9">       x=<span class="st">"Area"</span>) +</a>
-<a class="sourceLine" id="cb24-10" title="10">  theme_bw()</a>
-<a class="sourceLine" id="cb24-11" title="11"><span class="co">#&gt;</span></a>
-<a class="sourceLine" id="cb24-12" title="12"><span class="co"># Sample solution</span></a>
-<a class="sourceLine" id="cb24-13" title="13">ggplot(data = counties,aes(x=area, y=population, colour=state)) +</a>
-<a class="sourceLine" id="cb24-14" title="14">  geom_point()+</a>
-<a class="sourceLine" id="cb24-15" title="15">  xlim(c(<span class="dv">0</span>, <span class="dv">0</span>.1)) + </a>
-<a class="sourceLine" id="cb24-16" title="16">  ylim(c(<span class="dv">0</span>, <span class="dv">500000</span>)) + </a>
-<a class="sourceLine" id="cb24-17" title="17">  labs(title=<span class="st">"Area vs Population"</span>, </a>
-<a class="sourceLine" id="cb24-18" title="18">       y=<span class="st">"Population"</span>, </a>
-<a class="sourceLine" id="cb24-19" title="19">       x=<span class="st">"Area"</span>) +</a>
-<a class="sourceLine" id="cb24-20" title="20">  theme_bw()</a></code></pre></div>
-<p>Here the student only has to fill in the two mising aesthetics. Please use as placeholders the <code>___</code>, since RTutor’s hints have special treatment that internally replaces the <code>___</code> with a syntactically valid R variable name in order to parse and analyse students solutions.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb28-1" title="1"><span class="co">#&lt; fill_in</span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="co"># Fill in the ___</span></a>
+<a class="sourceLine" id="cb28-3" title="3">ggplot(data = counties,aes(x=___, y=population, colour=___)) +</a>
+<a class="sourceLine" id="cb28-4" title="4">  geom_point()+</a>
+<a class="sourceLine" id="cb28-5" title="5">  xlim(c(<span class="dv">0</span>, <span class="dv">0</span>.1)) + </a>
+<a class="sourceLine" id="cb28-6" title="6">  ylim(c(<span class="dv">0</span>, <span class="dv">500000</span>)) + </a>
+<a class="sourceLine" id="cb28-7" title="7">  labs(title=<span class="st">"Area vs Population"</span>, </a>
+<a class="sourceLine" id="cb28-8" title="8">       y=<span class="st">"Population"</span>, </a>
+<a class="sourceLine" id="cb28-9" title="9">       x=<span class="st">"Area"</span>) +</a>
+<a class="sourceLine" id="cb28-10" title="10">  theme_bw()</a>
+<a class="sourceLine" id="cb28-11" title="11"><span class="co">#&gt;</span></a>
+<a class="sourceLine" id="cb28-12" title="12"><span class="co"># Sample solution</span></a>
+<a class="sourceLine" id="cb28-13" title="13">ggplot(data = counties,aes(x=area, y=population, colour=state)) +</a>
+<a class="sourceLine" id="cb28-14" title="14">  geom_point()+</a>
+<a class="sourceLine" id="cb28-15" title="15">  xlim(c(<span class="dv">0</span>, <span class="dv">0</span>.1)) + </a>
+<a class="sourceLine" id="cb28-16" title="16">  ylim(c(<span class="dv">0</span>, <span class="dv">500000</span>)) + </a>
+<a class="sourceLine" id="cb28-17" title="17">  labs(title=<span class="st">"Area vs Population"</span>, </a>
+<a class="sourceLine" id="cb28-18" title="18">       y=<span class="st">"Population"</span>, </a>
+<a class="sourceLine" id="cb28-19" title="19">       x=<span class="st">"Area"</span>) +</a>
+<a class="sourceLine" id="cb28-20" title="20">  theme_bw()</a></code></pre></div>
+<p>Here the student only has to fill in the two missing aesthetics. Please use as placeholders the <code>___</code>, since RTutor’s hints have special treatment that internally replaces the <code>___</code> with a syntactically valid R variable name in order to parse and analyse students solutions.</p>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#hints-and-tests">Hints and Tests</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#automatic-hints">Automatic Hints</a></li>
-      <li><a href="#analyse-students-submissions-to-improve-hints">Analyse students’ submissions to improve hints</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#customizing-hints">Customizing Hints</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#custom-hints">Custom hints</a></li>
-      <li><a href="#adaptive-custom-hints">Adaptive Custom Hints</a></li>
-      <li><a href="#add_to_hint-blocks-to-combine-automatic-and-custom-hints">add_to_hint blocks to combine automatic and custom hints</a></li>
-      <li><a href="#hints-at-the-beginning-of-chunk">Hints at the beginning of chunk</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#customizing-tests">Customizing Tests</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#specifying-parameters-of-automatic-tests">Specifying parameters of automatic tests</a></li>
-      <li><a href="#allowing-several-correct-solutions">Allowing several correct solutions</a></li>
-      <li><a href="#testing-only-selected-columns-in-a-data-frame">Testing only selected columns in a data frame</a></li>
-      <li><a href="#custom-tests">Custom tests</a></li>
-      <li><a href="#an-more-complex-example-of-custom-tests">An more complex example of custom tests</a></li>
-      <li><a href="#testing-a-function-written-by-the-student">Testing a function written by the student</a></li>
-      <li><a href="#testing-a-function-that-generates-random-variables">Testing a function that generates random variables</a></li>
-      </ul>
-</li>
-      <li><a href="#compute-blocks-for-computations-with-many-steps">Compute blocks for computations with many steps</a></li>
-      <li><a href="#testing-ggplot-commands-or-other-plot-commands">Testing ggplot commands (or other plot commands)</a></li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
-  <p>Developed by Sebastian Kranz.</p>
+  <p>Developed by Martin Kies.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
 
 
-  <script type="text/javascript">
-  var sc_project=12051162; 
-  var sc_invisible=1; 
-  var sc_security="60139410"; 
-  </script>
-  <script type="text/javascript"
-  src="https://www.statcounter.com/counter/counter.js"
-  async></script>
-  <noscript><div class="statcounter"><a title="Web Analytics
-  Made Easy - StatCounter" href="https://statcounter.com/"
-  target="_blank"><img class="statcounter"
-  src="https://c.statcounter.com/12051162/0/60139410/1/"
-  alt="Web Analytics Made Easy -
-  StatCounter"></a></div></noscript>
-  
-  
   </body>
 </html>

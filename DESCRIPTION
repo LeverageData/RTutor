@@ -28,7 +28,11 @@ Depends:
     memoise,
     yaml,
     rmarkdown,
-    rmdtools
+    rmdtools,
+    rstudioapi
 Suggests:
   digest
 RoxygenNote: 7.1.1
+URL: https://github.com/LeverageData/RTutor
+BugReports: https://github.com/LeverageData/RTutor/issues
+VignetteBuilder: knitr

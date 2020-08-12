@@ -2,7 +2,7 @@
 
 **Original Author: Sebastian Kranz, Ulm University** 
 
-** with some extensions made by LeverageData **
+**with some extensions made by LeverageData**
 
 RTutor is an R package that allows to develop interactive R exercises. Problem sets can be solved off-line or can be hosted in the web with shinyapps.io. Problem sets can be designed as a Markdown  .rmd file (to be solved directly in RStudio) or use a browser-based interface powered by RStudio's Shiny. <s>While the web interface looks nicer, I personally use problem sets in the Markdown format when teaching advanced economic classes.</s> LeverageData mostly works with Shiny Interfaces as they are easier for the general public. 
 
@@ -26,7 +26,7 @@ install_github("LeverageData/RTutor",ref = "master")
 
 ## Create your own problem sets
 
-Take a look at the [manuals](https://skranz.github.io/RTutor/articles) for documentation of how to create own problem sets. Also look at the examples below.
+Take a look at the [manuals](https://leveragedata.github.io/RTutor/articles) for documentation of how to create own problem sets. Also look at the examples below.
 
 The currently most important differences are regarding the quizzes, where we have currently implemented a stronger feature set: https://leveragedata.shinyapps.io/QuizExamples/ and https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd (see also: https://github.com/skranz/RTutor/issues/31)
 

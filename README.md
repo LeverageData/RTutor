@@ -1,23 +1,34 @@
 # RTutor: Interactive R Problem Sets
 
-**Author: Sebastian Kranz, Ulm University** 
+**Original Author: Sebastian Kranz, Ulm University** 
 
-RTutor is an R package that allows to develop interactive R exercises. Problem sets can be solved off-line or can be hosted in the web with shinyapps.io. Problem sets can be designed as a Markdown  .rmd file (to be solved directly in RStudio) or use a browser-based interface powered by RStudio's Shiny. While the web interface looks nicer, I personally use problem sets in the Markdown format when teaching advanced economic classes.
+** with some extensions made by LeverageData **
+
+RTutor is an R package that allows to develop interactive R exercises. Problem sets can be solved off-line or can be hosted in the web with shinyapps.io. Problem sets can be designed as a Markdown  .rmd file (to be solved directly in RStudio) or use a browser-based interface powered by RStudio's Shiny. <s>While the web interface looks nicer, I personally use problem sets in the Markdown format when teaching advanced economic classes.</s> LeverageData mostly works with Shiny Interfaces as they are easier for the general public. 
+
+**Note:** This package aims to have all features of the main package by Sebastian Kranz. We work in tight collaboration with him to provide our features to the main package as well. This fork might drift away however to cater to the different needs between the use cases of Prof. Kranz (university courses) and LeverageData Gmbh (paid online courses). The most major differences might arise with the syntax of RTutor. Our goal is to make RTutor (Shiny) problem sets as easy as possible for the creator *even if this clashes with otherwise common syntax conventions* so that she may focus on the course itself. Other differences might arise out of the Look-and-Feel of the Shiny-Problem sets, were we want to make them look pretty according to our internal ideas which might or might not be in unison with Prof. Kranz. For most practical purposes however it should not matter which of the packages you use. 
 
 # Installation
 
-RTutor and some required packages are not hosted on CRAN (while CRAN is great it takes a lot of time to maintain several packages there). I have created an own Github based R repository, from which you can install RTutor by using the following code:
+RTutor and some required packages are not hosted on CRAN (while CRAN is great it takes a lot of time to maintain several packages there). Prof. Kranz has created an own Github based R repository, from which you can install RTutor by using the following code:
 
 ```r
 install.packages("RTutor",repos = c("https://skranz-repo.github.io/drat/",getOption("repos")))
 ```
 **Note: If you want to create your own web-based RTutor problem sets and upload them on shinyapps.io, you need to install RTutor and required packages directly from Github and CRAN as explained fruther below. That is because shinyapps.io only works with R packages directly installed from Github or CRAN.**
 
+Afterwards update the RTutor Version to this one
+
+```r
+library(devtools)
+install_github("LeverageData/RTutor",ref = "master")
+```
 
 ## Create your own problem sets
 
 Take a look at the [manuals](https://skranz.github.io/RTutor/articles) for documentation of how to create own problem sets. Also look at the examples below.
 
+The currently most important differences are regarding the quizzes, where we have currently implemented a stronger feature set: https://leveragedata.shinyapps.io/QuizExamples/ and https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd (see also: https://github.com/skranz/RTutor/issues/31)
 
 ## Trying out some problem sets
 
@@ -152,14 +163,14 @@ install.rtutor(update.github=TRUE)
 library(RTutor)
 ```
 
-If you only want to update the RTutor package (and have the other packages already installed). You can just type:
+Afterwards update the RTutor package. You can just type:
 
 ```s
-devtools::install_github("skranz/RTutor", upgrade="ask")
+devtools::install_github("LeverageData/RTutor", upgrade="ask")
 ```
 (You may have to restart your R session / RStudio for the update to work.)
 
 
 ## Suggestions & Feedback
 
-If you have suggestions or find bugs, please don't hesitate to open an [issue on the Github page](https://github.com/skranz/RTutor/issues).
+If you have suggestions or find bugs, please don't hesitate to open an [issue on the Github page](https://github.com/LeverageData/RTutor/issues).

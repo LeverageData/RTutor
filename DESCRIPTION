@@ -1,10 +1,10 @@
 Package: RTutor
 Type: Package
 Title: Interactive R problem sets with automatic testing of solutions and automatic hints
-Version: 2020.6.08
-Date: 2020-06-08
-Author: Sebastian Kranz
-Maintainer: Sebastian Kranz <sebastian.kranz@uni-ulm.de>
+Version: 2020.8.11
+Date: 2020-08-11
+Author: Sebastian Kranz, Martin Kies
+Maintainer: Martin Kies <martin.kies@leveragedata.de>
 Description: Interactive R problem sets with automatic testing of solutions and automatic hints
 License: Programm code: GPL >= 2.0
     Contributed problem sets: Creative Commons (CY)

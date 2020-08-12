@@ -485,48 +485,6 @@ check.assign = function(
   }
 }
 
-#' Checks an assignment to a variable with up to 5
-#' possibly correct solutions
-#' 
-#' Can be called in a #< test block for a custom test.
-#'
-#' @param sol1 An assignment that needs to be checked, e.g. x<-5. Similar for sol2, sol3, sol4, sol5.
-#' @examples
-#' # Assume the task is that x shall be a number 
-#' # below 11 and divisible by 5
-#' 
-#' check.assign.with.multiple.sol(x<-5, x<-10)
-#' @export
-check.assign.with.multiple.sol = function(sol1, sol2, sol3, sol4, sol5, ..., sol.list=list()) {
-  restore.point("check.assign.with.multiple.sol")
-  if (!missing(sol1)) {
-    sol.list[[length(sol.list)+1]] = substitute(sol1)
-  }
-  if (!missing(sol2)) {
-    sol.list[[length(sol.list)+1]] = substitute(sol2)
-  }
-  if (!missing(sol3)) {
-    sol.list[[length(sol.list)+1]] = substitute(sol3)
-  }
-  if (!missing(sol4)) {
-    sol.list[[length(sol.list)+1]] = substitute(sol4)
-  }
-  if (!missing(sol5)) {
-    sol.list[[length(sol.list)+1]] = substitute(sol5)
-  }
-  res = TRUE
-  for (i in seq_along(sol.list)) {
-    res = check.assign(call.object = sol.list[[i]],...)
-    if (res) break
-    # Clean previous failure messages
-    if (i < length(sol.list)) {
-      ps = get.ps()
-      ps$failure.message = NULL
-    }
-  }
-  res
-}
-
 #' Check whether a given file exists
 #' @export
 check.file.exists = function(

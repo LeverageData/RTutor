@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interactive R problem sets with automatic testing of solutions and automatic hints • RTutor</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Interactive R problem sets with automatic testing of solutions and automatic hints">
 <meta property="og:description" content="Interactive R problem sets with automatic testing of solutions and automatic hints">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.6.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.11</span>
       </span>
     </div>
 
@@ -42,38 +43,12 @@
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Manuals
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/01_RTutorOverview.html">1 RTutor Overview</a>
-    </li>
-    <li>
-      <a href="articles/02_ElementsSolutionFile.html">2 Elements of a Solution File</a>
-    </li>
-    <li>
-      <a href="articles/03_HintsAndTests.html">3 Hints and Tests</a>
-    </li>
-    <li>
-      <a href="articles/04_Evaluation.html">4 Evaluation Order and Environments</a>
-    </li>
-    <li>
-      <a href="articles/05_Deploy%20Problem%20Sets%20as%20Package%20on%20Github.html">5 Deploy RTutor Problem Set as a Package on Github</a>
-    </li>
-    <li>
-      <a href="articles/06_Deploy%20problem%20set%20on%20shinyapps.io.html">6 Deploy a problem set on shinyapps.io</a>
-    </li>
-    <li>
-      <a href="articles/FAQ_and_Sneaky_Errors.html">Sneaky Errors</a>
-    </li>
-  </ul>
-</li>
+<li class="dropdown-header">Manuals</li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="articles/RTutor.html">Get started</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -92,25 +67,36 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="contents col-md-9">
 
 <div id="rtutor-interactive-r-problem-sets" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#rtutor-interactive-r-problem-sets" class="anchor"></a>RTutor: Interactive R Problem Sets</h1></div>
-<p><strong>Author: Sebastian Kranz, Ulm University</strong></p>
-<p>RTutor is an R package that allows to develop interactive R exercises. Problem sets can be solved off-line or can be hosted in the web with shinyapps.io. Problem sets can be designed as a Markdown .rmd file (to be solved directly in RStudio) or use a browser-based interface powered by RStudio’s Shiny. While the web interface looks nicer, I personally use problem sets in the Markdown format when teaching advanced economic classes.</p>
+<p><strong>Original Author: Sebastian Kranz, Ulm University</strong></p>
+<p>** with some extensions made by LeverageData **</p>
+<p>RTutor is an R package that allows to develop interactive R exercises. Problem sets can be solved off-line or can be hosted in the web with shinyapps.io. Problem sets can be designed as a Markdown .rmd file (to be solved directly in RStudio) or use a browser-based interface powered by RStudio’s Shiny. <s>While the web interface looks nicer, I personally use problem sets in the Markdown format when teaching advanced economic classes.</s> LeverageData mostly works with Shiny Interfaces as they are easier for the general public.</p>
+<p><strong>Note:</strong> This package aims to have all features of the main package by Sebastian Kranz. We work in tight collaboration with him to provide our features to the main package as well. This fork might drift away however to cater to the different needs between the use cases of Prof. Kranz (university courses) and LeverageData Gmbh (paid online courses). The most major differences might arise with the syntax of RTutor. Our goal is to make RTutor (Shiny) problem sets as easy as possible for the creator <em>even if this clashes with otherwise common syntax conventions</em> so that she may focus on the course itself. Other differences might arise out of the Look-and-Feel of the Shiny-Problem sets, were we want to make them look pretty according to our internal ideas which might or might not be in unison with Prof. Kranz. For most practical purposes however it should not matter which of the packages you use.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>RTutor and some required packages are not hosted on CRAN (while CRAN is great it takes a lot of time to maintain several packages there). I have created an own Github based R repository, from which you can install RTutor by using the following code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"RTutor"</span>,<span class="dt">repos =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"https://skranz-repo.github.io/drat/"</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">getOption</a></span>(<span class="st">"repos"</span>)))</a></code></pre></div>
+<p>RTutor and some required packages are not hosted on CRAN (while CRAN is great it takes a lot of time to maintain several packages there). Prof. Kranz has created an own Github based R repository, from which you can install RTutor by using the following code:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"RTutor"</span>,repos = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"https://skranz-repo.github.io/drat/"</span>,<span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"repos"</span>)))
+</pre></div>
 <p><strong>Note: If you want to create your own web-based RTutor problem sets and upload them on shinyapps.io, you need to install RTutor and required packages directly from Github and CRAN as explained fruther below. That is because shinyapps.io only works with R packages directly installed from Github or CRAN.</strong></p>
+<p>Afterwards update the RTutor Version to this one</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://devtools.r-lib.org">devtools</a></span>)
+<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"LeverageData/RTutor"</span>,ref = <span class="st">"master"</span>)
+</pre></div>
 <div id="create-your-own-problem-sets" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-your-own-problem-sets" class="anchor"></a>Create your own problem sets</h2>
 <p>Take a look at the <a href="https://skranz.github.io/RTutor/articles">manuals</a> for documentation of how to create own problem sets. Also look at the examples below.</p>
+<p>The currently most important differences are regarding the quizzes, where we have currently implemented a stronger feature set: <a href="https://leveragedata.shinyapps.io/QuizExamples/" class="uri">https://leveragedata.shinyapps.io/QuizExamples/</a> and <a href="https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd" class="uri">https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd</a> (see also: <a href="https://github.com/skranz/RTutor/issues/31" class="uri">https://github.com/skranz/RTutor/issues/31</a>)</p>
 </div>
 <div id="trying-out-some-problem-sets" class="section level2">
 <h2 class="hasAnchor">
@@ -242,6 +228,16 @@
 </li>
 </ul>
 </div>
+<div id="how-much-less-effective-are-publicly-assigned-lawyers-by-artemij-cadov" class="section level3">
+<h3 class="hasAnchor">
+<a href="#how-much-less-effective-are-publicly-assigned-lawyers-by-artemij-cadov" class="anchor"></a>How much less effective are publicly assigned lawyers? (by Artemij Cadov)</h3>
+<ul>
+<li>Github: <a href="https://github.com/KendamaQQ/LawyersLemon">https://github.com/KendamaQQ/LawyersLemon</a>
+</li>
+<li>shinyapps.io: <a href="https://kendamaqq.shinyapps.io/RTutorLawyers/">https://kendamaqq.shinyapps.io/RTutorLawyers/</a>
+</li>
+</ul>
+</div>
 <div id="air-pollution-and-house-prices-by-moritz-sporer" class="section level3">
 <h3 class="hasAnchor">
 <a href="#air-pollution-and-house-prices-by-moritz-sporer" class="anchor"></a>Air pollution and house prices (by Moritz Sporer)</h3>
@@ -278,6 +274,16 @@
 <li>Github: <a href="https://github.com/ArthurS90/RTutorEmissionTrading" class="uri">https://github.com/ArthurS90/RTutorEmissionTrading</a>
 </li>
 <li>shinyapps.io: <a href="https://arthurs90.shinyapps.io/RTutorEmissionTrading/" class="uri">https://arthurs90.shinyapps.io/RTutorEmissionTrading/</a>
+</li>
+</ul>
+</div>
+<div id="social-spillovers-in-movie-consumption-by-lara-santak" class="section level3">
+<h3 class="hasAnchor">
+<a href="#social-spillovers-in-movie-consumption-by-lara-santak" class="anchor"></a>Social Spillovers in Movie Consumption (by Lara Santak)</h3>
+<ul>
+<li>Github: <a href="https://github.com/larasantak/RTutorSomethingToTalkAbout" class="uri">https://github.com/larasantak/RTutorSomethingToTalkAbout</a>
+</li>
+<li>shinyapps.io: <a href="https://lara-santak.shinyapps.io/RTutorSomethingToTalkAbout/" class="uri">https://lara-santak.shinyapps.io/RTutorSomethingToTalkAbout/</a>
 </li>
 </ul>
 </div>
@@ -336,29 +342,40 @@
 <p>To install RTutor and required packages directly from Github and CRAN, you can use the small function in the following gist:</p>
 <p><a href="https://gist.github.com/skranz/fad6062e5462c9d0efe4">https://gist.github.com/skranz/fad6062e5462c9d0efe4</a></p>
 <p>Copy the code in the link into your R console and then run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install.rtutor</span>(<span class="dt">update.github=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu">install.rtutor</span>(update.github=<span class="fl">TRUE</span>)
+</pre></div>
 <p>Depending on your devtools version, also the following code may work directly (yet source_gist is buggy in some devtools versions):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb3-1" title="1">if (!require(devtools)) </a>
-<a class="sourceLine" id="cb3-2" title="2">  install.packages(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3"></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">devtools::</span>source_gist(<span class="st">"gist.github.com/skranz/fad6062e5462c9d0efe4"</span>, filename=<span class="st">"install_rtutor.r"</span>)</a>
-<a class="sourceLine" id="cb3-5" title="5">install.rtutor(update.github=TRUE)</a>
-<a class="sourceLine" id="cb3-6" title="6">library(RTutor)</a></code></pre></div>
-<p>If you only want to update the RTutor package (and have the other packages already installed). You can just type:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">devtools::</span>install_github(<span class="st">"skranz/RTutor"</span>, upgrade=<span class="st">"ask"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb4-1" title="1">if (!require(devtools)) </a>
+<a class="sourceLine" id="cb4-2" title="2">  install.packages(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw">devtools::</span>source_gist(<span class="st">"gist.github.com/skranz/fad6062e5462c9d0efe4"</span>, filename=<span class="st">"install_rtutor.r"</span>)</a>
+<a class="sourceLine" id="cb4-5" title="5">install.rtutor(update.github=TRUE)</a>
+<a class="sourceLine" id="cb4-6" title="6">library(RTutor)</a></code></pre></div>
+<p>Afterwards update the RTutor package. You can just type:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode s"><code class="sourceCode gnuassembler"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">devtools::</span>install_github(<span class="st">"LeverageData/RTutor"</span>, upgrade=<span class="st">"ask"</span>)</a></code></pre></div>
 <p>(You may have to restart your R session / RStudio for the update to work.)</p>
 </div>
 <div id="suggestions--feedback" class="section level2">
 <h2 class="hasAnchor">
 <a href="#suggestions--feedback" class="anchor"></a>Suggestions &amp; Feedback</h2>
-<p>If you have suggestions or find bugs, please don’t hesitate to open an <a href="https://github.com/skranz/RTutor/issues">issue on the Github page</a>.</p>
+<p>If you have suggestions or find bugs, please don’t hesitate to open an <a href="https://github.com/LeverageData/RTutor/issues">issue on the Github page</a>.</p>
 </div>
 </div>
 
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div class="license">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/LeverageData/RTutor/">https://​github.com/​LeverageData/​RTutor/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/LeverageData/RTutor/issues">https://​github.com/​LeverageData/​RTutor/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li>Programm code: GPL &gt;= 2.0
@@ -368,41 +385,27 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Sebastian Kranz <br><small class="roles"> Maintainer </small>  </li>
+<li>Martin Kies <br><small class="roles"> Maintainer </small>  </li>
 </ul>
 </div>
 
   </div>
 </div>
 
+
       <footer><div class="copyright">
-  <p>Developed by Sebastian Kranz.</p>
+  <p>Developed by Martin Kies.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
 
 
-  <script type="text/javascript">
-  var sc_project=12051162; 
-  var sc_invisible=1; 
-  var sc_security="60139410"; 
-  </script>
-  <script type="text/javascript"
-  src="https://www.statcounter.com/counter/counter.js"
-  async></script>
-  <noscript><div class="statcounter"><a title="Web Analytics
-  Made Easy - StatCounter" href="https://statcounter.com/"
-  target="_blank"><img class="statcounter"
-  src="https://c.statcounter.com/12051162/0/60139410/1/"
-  alt="Web Analytics Made Easy -
-  StatCounter"></a></div></noscript>
-  
-  
   </body>
 </html>

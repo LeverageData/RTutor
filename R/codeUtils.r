@@ -15,13 +15,41 @@ find.funs = function(call, max.level=Inf, level=1) {
 #'
 #' @return A character value defining the current path.
 #' @examples
-#' setwd(get.current.file.path())
+#' if(rstudioapi::isAvailable()) get.current.file.path()
 #' 
 #' @export
 get.current.file.path = function(){
-  complete.path = rstudioapi::getActiveDocumentContext()$path
+  if(rstudioapi::isAvailable()){
+    complete.path = rstudioapi::getActiveDocumentContext()$path
+  } else {
+    stop("RStudio not running.")  
+  }
   complete.path.splitted = stringr::str_split(complete.path, pattern="/")[[1]]
   file.path.splitted = complete.path.splitted[-length(complete.path.splitted)]
   file.path = stringr::str_c(file.path.splitted,collapse="/")
   file.path
+}
+
+#' Sets Working directory to current directory
+#'
+#' When called out of RStudio API or per Source sets the working directory to the current directory. If called from console nothing happens.
+#'
+#' @return -
+#' 
+#' @export
+set.wd.current = function(){
+  if(rstudioapi::isAvailable()){
+    rstudio.path = get.current.file.path()
+  } else {
+    rstudio.path = NULL
+  }
+  
+  if(!is.null(rstudio.path) && rstudio.path!=""){
+    setwd(rstudio.path)
+  } else {
+    source.path = parent.frame(2)$ofile
+    if(!is.null(source.path)){
+      setwd(source.path)
+    }
+  }
 }

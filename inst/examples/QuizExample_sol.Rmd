@@ -7,7 +7,7 @@ Run the setup chunk in RStudio. This creates the problem set files and the sampl
 #< ignore
 ```{r "create_ps",include=TRUE , eval=TRUE}
 library(RTutor)
-setwd(get.current.file.path()) #Has to be executed using RStudio. Replace with specific string to work with console or RGui
+set.wd.current()
 ps.name = "QuizExample"; sol.file = paste0(ps.name,"_sol.Rmd")
 libs = c()
 

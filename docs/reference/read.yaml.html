@@ -8,21 +8,29 @@
 
 <title>Reads a yaml file and returns as a list — read.yaml • RTutor</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Reads a yaml file and returns as a list — read.yaml" />
 
-<meta property="og:description" content="Reads a yaml file and returns as a list" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Reads a yaml file and returns as a list — read.yaml" />
+<meta property="og:description" content="Provide either file or test. This input will be interpreted as yaml code, barring the exceptions given by the other options." />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.6.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.11</span>
       </span>
     </div>
 
@@ -75,41 +84,14 @@
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Manuals
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/01_RTutorOverview.html">1 RTutor Overview</a>
-    </li>
-    <li>
-      <a href="../articles/02_ElementsSolutionFile.html">2 Elements of a Solution File</a>
-    </li>
-    <li>
-      <a href="../articles/03_HintsAndTests.html">3 Hints and Tests</a>
-    </li>
-    <li>
-      <a href="../articles/04_Evaluation.html">4 Evaluation Order and Environments</a>
-    </li>
-    <li>
-      <a href="../articles/05_Deploy Problem Sets as Package on Github.html">5 Deploy RTutor Problem Set as a Package on Github</a>
-    </li>
-    <li>
-      <a href="../articles/06_Deploy problem set on shinyapps.io.html">6 Deploy a problem set on shinyapps.io</a>
-    </li>
-    <li>
-      <a href="../articles/FAQ_and_Sneaky_Errors.html">Sneaky Errors</a>
-    </li>
-  </ul>
-</li>
+<li class="dropdown-header">Manuals</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../articles/RTutor.html">Get started</a>
+</li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/skranz/RTutor">
@@ -124,49 +106,157 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Reads a yaml file and returns as a list</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/LeverageData/RTutor/blob/master/R/yaml.r'><code>R/yaml.r</code></a></small>
     <div class="hidden name"><code>read.yaml.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
-    <p>Reads a yaml file and returns as a list</p>
-    
+    <p>Provide either <code>file</code> or <code>test</code>. This input will be interpreted as yaml code, barring the exceptions given by the other options.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.yaml</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>keep.quotes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>quote.char</span> <span class='kw'>=</span> <span class='st'>"__QUOTE__"</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>catch.error</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>check.by.row</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>space.after.colon</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>utf8</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
-        
+    <pre class="usage"><span class='fu'>read.yaml</span>(
+  file = <span class='kw'>NULL</span>,
+  text = <span class='kw'>NULL</span>,
+  verbose = <span class='fl'>FALSE</span>,
+  keep.quotes = <span class='fl'>TRUE</span>,
+  quote.char = <span class='st'>"__QUOTE__"</span>,
+  colon.handling = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"replace.colon.char"</span>, <span class='st'>"replace.all"</span>, <span class='st'>"none"</span>),
+  colon.replace.exceptions = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
+  space.after.colon = <span class='fl'>FALSE</span>,
+  colon.char = <span class='st'>"__COLON__"</span>,
+  check.by.row = <span class='fl'>FALSE</span>,
+  utf8 = <span class='fl'>TRUE</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>A character vector specifying a file to read from.</p></td>
+    </tr>
+    <tr>
+      <th>text</th>
+      <td><p>A character vector to directly interpret with yaml syntax. Takes precedent over <code>file</code> if both are provided.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Shall the input vector after modifications be shown? This vector is given to <code>load_yaml()</code></p></td>
+    </tr>
+    <tr>
+      <th>keep.quotes</th>
+      <td><p>Normally quotes are interpreted by yaml. This allows to write quotes as normal and they are handled seperately.</p></td>
+    </tr>
+    <tr>
+      <th>quote.char</th>
+      <td><p>For internal handling quotes are replaced by <code>quote.char</code> and retransformed afterwards. The usage of <code>quote.char</code> within <code>text</code> or <code>file</code> is therefore forbidden if <code>keep.quotes</code> is <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>colon.handling</th>
+      <td><p>There exists the following ways to deal with colons, with <code>replace.colon.char</code> being the default:</p><ul>
+<li><p><strong>replace.colon.char</strong>: If one wants a colon within the generated text without it being interpreted by yaml, just use this option and write <code>colon.char</code> everywhere where a colon should be.</p></li>
+<li><p><strong>replace.all</strong>: This allows to use colons within the yaml text as normal, e.g. for quizzes. The first colon in each line is interpreted by yaml and all others are taken verbatim. When the line starts with - <strong>all</strong> colons are replaced. This implies that this option breaks multi-level yaml structure, so use with care! To keep specified multi-level yaml structures, one may provide allowed code words to <code>colon.replace.exceptions</code>. Providing for example <em>"question"</em> here allows using several quizzes with only one check button.</p></li>
+<li><p><strong>none</strong>: No replacement takes place. All colons are interpreted as yaml-colons.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>colon.replace.exceptions</th>
+      <td><p>A vector with exceptions to allow for specified multi-level-yaml structures</p></td>
+    </tr>
+    <tr>
+      <th>space.after.colon</th>
+      <td><p>Should a space after a colon be forced? <strong>Caution:</strong> This only applies to actually <em>written</em> ":" within the text and not those provided by <code>replace.colon.char</code>.</p></td>
+    </tr>
+    <tr>
+      <th>colon.char</th>
+      <td><p>For internal handling colons are replaced by <code>colon.char</code> and retransformed afterwards. The usage of <code>colon.char</code> for verbatim usage within <code>text</code> or <code>file</code> is therefore forbidden if <code>colon.handling</code> is anything other than <code>none</code>.</p></td>
+    </tr>
+    <tr>
+      <th>check.by.row</th>
+      <td><p>Allows better error handling by singling through the lines.</p></td>
+    </tr>
+    <tr>
+      <th>utf8</th>
+      <td><p>If <code>TRUE</code> (Default) the provided character vector is forced to UTF-8 Encoding which is necessary for yaml.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list according to the provided yaml-structure</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>text.char</span> <span class='op'>=</span> <span class='st'>"question: What is 20*20?
+sc:
+ - 100
+ - 200
+ - 400*
+ - 500
+success: Great, your answer is correct__COLON__ Super!
+failure: Try again."</span>n: What is 20*20?
+sc:
+ - 100
+ - 200
+ - 400*
+ - 500
+success: Great, your answer is correct__COLON__ Super!
+failure: Try again."
+
+<span class='fu'>read.yaml</span>(text=<span class='kw'>text.char</span>)</div><div class='output co'>#&gt; $question
+#&gt; [1] "What is 20*20?"
+#&gt; 
+#&gt; $sc
+#&gt; $sc[[1]]
+#&gt; [1] 100
+#&gt; 
+#&gt; $sc[[2]]
+#&gt; [1] 200
+#&gt; 
+#&gt; $sc[[3]]
+#&gt; [1] "400*"
+#&gt; 
+#&gt; $sc[[4]]
+#&gt; [1] 500
+#&gt; 
+#&gt; 
+#&gt; $success
+#&gt; [1] "Great, your answer is correct: Super!"
+#&gt; 
+#&gt; $failure
+#&gt; [1] "Try again."
+#&gt; </div><div class='input'></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-                </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sebastian Kranz.</p>
+  <p>Developed by Martin Kies.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -54,8 +54,9 @@ install_github("LeverageData/RTutor",ref = "master")
 
 ## Create your own problem sets
 
-Take a look at the [manuals](https://skranz.github.io/RTutor/articles)
-for documentation of how to create own problem sets. Also look at the
+Take a look at the
+[manuals](https://leveragedata.github.io/RTutor/articles) for
+documentation of how to create own problem sets. Also look at the
 examples below.
 
 The currently most important differences are regarding the quizzes,

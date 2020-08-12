@@ -300,7 +300,7 @@ rtutor.app.skel = function(ps.name, app.name=ps.name, app.dir,rps.app=!is.null(r
   if (!file.exists(app.app.dir))
     dir.create(app.app.dir)
 
-  work.dir = paste0(app.dir,"/app/work")
+  work.dir = paste0(app.dir,"/app")
   if (!file.exists(work.dir))
     dir.create(work.dir)
 

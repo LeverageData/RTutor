@@ -541,7 +541,8 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__", colon.replace.except
     #To have a controlled environment we do not allow blank lines. 
   str.split = stringr::str_split(str, "\n")[[1]]
   str.blank = str.split %>% sapply(FUN=stringr::str_length, USE.NAMES = FALSE) == 0
-  str.split = str.split[!str.blank]  
+  str.defacto.blank = stringr::str_detect(str.split, "^[:blank:]+$")
+  str.split = str.split[!str.blank & !str.defacto.blank]  
   
   #There might be multiple questions, so we want to deal with them separately.
   questions = stringr::str_detect(str.split,pattern="^([:space:]|-)*question:")

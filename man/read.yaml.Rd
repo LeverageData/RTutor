@@ -10,10 +10,7 @@ read.yaml(
   verbose = FALSE,
   keep.quotes = TRUE,
   quote.char = "__QUOTE__",
-  colon.handling = c("replace.colon.char", "replace.all", "none"),
-  colon.replace.exceptions = c(),
-  space.after.colon = FALSE,
-  colon.char = "__COLON__",
+  colon.char = NULL,
   check.by.row = FALSE,
   utf8 = TRUE
 )
@@ -29,6 +26,12 @@ read.yaml(
 
 \item{quote.char}{For internal handling quotes are replaced by \code{quote.char} and retransformed afterwards. The usage of \code{quote.char} within \code{text} or \code{file} is therefore forbidden if \code{keep.quotes} is \code{TRUE}.}
 
+\item{colon.char}{For internal handling colons are replaced by \code{colon.char} and retransformed afterwards. The usage of \code{colon.char} for verbatim usage within \code{text} or \code{file} is therefore forbidden if \code{colon.handling} is anything other than \code{none}.}
+
+\item{check.by.row}{Allows better error handling by singling through the lines.}
+
+\item{utf8}{If \code{TRUE} (Default) the provided character vector is forced to UTF-8 Encoding which is necessary for yaml.}
+
 \item{colon.handling}{There exists the following ways to deal with colons, with \code{replace.colon.char} being the default:
 \itemize{
  \item \strong{replace.colon.char}: If one wants a colon within the generated text without it being interpreted by yaml, just use this option and write \code{colon.char} everywhere where a colon should be. 
@@ -39,12 +42,6 @@ read.yaml(
 \item{colon.replace.exceptions}{A vector with exceptions to allow for specified multi-level-yaml structures}
 
 \item{space.after.colon}{Should a space after a colon be forced? \strong{Caution:} This only applies to actually \emph{written} ":" within the text and not those provided by \code{replace.colon.char}.}
-
-\item{colon.char}{For internal handling colons are replaced by \code{colon.char} and retransformed afterwards. The usage of \code{colon.char} for verbatim usage within \code{text} or \code{file} is therefore forbidden if \code{colon.handling} is anything other than \code{none}.}
-
-\item{check.by.row}{Allows better error handling by singling through the lines.}
-
-\item{utf8}{If \code{TRUE} (Default) the provided character vector is forced to UTF-8 Encoding which is necessary for yaml.}
 }
 \value{
 A list according to the provided yaml-structure

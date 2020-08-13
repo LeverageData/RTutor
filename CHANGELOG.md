@@ -1,5 +1,10 @@
 # RTutor (main)
 
+## 2020-08-13 [Only LD Fork]
+
+* YAML Functionality further limited in quizzes
+* It is now possible to have a *negative* shorthand in quizzes.
+
 ## 2020-08-11
 
 * More convenient adaptive hints using `hint.stud.call` and `hint.stud.assign` and also more flexible combination of custom and auto hints using `auto.hint()` and `auto.hint.else()`.

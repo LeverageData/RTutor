@@ -66,20 +66,20 @@ failure: No. This is a hill in New Zealand.
 
 ### A single choice quiz with RMD and HTML
 
-It is possible to include RMD or HTML into the quiz, allowing for mathematical questions using latex syntax, syntax highlighting outside of RMD and non-ASCII characters. Even though the quizzes work with yaml which seperates fields using a <code>:</code> character, RTutor allows for answers using <code>:</code>. This is especially useful in the context of HTML commands.
-
-Note that an exception is made for the automatic numbering of RMD. Writing "3." as has been done here therefore does not translate to the automatic labeling of RMD which would default to 1. Instead the actually written number is displayed. 
+It is possible to include RMD or HTML into the quiz, allowing for mathematical questions using latex syntax, syntax highlighting outside of RMD and non-ASCII characters. Note that an exception is made for the automatic numbering of RMD. Writing "3." as has been done here therefore does not translate to the automatic labeling of RMD which would default to 1. Instead the actually written number is displayed. 
 
 #< quiz "rmdhtml"
 question: 3. What is the formula for the <span style="color: red;">**geometric series**</span>. Assume $q \in \mathbb{R}$ but $|q| < 1$?
 sc:
     - This: $a^2 = b^2 + c^2$
     - Or <span style="color: green;">that</span>: $\sum \limits_{k=0}^\infty a_0 q^k = \frac{a_0}{1-q}$*
+    - !2b|2b?
 
 success: Yay. You are quite educated. &#x1F600;
 failure: No, unfortunately not. &#x1F615;
 #>
 <br>
+Note that even though the quizzes work with yaml which seperates fields using a <code>:</code> character, RTutor allows for answers using <code>:</code>. This is especially useful in the context of HTML commands. Other yaml commands are also disabled, which makes it possible to have the quiz above with a starting <code>!</code>. To show this the third option is purposefully not in Math Mode.
 
 HTML commands in particular allow to use images as answers:
 <br>
@@ -91,7 +91,7 @@ sc:
     - <img src="images/peter-gonzalez-free-image-unsplash.jpg" />
 
 success: Exactly! The Ulm Minster measures a height of 161.5 metres. 
-failure: Thats wrong. This is the Cologne Cathedral, only measuring a measily 157 metres. 
+failure: Thats wrong. This is the Cologne Cathedral, only measuring a measly 157 metres. 
 #>
 
 Note: Both pictures are free of use under the [Unsplash](https://unsplash.com/license) license. The first picture is from Luis Fernando Felipe Alves, the second one from Peter Gonzales. 
@@ -109,13 +109,17 @@ Using the optional `choice_commentary` command a failure results not only in the
       + Displays *Text* if 1, 2 and 6 have been chosen. This is only sensible in the case of a multiple choice quiz.
   * choice_commentary{all(chosen %in% c(1:3,6))}: Text
       + Display *Text* if nothing other than 1, 2, 3 or 6 has been chosen.
-2. **Shorthand:** Display a message as soon as a specific answer is chosen, independent on other answers (as long as the solution is not correct).
+2. **Shorthand:** Display a message as soon as a specific answer is (not) chosen, independent on other answers (as long as the solution is not correct).
   * choice_commentary{6}: Text
-      + Is identical to choice_commentary{6 %in% chosen)}: Text
+      + Displays *Text* if answer is chosen.
+      + Is identical to *choice_commentary{c(6) %in% chosen}: Text*
+  * choice_commentary{!4}: Text
+      + Displays *Text* if answer is not chosen.
+      + Is identical to *choice_commentary{!(c(4) %in% chosen)}: Text*
       
 Commentaries are always displayed in the order as provided by the quiz. 
 
-Try answer *4*, *8*, both, or the first 4 possiblities to see different commentaries.
+Try answer *4*, *8*, both,  or the first 4 possiblities to see different commentaries.
 
 <br>
 #< quiz "multi"
@@ -132,6 +136,7 @@ success: Great, all answers are correct!
 failure: Not all answers correct. Try again.
 choice_commentary{3}: It holds that $4=2 \cdot 2$, so answering 4 is wrong.
 choice_commentary{7}: The number 8 is, like, the most non-prime number you could pick.
+choice_commentary{!4}: Not selecting 5 is understandable but wrong. All numbers (with the exception of 5 itself!) ending in 5 are indeed not prime.
 choice_commentary{all(1:4 %in% chosen) && !any(5:7 %in% chosen)}: The density of prime numbers is indeed higher with lower numbers, but not all low numbers are prime and vice versa: By conclusion this is a wrong answer.
 choice_commentary{any(c(3,5,7) %in% chosen)}: The number 2 is the only even number which is prime. In a way this makes 2 the oddest prime. &#x1F602;
 #>

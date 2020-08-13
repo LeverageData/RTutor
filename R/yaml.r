@@ -52,14 +52,8 @@ yaml.bool.handler.no <- function(val) {
 #' read.yaml(text=text.char)
 #' 
 #' @export
-read.yaml = function(file=NULL, text=NULL, verbose=FALSE, keep.quotes=TRUE, quote.char = "__QUOTE__", colon.handling = c("replace.colon.char","replace.all", "none"), colon.replace.exceptions=c(), space.after.colon=FALSE,colon.char = "__COLON__",  check.by.row=FALSE,  utf8=TRUE) {
+read.yaml = function(file=NULL, text=NULL, verbose=FALSE, keep.quotes=TRUE, quote.char = "__QUOTE__", colon.char = NULL,  check.by.row=FALSE,  utf8=TRUE) {
   restore.point("read.yaml")
-  
-  #Safely handle the colon - Options.
-  colon.handling <- colon.handling[1] #Only use first option if default is provided
-  if(!(colon.handling %in% c("replace.colon.char","replace.all", "none"))){
-    stop("Unexpected option for colon.handling provided. Please take a look at the documentation.")
-  }
   
   if (!is.null(file)) {
     file.str = paste0(" in ", file)
@@ -77,65 +71,15 @@ read.yaml = function(file=NULL, text=NULL, verbose=FALSE, keep.quotes=TRUE, quot
     Encoding(str) <- "UTF-8"
   }
   
-  # Convert tabs to spaces
-  str = gsub("\t","   ",str)
-  
-  #message(paste("read.yam:", file))
-  # Convert ":text" into ": text"
-  if (space.after.colon) {
-    str = gsub(":",": ",str)
-    str = gsub(":  ",": ",str)
-  }
-  
-  #Handle colons based on colon.handling
-  if (colon.handling == "replace.all"){
-    str.split = stringr::str_split(str, "\n")[[1]] %>%
-      stringr::str_trim(side="left") #ignore leadinge white spaces
-    no.leading.white = stringr::str_split(str, "\n")[[1]] %>%
-      stringr::str_length() - stringr::str_length(str.split) #Number of leading white spaces to be added again
-    str.split.colon.safe = sapply(str.split,FUN=function(x){
-      if(stringr::str_length(x)==0){
-        return(x)
-      } #noting to do
-      if(stringr::str_sub(x,start=1,end=1)=="-"){ #choices of quiz, new questions (if multiple) or choice commentaries -> keep colons, except in the case of exceptions
-        colons = stringr::str_locate_all(x,":")[[1]][,"end"]
-        keep.colons = stringr::str_locate_all(x,stringr::str_c(stringr::str_c(colon.replace.exceptions,":"),collapse="|"))[[1]][,"end"]
-        transform.colons = colons[!(colons %in% keep.colons)]
-        if(length(transform.colons)==0){
-          return(x)
-        }
-        #Go from the back to not mess up the indizes
-        for(i in length(transform.colons):1){
-          stringr::str_sub(x,transform.colons[i],transform.colons[i]) = colon.char
-        }
-        return(x)
-      }
-      #here the first colon is important for yaml, but the others are replaced
-      #if only one colon, everything is ok
-      if(stringr::str_count(x,":")<=1){
-        return(x)
-      }
-      #otherwise replace all after the first one
-      str.split.split = str_split(x,":")[[1]]
-      str.split.first.colon = c(stringr::str_c(str.split.split[1:2],collapse=":"),str.split.split[-(1:2)])
-      str.split.colon.char = stringr::str_c(str.split.first.colon,collapse=colon.char)
-      return(str.split.colon.char)
-    }, USE.NAMES = FALSE)
-    #combine again for further processing
-    missing.white.spaces = lapply(no.leading.white,FUN=function(x){stringr::str_c(rep(" ",x),collapse="")})
-    str.split.colon.safe = stringr::str_c(missing.white.spaces,str.split.colon.safe)
-    str = stringr::str_c(str.split.colon.safe, collapse="\n")
-  }
-  
   #Handlers
   handlers=list("bool#yes"=yaml.bool.handler.yes,"bool#no"=yaml.bool.handler.no)
   if (keep.quotes) {
     str = gsub('"',quote.char,str,fixed=TRUE)
   } 
-  if(keep.quotes || colon.handling %in% c("replace.colon.char","replace.all")){
+  if(keep.quotes || !is.null(colon.char)){
     yaml.string.handler = function(val) {
       if(keep.quotes) val = gsub(quote.char,'"',val,fixed=TRUE)
-      if(colon.handling %in% c("replace.colon.char","replace.all")) val = gsub(colon.char,':',val,fixed=TRUE)
+      if(!is.null(colon.char)) val = gsub(colon.char,':',val,fixed=TRUE)
       return(val)
     }
     handlers[["str"]]=yaml.string.handler
@@ -173,6 +117,7 @@ read.yaml = function(file=NULL, text=NULL, verbose=FALSE, keep.quotes=TRUE, quot
   if (utf8) {
     li = mark_utf8(li)
   }
+  
   li
   #suppressWarnings(yaml.load(str, handlers=list("bool#yes"=yaml.bool.handler.yes,"bool#no"=yaml.bool.handler.no)))
 

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.13.01</span>
       </span>
     </div>
 
@@ -127,10 +127,7 @@
   verbose = <span class='fl'>FALSE</span>,
   keep.quotes = <span class='fl'>TRUE</span>,
   quote.char = <span class='st'>"__QUOTE__"</span>,
-  colon.handling = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"replace.colon.char"</span>, <span class='st'>"replace.all"</span>, <span class='st'>"none"</span>),
-  colon.replace.exceptions = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  space.after.colon = <span class='fl'>FALSE</span>,
-  colon.char = <span class='st'>"__COLON__"</span>,
+  colon.char = <span class='kw'>NULL</span>,
   check.by.row = <span class='fl'>FALSE</span>,
   utf8 = <span class='fl'>TRUE</span>
 )</pre>
@@ -159,6 +156,18 @@
       <td><p>For internal handling quotes are replaced by <code>quote.char</code> and retransformed afterwards. The usage of <code>quote.char</code> within <code>text</code> or <code>file</code> is therefore forbidden if <code>keep.quotes</code> is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
+      <th>colon.char</th>
+      <td><p>For internal handling colons are replaced by <code>colon.char</code> and retransformed afterwards. The usage of <code>colon.char</code> for verbatim usage within <code>text</code> or <code>file</code> is therefore forbidden if <code>colon.handling</code> is anything other than <code>none</code>.</p></td>
+    </tr>
+    <tr>
+      <th>check.by.row</th>
+      <td><p>Allows better error handling by singling through the lines.</p></td>
+    </tr>
+    <tr>
+      <th>utf8</th>
+      <td><p>If <code>TRUE</code> (Default) the provided character vector is forced to UTF-8 Encoding which is necessary for yaml.</p></td>
+    </tr>
+    <tr>
       <th>colon.handling</th>
       <td><p>There exists the following ways to deal with colons, with <code>replace.colon.char</code> being the default:</p><ul>
 <li><p><strong>replace.colon.char</strong>: If one wants a colon within the generated text without it being interpreted by yaml, just use this option and write <code>colon.char</code> everywhere where a colon should be.</p></li>
@@ -173,18 +182,6 @@
     <tr>
       <th>space.after.colon</th>
       <td><p>Should a space after a colon be forced? <strong>Caution:</strong> This only applies to actually <em>written</em> ":" within the text and not those provided by <code>replace.colon.char</code>.</p></td>
-    </tr>
-    <tr>
-      <th>colon.char</th>
-      <td><p>For internal handling colons are replaced by <code>colon.char</code> and retransformed afterwards. The usage of <code>colon.char</code> for verbatim usage within <code>text</code> or <code>file</code> is therefore forbidden if <code>colon.handling</code> is anything other than <code>none</code>.</p></td>
-    </tr>
-    <tr>
-      <th>check.by.row</th>
-      <td><p>Allows better error handling by singling through the lines.</p></td>
-    </tr>
-    <tr>
-      <th>utf8</th>
-      <td><p>If <code>TRUE</code> (Default) the provided character vector is forced to UTF-8 Encoding which is necessary for yaml.</p></td>
     </tr>
     </table>
 
@@ -227,7 +224,7 @@ failure: Try again."
 #&gt; 
 #&gt; 
 #&gt; $success
-#&gt; [1] "Great, your answer is correct: Super!"
+#&gt; [1] "Great, your answer is correct__COLON__ Super!"
 #&gt; 
 #&gt; $failure
 #&gt; [1] "Try again."

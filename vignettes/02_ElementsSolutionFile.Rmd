@@ -176,7 +176,8 @@ Unfortunately, ignore blocks cannot nest other blocks starting with `#<`.
 
 ## quiz blocks
 
-For problem sets designed for the web browser, you can easily specify quizzes. Just take a look at the example problem on RTutor's Github page [here]( [https://github.com/skranz/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd).
+For problem sets designed for the web browser, you can easily specify quizzes. Just take a look at the [example problem](https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd) on RTutor's Github page. To see this problem set in action, visit the [shinyapp](https://leveragedata.shinyapps.io/QuizExamples/)
+
 
 Note that you have to add the argument `addons="quiz"` to your call to `create.ps` in your setup chunk.
 

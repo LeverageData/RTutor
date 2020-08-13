@@ -204,14 +204,19 @@ shinyQuiz = function(id=paste0("quiz_",sample.int(10e10,1)),qu=NULL, yaml,  quiz
 
   if (is.null(qu)) {
     yaml = enc2utf8(yaml)
-    yaml.prepared = try(prepare.yaml.quiz(yaml))
+    yaml.prepared = try(prepare.yaml.quiz(yaml,colon.char="__COLON__", colon.replace.exceptions=c("question","choice_commentary_single","choice_expr", "choice_text")))
     if (is(yaml.prepared,"try-error")) {
       err = paste0("When preprocessing and transforming choice_comments of quiz:\n",paste0(yaml, collapse="\n"),"\n\n",as.character(yaml.prepared))
       stop(err,call. = FALSE)
     }
-    qu = try(mark_utf8(read.yaml(text=yaml.prepared, colon.handling = c("replace.all"), colon.replace.exceptions=c("question","choice_commentary_single","choice_expr", "choice_text"))), silent=TRUE)
+    yaml.read = try(read.yaml(text=yaml.prepared, colon.char = "__COLON__"), silent=TRUE)
+    if (is(yaml.read,"try-error")) {
+      err = paste0("When importing quiz:\n",paste0(yaml.prepared, collapse="\n"),"\n\n",as.character(yaml.read))
+      stop(err,call. = FALSE)
+    }
+    qu = try(aftercare.yaml.quiz(yaml.read), silent=TRUE)
     if (is(qu,"try-error")) {
-      err = paste0("When importing quiz:\n",paste0(yaml.prepared, collapse="\n"),"\n\n",as.character(qu))
+      err = paste0("When post processing quiz:\n",paste0(yaml.read, collapse="\n"),"\n\n",as.character(qu))
       stop(err,call. = FALSE)
     }
   }
@@ -530,7 +535,7 @@ generate.choice.commentary = function(chosen, part){
   return(rmdtools::md2html(transform.save.html(commentary)))
 }
 
-prepare.yaml.quiz = function(str, colon.char = "__COLON__"){
+prepare.yaml.quiz = function(str, colon.char = "__COLON__", colon.replace.exceptions=c()){
   restore.point("prepare.yaml.quiz")
 
     #To have a controlled environment we do not allow blank lines. 
@@ -577,10 +582,15 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__"){
       mutate(choice.trail=if_else(is.na(regex[,1]),"",regex[,1]),choice.expr = regex[,2], choice.text = regex[,3]) %>%
       select(-regex)
     
-    #Shorthand: If there is only a single number, we want to change the expression
+    #Shorthand: If there is only a single number or ! and a single number, we want to change the expression
     question.tbl.choice = question.tbl.choice %>%
-      mutate(shorthand=stringr::str_detect(choice.expr,"^[0-9]$")) %>%
-      mutate(choice.expr = if_else(shorthand,stringr::str_c("any(chosen %in% c(",choice.expr,"))"),choice.expr))
+      mutate(shorthand=stringr::str_detect(choice.expr,"^\\!?[:digit:]+$")) %>%
+      mutate(shorthand_neg=shorthand&stringr::str_detect(choice.expr,"\\!")) %>%
+      mutate(shorthand_pos=shorthand&!shorthand_neg) %>%
+      mutate(choice.expr = if_else(shorthand_pos,stringr::str_c("c(",choice.expr,") %in% chosen"),choice.expr)) %>%
+      mutate(choice.expr = if_else(shorthand_neg,stringr::str_c("!(c(",stringr::str_extract(choice.expr,"[:digit:]+"),") %in% chosen)"),choice.expr)) %>%
+      select(-shorthand, -shorthand_neg, -shorthand_pos)
+    
     
     #Colons make problems -> change to MACRO
     question.tbl.choice = question.tbl.choice %>%
@@ -615,6 +625,8 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__"){
     }
     
     final.tbl.li = list()
+    
+    
     #Combine them again
     for(i in 1:length(question.tbl.li)){
       if(length(commentary.yaml)>=i){ #R automatically shortens lists and doesn't like trailing NULLs
@@ -623,13 +635,94 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__"){
         final.tbl.li[[i]] = question.tbl.li[[i]]
       }
     }
-    final.str = bind_rows(final.tbl.li) %>%
-      unlist() %>%
-      stringr::str_c(collapse="\n")
-  } else {
-    final.str = str.split %>%
-      stringr::str_c(collapse="\n")
-  }
+    str.split = bind_rows(final.tbl.li) %>%
+      unlist()
+  }  
+  
+  #Now everything is in neat yaml form even though seperated. However there might be yaml functionalities which are not wanted!
+  
+  # Convert tabs to spaces
+  str.split = gsub("\t","   ",str.split)
+  
+  #Handle colons
+  str.split.trim = str.split %>%
+    stringr::str_trim(side="left") #ignore leadinge white spaces
+  
+  no.leading.white = str.split %>%
+    stringr::str_length() - stringr::str_length(str.split.trim) #Number of leading white spaces to be added again
+  
+  str.split.colon.safe = sapply(str.split.trim,FUN=function(x){
+    if(stringr::str_length(x)==0){
+      return(x)
+    } #noting to do
+    if(stringr::str_sub(x,start=1,end=1)=="-"){ #choices of quiz, new questions (if multiple) or choice commentaries -> keep colons, except in the case of exceptions
+      colons = stringr::str_locate_all(x,":")[[1]][,"end"]
+      keep.colons = stringr::str_locate_all(x,stringr::str_c(stringr::str_c(colon.replace.exceptions,":"),collapse="|"))[[1]][,"end"]
+      transform.colons = colons[!(colons %in% keep.colons)]
+      if(length(transform.colons)==0){
+        return(x)
+      }
+      #Go from the back to not mess up the indizes
+        for(i in length(transform.colons):1){
+        stringr::str_sub(x,transform.colons[i],transform.colons[i]) = colon.char
+        }
+      return(x)
+    }
+    #here the first colon is important for yaml, but the others are replaced
+    #if only one colon, everything is ok
+    if(stringr::str_count(x,":")<=1){
+      return(x)
+    }
+    #otherwise replace all after the first one
+    str.split.split = str_split(x,":")[[1]]
+    str.split.first.colon = c(stringr::str_c(str.split.split[1:2],collapse=":"),str.split.split[-(1:2)])
+    str.split.colon.char = stringr::str_c(str.split.first.colon,collapse=colon.char)
+    return(str.split.colon.char)
+  }, USE.NAMES = FALSE)
+  
+  #Now only correct colons are still left, so me make these pretty
+  str.split.colon.safe = gsub(":",": ",str.split.colon.safe)
+  str.split.colon.safe = gsub(":  ",": ",str.split.colon.safe)
+  
+  #Now set everything in quotes
+  str.split.syntax.safe = sapply(str.split.colon.safe,FUN=function(x){
+    #There are two types of expected lines: those with "(- )? <command>: <Text>?*", and "- <Text>"
+    with.colon = stringr::str_detect(x, ": ")
+    if(with.colon){
+      meaningful.text = stringr::str_detect(x, "^.*: +[^[:blank:]]+")
+      if(!meaningful.text){
+        return(x)
+      }
+      sep.strings = stringr::str_match(x,"^(.*): +(.*)$")[c(2,3)]
+      safe.string = stringr::str_c(sep.strings[1],": \"",sep.strings[2],"\"")
+    } else {
+      text.to.quote = stringr::str_match(x,"^- +(.*)$")[c(2)]
+      safe.string = stringr::str_c("- \"",text.to.quote,"\"")
+    }
+    return(safe.string)
+  }, USE.NAMES=FALSE)
+  
+  #combine again for further processing
+  missing.white.spaces = lapply(no.leading.white,FUN=function(x){stringr::str_c(rep(" ",x),collapse="")})
+  str.split.syntax.safe = stringr::str_c(missing.white.spaces,str.split.syntax.safe)
+  final.str = stringr::str_c(str.split.syntax.safe, collapse="\n")
   
   final.str
+}
+
+aftercare.yaml.quiz = function(yaml.quiz){
+  restore.point("aftercare.yaml.quiz")
+  if(is.list(yaml.quiz)){
+    lapply(yaml.quiz,aftercare.yaml.quiz)
+  } else if (length(yaml.quiz)>1){
+    sapply(yaml.quiz,aftercare.yaml.quiz,USE.NAMES=FALSE)
+  } else {  
+    item = yaml.quiz
+    if(stringr::str_length(item)>2){
+      item.nice = stringr::str_sub(item,2,-2)
+    } else {
+      item.nice = item 
+    }
+    return(type.convert(item.nice, as.is=TRUE))
+  }
 }

@@ -568,19 +568,19 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__", colon.replace.except
     #Without choice commentary base
     question.tbl.wo.choice = question.tbl.choice.ident %>%
       filter(!is.choice.com) %>%
-      select(-is.choice.com)
+      dplyr::select(-is.choice.com)
     question.tbl.li = question.tbl.wo.choice %>%
       group_by(question.ind) %>%
       group_split() %>%
-      lapply(FUN=function(x){x %>% select(-question.ind)})
+      lapply(FUN=function(x){x %>% dplyr::select(-question.ind)})
     
     #extract expression and text
     question.tbl.choice = question.tbl.choice.ident %>%
       filter(is.choice.com) %>%
-      select(-is.choice.com) %>%
+      dplyr::select(-is.choice.com) %>%
       mutate(regex = as.data.frame(stringr::str_match(lines,pattern="(^([:space:]*-*[:space:]*)choice_commentary\\{)(.+)(\\}:)[:space:]*(.*)"))[,c(3,4,6)]) %>%
       mutate(choice.trail=if_else(is.na(regex[,1]),"",regex[,1]),choice.expr = regex[,2], choice.text = regex[,3]) %>%
-      select(-regex)
+      dplyr::select(-regex)
     
     #Shorthand: If there is only a single number or ! and a single number, we want to change the expression
     question.tbl.choice = question.tbl.choice %>%
@@ -589,7 +589,7 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__", colon.replace.except
       mutate(shorthand_pos=shorthand&!shorthand_neg) %>%
       mutate(choice.expr = if_else(shorthand_pos,stringr::str_c("c(",choice.expr,") %in% chosen"),choice.expr)) %>%
       mutate(choice.expr = if_else(shorthand_neg,stringr::str_c("!(c(",stringr::str_extract(choice.expr,"[:digit:]+"),") %in% chosen)"),choice.expr)) %>%
-      select(-shorthand, -shorthand_neg, -shorthand_pos)
+      dplyr::select(-shorthand, -shorthand_neg, -shorthand_pos)
     
     
     #Colons make problems -> change to MACRO
@@ -636,7 +636,8 @@ prepare.yaml.quiz = function(str, colon.char = "__COLON__", colon.replace.except
       }
     }
     str.split = bind_rows(final.tbl.li) %>%
-      unlist()
+      unlist() %>%
+      unname()
   }  
   
   #Now everything is in neat yaml form even though seperated. However there might be yaml functionalities which are not wanted!

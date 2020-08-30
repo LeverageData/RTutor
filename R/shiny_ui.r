@@ -65,7 +65,8 @@ make.view.ui.li = function(view.inds = NULL,ps=get.ps()) {
 make.ex.ui = function(ex.ind, ps = get.ps(), session=ps$session, view.in.container=isTRUE(ps$view.in.container)) {
   restore.point("make.ex.ui")
   shiny.dt = ps$shiny.dt
-  cdt = ps$cdt  
+  cdt = ps$cdt
+  edt = ps$edt
 
   if (ex.ind==1) {
     rows = which(shiny.dt$ex.ind == ex.ind | shiny.dt$ex.ind == 0)
@@ -86,7 +87,7 @@ make.ex.ui = function(ex.ind, ps = get.ps(), session=ps$session, view.in.contain
   
   
   # Button for next exercise
-  if (nrow(cdt)>0 && ex.ind < max(cdt$ex.ind)) {
+  if (ex.ind < max(edt$ex.ind)) {
     btnId = paste0("nextExBtn", ex.ind)
     nextExBtn = simpleButton(btnId,"Go to next exercise...", class.add="nextExBtn")
     #nextExBtn = actionButton(btnId,"Go to next exercise...")

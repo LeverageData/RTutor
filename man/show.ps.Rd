@@ -27,6 +27,7 @@ show.ps(
   show.solution.btn = NA,
   show.data.exp = TRUE,
   show.download.rmarkdown = TRUE,
+  exercise.btn.props = c("Go to next exercise...", ""),
   disable.graphics.dev = TRUE,
   check.whitelist = !is.null(wl),
   wl = NULL,
@@ -83,6 +84,8 @@ show.ps(
 \item{show.solution.btn}{If TRUE add a button to each chunk to show the sample solution. Note that one can create a problem set such that the sample solution is never available. By default TRUE if a sample solution is available in the problem set.}
 
 \item{show.download.rmarkdown}{If TRUE the user is able to download the R-Markdown file of their solution in the submissions-tab. If FALSE the corresponding button is not rendered. By default set to \code{TRUE}.}
+
+\item{exercise.btn.props}{Properties of the exercise button. Expects a character vector of length two. First element is displayed text (default: "Go to next exercise..."), second element is css style of button (default: ""). Example usage: exercise.btn.props=c("Next Chapter","position: absolute;right: 0em;margin-right: 20em;margin-bottom: 10em;background-color:orange;color:white;font-weight: bold;")}
 
 \item{html.data.frame}{shall data.frames and matrices be printed as html table if a chunk is checked? (Default=TRUE)}
 

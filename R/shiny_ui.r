@@ -67,6 +67,9 @@ make.ex.ui = function(ex.ind, ps = get.ps(), session=ps$session, view.in.contain
   shiny.dt = ps$shiny.dt
   cdt = ps$cdt
   edt = ps$edt
+  exercise.btn.props = ps$exercise.btn.props
+  exercise.title=exercise.btn.props[1]
+  exercise.style=exercise.btn.props[2]
 
   if (ex.ind==1) {
     rows = which(shiny.dt$ex.ind == ex.ind | shiny.dt$ex.ind == 0)
@@ -89,8 +92,8 @@ make.ex.ui = function(ex.ind, ps = get.ps(), session=ps$session, view.in.contain
   # Button for next exercise
   if (ex.ind < max(edt$ex.ind)) {
     btnId = paste0("nextExBtn", ex.ind)
-    nextExBtn = simpleButton(btnId,"Go to next exercise...", class.add="nextExBtn")
-    #nextExBtn = actionButton(btnId,"Go to next exercise...")
+    #nextExBtn = actionButton(btnId,"Go to next exercise...", style="position:relative;right:10em;bottom:20em",class="nextExBtn")
+    nextExBtn = actionButton(btnId,exercise.title, style=exercise.style,class="nextExBtn")
     li = c(li, list(nextExBtn))    
     buttonHandler(btnId, ex.ind=ex.ind, function(session=app$session,ex.ind, app=getApp(),...) {
        cat("\nnextExBtn pressed...")

@@ -1,5 +1,10 @@
 # RTutor (main)
 
+## 2020-08-30 [Only LD Fork]
+* Now having a problemset without chunks and multiple exercises no longer throws as warning
+* Exercise buttons are now shown for all exercises except the last independent of chunks
+* It now possible to change the text and style of the exercise button.
+
 ## 2020-08-13 [Only LD Fork]
 
 * YAML Functionality further limited in quizzes

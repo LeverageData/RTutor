@@ -42,6 +42,7 @@ examples.show.shiny.ps = function() {
 #' @param show.solution.btn If TRUE add a button to each chunk to show the sample solution. Note that one can create a problem set such that the sample solution is never available. By default TRUE if a sample solution is available in the problem set.
 #' @param prev.chunks.sample.solution If TRUE and a user edits a chunk without having checked all previous chunks then previous chunks will be automatically be checked with the sample solution. If FALSE previous chunks will be checked with the user's entered solutions. Has by default the same value as show.solution.btn.
 #' @param show.download.rmarkdown If TRUE the user is able to download the R-Markdown file of their solution in the submissions-tab. If FALSE the corresponding button is not rendered. By default set to \code{TRUE}.
+#' @param exercise.btn.props Properties of the exercise button. Expects a character vector of length two. First element is displayed text (default: "Go to next exercise..."), second element is css style of button (default: ""). Example usage: exercise.btn.props=c("Next Chapter","position: absolute;right: 0em;margin-right: 20em;margin-bottom: 10em;background-color:orange;color:white;font-weight: bold;")
 #' @param launch.browser if TRUE (default) show the problem set in the browser. Otherwise it is shown in the RStudio viewer pane
 #' @param catch.errors by default TRUE only set FALSE for debugging purposes in order to get a more informative traceback()
 #' @param offline (FALSE or TRUE) Do you have no internet connection. By default it is checked whether RTutor can connect to the MathJax server. If you have no internet connection, you cannot render mathematic formulas. If RTutor wrongly thinks you have an internet connection, while you don't, your chunks may not show at all. If you encounter this problem, set manually offline=TRUE.
@@ -50,7 +51,7 @@ examples.show.shiny.ps = function() {
 #' @param round.digits the number of digits that printed data.frames shall be rounded to
 #' @param dir your working directory for the problem set, by default getwd()
 #' @param rps.dir directory of rps.files by default equal to dir
-show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,clear.user=FALSE,run.solved=FALSE,sample.solution=FALSE, prev.chunks.sample.solution = show.solution.btn,launch.browser=TRUE, catch.errors = TRUE,  dir=getwd(), rps.dir=dir, offline=!can.connect.to.MathJax(), left.margin=2, right.margin=2, is.solved, make.web.app=FALSE, make.session.ps=make.web.app, save.nothing=FALSE, show.revert.btn=FALSE, show.solution.btn = NA, show.data.exp=TRUE, show.download.rmarkdown=TRUE, disable.graphics.dev=TRUE,  check.whitelist=!is.null(wl), wl=NULL, verbose=FALSE, html.data.frame=TRUE,table.max.rows=25, round.digits=8, signif.digits=8, knit.print.opts=make.knit.print.opts(html.data.frame=html.data.frame,table.max.rows=table.max.rows, round.digits=round.digits, signif.digits=signif.digits,print.data.frame.fun=print.data.frame.fun,print.matrix.fun=print.matrix.fun), print.data.frame.fun = NULL, print.matrix.fun=NULL, precomp=FALSE, noeval=FALSE, need.login=FALSE, login.dir = paste0(dir,"/login"), show.points=TRUE,  stop.app.if.window.closes=!make.session.ps,sav.file=paste0(user.name, "_", ps.name,".sav"), load.sav = FALSE,  show.save.btn=FALSE,   import.rmd=FALSE, rmd.file = paste0(ps.name,"_",user.name,"_export.rmd"),  ...) {
+show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,clear.user=FALSE,run.solved=FALSE,sample.solution=FALSE, prev.chunks.sample.solution = show.solution.btn,launch.browser=TRUE, catch.errors = TRUE,  dir=getwd(), rps.dir=dir, offline=!can.connect.to.MathJax(), left.margin=2, right.margin=2, is.solved, make.web.app=FALSE, make.session.ps=make.web.app, save.nothing=FALSE, show.revert.btn=FALSE, show.solution.btn = NA, show.data.exp=TRUE, show.download.rmarkdown=TRUE, exercise.btn.props=c("Go to next exercise...",""), disable.graphics.dev=TRUE,  check.whitelist=!is.null(wl), wl=NULL, verbose=FALSE, html.data.frame=TRUE,table.max.rows=25, round.digits=8, signif.digits=8, knit.print.opts=make.knit.print.opts(html.data.frame=html.data.frame,table.max.rows=table.max.rows, round.digits=round.digits, signif.digits=signif.digits,print.data.frame.fun=print.data.frame.fun,print.matrix.fun=print.matrix.fun), print.data.frame.fun = NULL, print.matrix.fun=NULL, precomp=FALSE, noeval=FALSE, need.login=FALSE, login.dir = paste0(dir,"/login"), show.points=TRUE,  stop.app.if.window.closes=!make.session.ps,sav.file=paste0(user.name, "_", ps.name,".sav"), load.sav = FALSE,  show.save.btn=FALSE,   import.rmd=FALSE, rmd.file = paste0(ps.name,"_",user.name,"_export.rmd"),  ...) {
   
   restore.point("show.ps")
   
@@ -72,6 +73,7 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
     show.data.exp=show.data.exp,
     show.save.btn = show.save.btn,
     show.download.rmarkdown = show.download.rmarkdown,
+    exercise.btn.props = exercise.btn.props,
     clear.user=clear.user,
     check.whitelist=check.whitelist, wl=wl,
     precomp=precomp, noeval=noeval, 
@@ -187,7 +189,7 @@ show.ps = function(ps.name, user.name="default_user", auto.save.code = FALSE,cle
 
 show.shiny.ps = show.ps
 
-init.shiny.ps = function(ps.name,dir=getwd(), user.name="default_user",  sav.file=NULL, load.sav = !is.null(sav.file), ex.inds =NULL, sample.solution=FALSE, prev.chunks.sample.solution=show.solution.btn, run.solved=load.sav, import.rmd=FALSE, rmd.file = paste0(ps.name,"_",user.name,"_export.rmd"), rps.dir=dir, ups.dir=dir, save.nothing=FALSE, show.solution.btn=NA, show.revert.btn=TRUE, show.data.exp=TRUE, show.download.rmarkdown=TRUE, clear.user = FALSE, check.whitelist=!is.null(wl), wl=NULL, precomp=FALSE, noeval=FALSE, replace.sol=precomp, preknit=FALSE, ups.save = default.ups.save(code=auto.save.code), show.load.save.panel=FALSE, show.export.panel=TRUE, show.save.btn=FALSE,log.file = paste0(dir,"/",ps.name,".log"), auto.save.code=FALSE, ...) {
+init.shiny.ps = function(ps.name,dir=getwd(), user.name="default_user",  sav.file=NULL, load.sav = !is.null(sav.file), ex.inds =NULL, sample.solution=FALSE, prev.chunks.sample.solution=show.solution.btn, run.solved=load.sav, import.rmd=FALSE, rmd.file = paste0(ps.name,"_",user.name,"_export.rmd"), rps.dir=dir, ups.dir=dir, save.nothing=FALSE, show.solution.btn=NA, show.revert.btn=TRUE, show.data.exp=TRUE, show.download.rmarkdown=TRUE, exercise.btn.props=c("Go to next exercise...",""), clear.user = FALSE, check.whitelist=!is.null(wl), wl=NULL, precomp=FALSE, noeval=FALSE, replace.sol=precomp, preknit=FALSE, ups.save = default.ups.save(code=auto.save.code), show.load.save.panel=FALSE, show.export.panel=TRUE, show.save.btn=FALSE,log.file = paste0(dir,"/",ps.name,".log"), auto.save.code=FALSE, ...) {
   restore.point("init.shiny.ps")
   setwd(dir)
 
@@ -215,6 +217,7 @@ init.shiny.ps = function(ps.name,dir=getwd(), user.name="default_user",  sav.fil
   ps$show.export.panel=show.export.panel
   ps$show.save.btn = show.save.btn
   ps$show.download.rmarkdown = show.download.rmarkdown
+  ps$exercise.btn.props = exercise.btn.props
   
   ps$is.shiny = TRUE
   if (is.na(show.solution.btn))

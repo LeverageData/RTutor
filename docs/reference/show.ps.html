@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.13.01</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.30.01</span>
       </span>
     </div>
 
@@ -144,6 +144,7 @@
   show.solution.btn = <span class='fl'>NA</span>,
   show.data.exp = <span class='fl'>TRUE</span>,
   show.download.rmarkdown = <span class='fl'>TRUE</span>,
+  exercise.btn.props = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Go to next exercise..."</span>, <span class='st'>""</span>),
   disable.graphics.dev = <span class='fl'>TRUE</span>,
   check.whitelist = <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='kw'>wl</span>),
   wl = <span class='kw'>NULL</span>,
@@ -230,6 +231,10 @@
     <tr>
       <th>show.download.rmarkdown</th>
       <td><p>If TRUE the user is able to download the R-Markdown file of their solution in the submissions-tab. If FALSE the corresponding button is not rendered. By default set to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>exercise.btn.props</th>
+      <td><p>Properties of the exercise button. Expects a character vector of length two. First element is displayed text (default: "Go to next exercise..."), second element is css style of button (default: ""). Example usage: exercise.btn.props=c("Next Chapter","position: absolute;right: 0em;margin-right: 20em;margin-bottom: 10em;background-color:orange;color:white;font-weight: bold;")</p></td>
     </tr>
     <tr>
       <th>html.data.frame</th>

@@ -418,8 +418,14 @@ te.to.rps = function(te) {
 
   # Match awards to cdt
   rows = match(cdt$chunk.name, items.df$id)
-  cdt$award.name = items.df$award.name[rows]
-  cdt$item.pos = items.df$item.pos[rows]
+  if(length(rows)==0){
+    cdt$award.name = as.character()
+    cdt$item.pos = as.numeric()
+  } else {
+    cdt$award.name = items.df$award.name[rows]
+    cdt$item.pos = items.df$item.pos[rows]
+  }
+
 
   rps$cdt = cdt
   rps$awards = te$awards

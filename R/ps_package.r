@@ -391,9 +391,25 @@ rtutor.skel.show.opts.string = function(mandatory, optional){
     all.list = mandatory
   }
   
-  chars = sapply(all.list,FUN=is.character)
-  
-  if(any(chars)) all.list[chars] = paste("\"",all.list[chars],"\"", sep="")
+  #Flatten for better handling. Strings should have "" for correct postprocessing
+  for(i in seq_along(all.list)){
+    if(length(all.list[[i]])==1){
+      if(is.character(all.list[[i]])){
+        all.list[i] = paste("\"",all.list[i],"\"", sep="")
+      }
+    } else {
+      for(j in seq_along(all.list[[i]])){
+        if(length(all.list[[i]][[j]])>1){
+          warning("Multilevel arguments not supported with ps.show. Check global.R manually whether everything is set correctly.")
+        }
+        if(is.character(all.list[[i]][[j]])){
+          all.list[[i]][[j]] = paste("\"",all.list[[i]][[j]],"\"", sep="")
+        }
+      }
+      all.list[i] = stringr::str_c(all.list[[i]], collapse=",")
+      all.list[i] = stringr::str_c(c("c(",all.list[[i]],")"), collapse="")
+    }
+  }  
   
   arg.string = paste(names(all.list),all.list,sep="=",collapse=", ")
   

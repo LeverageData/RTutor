@@ -531,7 +531,6 @@ generate.choice.commentary = function(chosen, part){
     }
   }) %>% unlist() %>% stringr::str_c(collapse="<br>")
   
-  #return(markdownToHTML(text=transform.save.html(commentary), fragment.only=FALSE,encoding="UTF-8"))
   return(rmdtools::md2html(transform.save.html(commentary)))
 }
 

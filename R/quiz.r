@@ -414,7 +414,13 @@ quiz.md = function(qu, solution=FALSE, add.numbers=FALSE) {
 quiz.part.md = function(part, solution=FALSE, add.numbers=FALSE) {
   restore.point("quiz.part.md")
   
-  head = paste0("\nQuiz: ",part$question,"\n")
+  #Add Quiz: if not already there
+  question_start = stringr::str_sub(part$question,1,7)
+  if(stringr::str_detect(question_start,"Quiz:")){
+    head = stringr::str_c("\n",part$question,"\n")
+  } else {
+    head = stringr::str_c("\n**Quiz:** ",part$question,"\n")
+  }
   if (solution) {
     if (part$type=="numeric" | part$type == "text") {
       answer = paste0("Answer: ", part$answer)

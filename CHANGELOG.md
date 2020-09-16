@@ -1,5 +1,13 @@
 # RTutor (main)
 
+## 2020-09-16 [Only LD Fork]
+
+* Quizzes are now bold in the output file. If the quiz is already starting with Quiz or **Quiz, then we refrain from adding another Quiz: Indicator. 
+
+## 2020-09-16 
+
+* Display Message if no user name was specified in the context of stats.
+
 ## 2020-08-30 [Only LD Fork]
 * Now having a problemset without chunks and multiple exercises no longer throws as warning
 * Exercise buttons are now shown for all exercises except the last independent of chunks

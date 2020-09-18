@@ -445,7 +445,6 @@ quiz.part.md = function(part, solution=FALSE, add.numbers=FALSE) {
   paste0(head,"\n", answer)
 }
 
-
 add.quiz.handlers = function(qu, quiz.handler=NULL, id=qu$id){
   restore.point("add.quiz.handlers")
   app = getApp()

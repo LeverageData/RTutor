@@ -1,8 +1,10 @@
 # RTutor (main)
 
-## 2020-09-16 [Only LD Fork]
+## 2020-09-18 [Only LD Fork]
 
-* Quizzes are now bold in the output file. If the quiz is already starting with Quiz or **Quiz, then we refrain from adding another Quiz: Indicator. 
+* Quizzes are now bold in the output file. If the quiz is already starting with Quiz or **Quiz, then we refrain from adding another Quiz: Indicator.
+* Fixed Inconsistcency in the display of quizzes between shiny and knitr. Now the html input in questions is seperated by newlines. 
+* Not having a newline before Lists no longer breaks the outputfile. Also intendation works as intendet in Lists. This fixes different interpretations in RMD between the generation of the shiny problemset and the knitr interpreter of the outputfile. This also included deleting all tabs in html tables.
 
 ## 2020-09-16 
 

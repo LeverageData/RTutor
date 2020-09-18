@@ -254,6 +254,7 @@ write.output.solution = function(file = paste0(ps.name,"_output_solution.Rmd"), 
   out.txt = c(header, out.txt)
   out.txt = name.rmd.chunks(txt = out.txt,only.empty.chunks = FALSE,keep.options = TRUE,valid.file.name = TRUE)
   out.txt = mark_utf8(out.txt)
+  out.txt = fix.parser.inconsistencies(out.txt, fix.lists=TRUE)
   writeLines(out.txt, file, useBytes=TRUE)
 }
 
@@ -1572,4 +1573,92 @@ chunk.opt.string.to.list = function(str, keep.name=FALSE) {
   li
 }
 
+#' Changes the txt in a way that the output file after knitr looks similar to the shiny app.
+#'
+#' Several subtle inconsistences exist, where the RMD parser of the shiny app and the RMD parser of knitr differ. This function changes the output code in a way that the expected result of the shiny app can out of the box be achieved by pressing the knitr button.
+#'
+#' @param fix.lists RMD lists with knitr have to have a trailing blank line. Otherwise the list is only interpreted verbatim. Setting this parameter to `TRUE` (Default) inserts additional blank lines where necessary. Additionally blank lines are removed and replaced with <br><br> when they would interfere with the list structure (i.e. shiny uses the same list but knitr ends the current list.). For some reason tabs to write more readable html tables break the lists as well using the knitr parsing. They are therefore removed.
+#' @param fix.headers Headers need to have a blank line before them when using knitr.
+#' @param remove.exercise To start a new Exercise the key word "Exercise" is used. We most likely do not want to have it in the header as it also does not appear in the shiny problem set.
+#' @param seperate.html knitr.md does sometimes not process html tags correctly if they do not start in a newline
+fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, remove.exercise=TRUE, seperate.html=TRUE){
+  restore.point("fix.parser.inconsistencies")
+  
+  #Multiple blank lines are ignored anyway. For convenience sake they are removed
+  if(length(txt)>2){
+    blank.lines = str_length(txt)==0
+    blank.lines.progression = cumsum(blank.lines)
+    before.repeated.blank.lines = (blank.lines.progression - c(blank.lines.progression[-c(1,2)],blank.lines.progression[length(blank.lines.progression)],blank.lines.progression[length(blank.lines.progression)]))<=-2
+    repeated.blank.lines = c(FALSE,before.repeated.blank.lines[-length(before.repeated.blank.lines)])
+    txt = txt[!repeated.blank.lines]
+  }
+
+  if(fix.lists){
+    list.elements = str_detect(txt,"^[:blank:]*(([:digit:]+\\.)|\\+|\\*|\\-)")
+    blank.lines = str_detect(txt,"^[:blank:]*$")
+    #2 spaces = 1 tab but all tabs were already changed to spaces at this point.
+    intendation = floor(str_count(str_extract(txt,"^[:blank:]*")," ")/2)
+    
+    #within a list (as seen by indented list.elements, new lines are bad and to be removed and replaced by <br><br>)
+    br.line = rep(FALSE,length(txt))
+    if(length(br.line)>3) br.line[blank.lines & c(intendation[-1],FALSE)==c(intendation[-length(intendation)],FALSE) & c(intendation[-1],FALSE)>0] = TRUE
+    if(any(br.line)) txt[br.line] = c("<br><br>")
+    
+    #When starting a new list, we want to have a newline    
+    add.line.before = rep(FALSE,length(txt)) #before each new list there has to be a blank line
+    if(length(add.line.before)>2) add.line.before[c(list.elements) & !c(FALSE,list.elements[-length(list.elements)]) & !c(FALSE,blank.lines[-length(list.elements)])] = TRUE
+    add.line.before.ind = which(add.line.before)
+    vals = c(txt,rep("",length(add.line.before.ind)))
+    id = c(seq_along(txt), add.line.before.ind-0.5)
+    txt = vals[order(id)]
+    
+    #delete tabs in tables
+    table.start = str_detect(txt,"<[:blank:]*table.*>")
+    table.end = str_detect(txt,"<[:blank:]*/.*table.*>")
+    table.pos = as.logical(cumsum(table.start-table.end))
+    txt[table.pos] = str_trim(txt[table.pos])
+  }
+  
+  if(fix.headers){
+    headers = str_detect(txt,"^[:blank:]*#+")
+    blank.lines = str_detect(txt,"^[:blank:]*$")
+    has.no.leading.blank = headers&!c(FALSE,blank.lines[-length(blank.lines)])
+    has.no.leading.blank.id = which(has.no.leading.blank)
+    vals = c(txt,rep("",length(has.no.leading.blank.id)))
+    id = c(seq_along(txt), has.no.leading.blank.id-0.5)
+    txt = vals[order(id)]
+  }
+  
+  if(remove.exercise){
+    txt = str_replace(txt,"^[:blank:]*##[:blank:]*Exercise ","## ")
+  }
+  
+  if(seperate.html){
+    internal.sep.html = function(txt.line){
+      restore.point("internal.sep.html")
+      split.here.macro = "__SPLITHERE__"
+      
+      html.starts = str_locate_all(txt.line,"<[^/]+?>")[[1]][,"start"]
+      html.ends = str_locate_all(txt.line,"<[:blank:]*/.+?>")[[1]][,"end"]
+      if(length(html.starts)+length(html.ends)==0) return(txt.line)
+      
+      #avoid double splits if ends and starts follow each other
+      html.ends = html.ends[!(html.ends %in% (html.starts-1))]
+      
+      txt.line.vec = str_extract_all(txt.line, boundary("character"))[[1]]
+      vals = c(txt.line.vec,rep(split.here.macro,length(html.starts)+length(html.ends)))
+      id = c(seq_along(txt.line.vec), html.starts-0.5, html.ends+0.5)
+      txt.line.vec = vals[order(id)]
+      txt.line = str_c(txt.line.vec,collapse="")
+      txt.line.sep = str_trim(str_split(txt.line,split.here.macro)[[1]])
+      blank.lines = str_which(txt.line.sep,"^[:blank:]*$")
+      if(any(blank.lines)) txt.line.sep = txt.line.sep[-blank.lines]
+      return(txt.line.sep)
+    }
+    
+    txt = unlist(sapply(txt,internal.sep.html, USE.NAMES=FALSE))
+  }
+  
+  return(txt)  
+}
 

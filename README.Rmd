@@ -17,7 +17,7 @@ This package aims to have all features of the main package by Sebastian Kranz. W
 The following differences are most noteworthy:
 
 * Generating a html file through knitr (i.e. working with the _output_solution file to generate a Skript) or generating the shiny-html can lead to different effects/interpreter errors even though the RMD source code is identical. This fork uses various techniques to align both of them; mostly by inserting linebreaks and newlines or deleting them.
-* The **Go to next exercise...* button can be flexibly changed in style, position and text.
+* The **Go to next exercise...** button can be flexibly changed in style, position and text.
 * It is possible to use [highlight boxes](https://leveragedata.shinyapps.io/HighlightExample/) for a more structured learning experience.
 * A lot more functionality regarding quizzes. See the [explaining-shiny app](https://leveragedata.shinyapps.io/QuizExamples/) and the corresponding [source code]( https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd) (see also the [github-discussion](https://github.com/skranz/RTutor/issues/31))
 

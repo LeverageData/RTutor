@@ -38,7 +38,7 @@ The following differences are most noteworthy:
     though the RMD source code is identical. This fork uses various
     techniques to align both of them; mostly by inserting linebreaks and
     newlines or deleting them.
-  - The \*\*Go to next exercise…\* button can be flexibly changed in
+  - The **Go to next exercise…** button can be flexibly changed in
     style, position and text.
   - It is possible to use [highlight
     boxes](https://leveragedata.shinyapps.io/HighlightExample/) for a

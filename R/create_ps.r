@@ -200,7 +200,7 @@ write.sample.solution = function(file = paste0(ps.name,"_sample_solution.Rmd"), 
   writeLines(sol.txt, file, useBytes=TRUE)
 }
 
-output.solution.header = function(rps, te, ps.name=te$ps.name) {
+output.solution.header = function(rps, te, ps.name=te$ps.name, use.internal.header=FALSE) {
   restore.point("output.solution.header")
   libs = paste0("library(", c(rps$libs,"RTutor"),")", collapse="\n")  
   source.txt = if (!is.null(rps$extra.code.file)) paste0('source("',rps$extra.code.file,'")') else ""
@@ -208,10 +208,14 @@ output.solution.header = function(rps, te, ps.name=te$ps.name) {
   knit.print.params =  te$knit.print.params
   knit.print.params$html.data.frame = FALSE
   knit.opts =  paste0(names(knit.print.params), " = ", knit.print.params, collapse=", ")
+  
+  title = ifelse(use.internal.header,str_c("title: ",ps.name),str_c("title: Problem Set ", ps.name,collapse=NULL))
+  
   header = paste0(
 '
 ---
-title: Problem Set ', rps$ps.name,'
+', title,
+'
 output: 
   html_document: 
     keep_md: yes
@@ -257,7 +261,13 @@ knitr::opts_chunk$set(error = TRUE)
 write.output.solution = function(file = paste0(ps.name,"_output_solution.Rmd"), out.txt=te$out.txt,ps.name=te$ps.name, te, rps,...) {
   restore.point("write.output.solution")
 
-  header = output.solution.header(rps=rps, te=te, ps.name=ps.name)
+  ps.title.extract = extract.ps.title(txt= out.txt, te.name=te$ps.name)
+  ps.name = ps.title.extract$name
+  internal.header.was.found = ps.title.extract$found
+  
+  header = output.solution.header(rps=rps, te=te, ps.name=ps.name, use.internal.header = internal.header.was.found)
+  if(internal.header.was.found) out.txt = out.txt[-ps.title.extract$line]
+  
   
   out.txt = c(header, out.txt)
   out.txt = name.rmd.chunks(txt = out.txt,only.empty.chunks = FALSE,keep.options = TRUE,valid.file.name = TRUE)
@@ -1759,5 +1769,33 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
   }
   
   return(txt)  
+}
+
+#' Extracts problem set title
+#'
+#' Returns either the first top-level header (prefered) or the value given by te.name. The top-level header has to be before all other ones.
+#'
+#' @param txt RMD file of problemset
+#' @param te.name value which is used as backup, probably te$ps.name 
+extract.ps.title = function(txt, te.name){
+  restore.point("extract.ps.title")
+  
+  res = te.name
+  found=FALSE
+  line=NA
+  
+  for(i in seq_along(txt)){
+    if(str_detect(txt[[i]], "^[:blank:]*#[^#]")){
+      res = str_replace(txt[[i]],"^[:blank:]*#[:blank:]*","")
+      found=TRUE
+      line=i
+      break
+    }
+    if(str_detect(txt[[i]], "^[:blank:]*##.*")){
+      break
+    }
+  }
+  
+  return(list(name=res,found=found, line=line))
 }
 

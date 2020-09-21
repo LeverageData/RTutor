@@ -1,5 +1,9 @@
 # RTutor (main)
 
+## 2020-09-21 [Only LD Fork]
+
+* Having a Top-Level Header implies that this header is also used for the output_solution file instead of the problem set name.
+
 ## 2020-09-18 [Only LD Fork]
 
 * Intrododuced highlight boxes. They are highly customizable and allow to highlight important parts of the text - and are fully RMD compatible.

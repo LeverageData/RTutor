@@ -234,6 +234,19 @@ and
 
 will be shown in a note.  Chunks inside the note can be solved by users. They should have `optional=TRUE` in the chunk header.
 
+## highlight blocks
+
+While info blocks are intended to give background information and are therefore collapsed by default, highlight blocks aim to grab the attention of the user. 
+
+```md
+  #< highlight 
+    Here is some text which is particulary important. 
+  #>  
+```
+
+They are only sensible if designing RShiny-problemsets. In the RMD Version the highlight-part is simply ignored and the text inside the block is shown as normal text.
+
+Various customisations can be done using css. This way it is also possible to design different types of highlight blocks in the same problem set (i.e. for simple Highlights, Tips and Dangers). See the [example problem set]() (and the corresponding [source file](https://github.com/LeverageData/RTutor/blob/master/inst/examples/HighlightExample_sol.Rmd)) for a more detailed guide on how to use highlight blocks.
 
 ## preknit blocks (just knit as RMarkdown)
 

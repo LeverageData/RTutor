@@ -241,7 +241,15 @@ RTutor::set.knit.print.opts(data.frame.theme="code", table.max.rows=25, table.ma
 # continue knitting even if there is an error
 knitr::opts_chunk$set(error = TRUE) 
 ```
+<style>
+.highlight_base {
+    background-color: #FFF16D;
+    padding: 1em 1em 0.5em;
+    margin: 1em 1em 1em 1em;
+}
+</style>
 '
+
 )
   header  
 }
@@ -278,6 +286,13 @@ adapt.empty.ps.rmd = function(txt, te) {
     txt[lines] = paste0("```{r eval=FALSE}\n# Run for additional info in the Viewer pane\n",txt[lines],"\n```")
   }
   
+  # Replace highlight lines
+  
+  lines = which((str.starts.with(txt,"highlight(")))
+  if (length(lines)>0) {
+    txt[lines] = paste0("```{r eval=FALSE}\n# Run for highlighting in the Viewer pane\n",txt[lines],"\n```")
+  }
+  
   # Replace quiz lines
   lines = which((str.starts.with(txt,"#! addon__quiz__")))
   if (length(lines)>0) {
@@ -305,7 +320,7 @@ te.to.rps = function(te) {
   }
 
   copy.into.envir(source=te, dest=rps,
-    names=c("ps.name","infos","awards")
+    names=c("ps.name","infos","highlights", "awards")
   )
   ex.ind = 1
 
@@ -780,6 +795,8 @@ add.te.block = function(te) {
     add.te.settings(te)
   } else if (type == "info") {
     add.te.info(te)
+  } else if (type == "highlight") {
+    add.te.highlight(te)
   } else if (type == "award") {
     add.te.award(te)
   } else if (type == "ignore") {
@@ -791,7 +808,7 @@ add.te.block = function(te) {
 #  } else if (type=="precompute") {
 #    add.te.precompute(te)
   } else {
-    str = paste0(chunk.str, " there is an unknown block head: ", te$block.head)
+    str = paste0(te$chunk.str, " there is an unknown block head: ", te$block.head)
     stop(str, call.=FALSE)
   }
   te$code.txt = NULL
@@ -974,7 +991,76 @@ add.te.info = function(te, as.note=TRUE, info.name=NULL) {
     te$out.txt = c(te$out.txt,te$block.txt)
   }
     
-  te$infos[[info.name]] = info
+  te$infos[[length(te$infos)+1]] = info
+}
+
+add.te.highlight = function(te) {
+
+  require(knitr)
+  require(markdown)
+  str = te$block.head
+
+  args = parse.block.args(str)
+  highlight.name = args$name # str.between(str, '"','"')
+  if(is.null(highlight.name)) highlight.name = "highlight"
+  unnamed = highlight.name == "highlight" #Wie did not give a name
+
+  txt = te$block.txt
+  
+  if (is.null(txt)) {
+    txt = "-- EMPTY Highlight BLOCK --"
+    warning("You have an empty highlight block \n:", str)
+  }
+
+  if (is.null(te$.precompute.env)) {
+    if (is.null(te$extra.code.env)) {
+      te$.precompute.env = new.env(parent=globalenv())
+    } else {
+      penv = as.environment(as.list(te$extra.code.env))
+      parent.env(penv) = globalenv()
+      te$.precompute.env = new.env(parent=penv)
+    }
+  }
+  
+  restore.point("add.te.highlight")
+  
+  ktxt = knit(text=txt, envir=te$.precompute.env, quiet=FALSE)
+  html= markdownToHTML(text=ktxt, fragment.only=CREATE.PS.ENV$fragment.only)
+  
+  #Remove \n at the end
+  html = str_replace(html,"\n$","")
+  
+  css.name = str_replace_all(str_replace_all(highlight.name,"\\W+"," "),"[:blank:]","")
+  
+  #Build arguments
+  base.class = ifelse(unnamed,"\"highlight_base\"",str_c("\"highlight_base_",css.name,"\"", collapse = ""))
+  title.class = ifelse(unnamed, NA, str_c("\"highlight_title_",css.name,"\"", collapse=""))
+  css.args = ifelse(!is.null(args$style),str_c("style=\"",args$style,"\"",collapse=""),"")
+  css.args.title = ifelse(!is.null(args$style_title),str_c("style=\"",args$style_title,"\"",collapse=""),"")
+  css.args.base = ifelse(!is.null(args$style_base),str_c("style=\"",args$style_base,"\"",collapse=""),"")
+  
+  if(unnamed){
+    html = str_c("\n<br><div class=",base.class," ",css.args,">",html,"</div>\n",collapse="")
+  } else {
+    html = str_c("\n<br><div class=",base.class," ",css.args.base, "><div class=",title.class," ", css.args.title,">",highlight.name,"</div>",html,"</div>\n",collapse="")
+  }
+  
+
+  if (FALSE) {
+    htmlFile <- tempfile(fileext=".html")
+    writeLines(html,htmlFile)
+    rstudioapi::viewer(htmlFile)
+  }
+  highlight = list(highlight.name=highlight.name,type="html", html=html, rmd=txt)
+  
+  str = paste0('highlight("', highlight.name,'")')
+  
+  # Need this task.txt for make.shiny.dt
+  te$task.txt = c(te$task.txt,str)
+  te$sol.txt = c(te$sol.txt, te$block.txt)
+  te$out.txt = c(te$out.txt,highlight$html)
+
+  te$highlights[[length(te$highlights)+1]] = highlight
 }
 
 # Some preknitted RMD code
@@ -1204,7 +1290,7 @@ get.empty.te = function(Addons=NULL, extra.code.file=NULL) {
   te$last.e = NULL
   te$counter = 0
 
-  te$markdown.blocks = c("info","award","ignore",names(te$Addons), "preknit")
+  te$markdown.blocks = c("highlight", "info","award","ignore",names(te$Addons), "preknit")
   te$code.blocks = c("test","test_arg","test_hint_arg","extra_test","test_calls",
                   "hint","add_to_hint",
                   "task","task_notest","notest","fill_in",
@@ -1213,7 +1299,7 @@ get.empty.te = function(Addons=NULL, extra.code.file=NULL) {
   te$act.chunk = NULL
   te$act.ex = NULL
   te$ps.name = NULL
-  te$ex = te$infos = te$awards = te$addons = list()
+  te$highlights = te$ex = te$infos = te$awards = te$addons = list()
 
   te$items = vector("list",1000)
   te$num.items = 0
@@ -1251,6 +1337,13 @@ ps.dir = getwd() # directory of this file
 ps.file = '", ps.name,".Rmd' # name of this file
 check.problem.set('",ps.name,"', ps.dir, ps.file, user.name=user.name, reset=FALSE)
 ```
+<style>
+.highlight_base {
+    background-color: #FFF16D;
+    padding: 1em 1em 0.5em;
+    margin: -1em 1em 1em 1em;
+}
+</style>
 ")
   str
 }
@@ -1397,6 +1490,7 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
   chunk.end.plus1 = chunk.end+1
   ex.start = which(str.starts.with(txt,"## Exercise "))
   info.start = which((str.starts.with(txt,"info(")))
+  highlight.start = which((str.starts.with(txt,"highlight(")))
   addon.start = which((str.starts.with(txt,"#! addon__")))
   cont.start = which((str.starts.with(txt,"#. continue")))
 
@@ -1411,6 +1505,7 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
 
   df.chunk = data.frame(start=chunk.start, type="chunk", type.ind=seq_along(chunk.start))
   df.info = data.frame(start=info.start, type=rep("info", length(info.start)), type.ind=seq_along(info.start))
+  df.highlight = data.frame(start=highlight.start, type=rep("highlight", length(highlight.start)), type.ind=seq_along(highlight.start))
   df.addon = data.frame(start=addon.start, type=rep("addon", length(addon.start)), type.ind=seq_along(addon.start))
   df.cont = data.frame(start=cont.start, type=rep("continue", length(cont.start)), type.ind=seq_along(cont.start))
 
@@ -1422,14 +1517,14 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
   }
 
 
-  df.task = data.frame(start=sort(c(1,ex.start,note.start+1, note.end+1,chunk.end+1,addon.start+1, info.start+1, cont.start+1)), type="task")
+  df.task = data.frame(start=sort(c(1,ex.start,note.start+1, note.end+1,chunk.end+1,addon.start+1, info.start+1, cont.start+1, highlight.start+1)), type="task")
 
 
 
   df.task$type.ind = 1:NROW(df.task)
 
 
-  df = rbind(df.chunk,df.info,df.addon,df.cont, df.task, df.note.start, df.note.end)
+  df = rbind(df.chunk,df.info,df.highlight, df.addon,df.cont, df.task, df.note.start, df.note.end)
   df = df[!duplicated(df$start),]
   df = arrange(df, start)
   df$end = c(df$start[-1]-1, length(txt))
@@ -1461,11 +1556,11 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
   df
 
 
-  dt = data.table(fragment.ind = 1:n,ex.ind=df$ex.ind, view.ind=df$view.ind, type=df$type, type.ind=df$type.ind, chunk.name="",chunk.ind=0,info.name="", html=vector("list", n), code="", note.ind = df$note.ind, note.label=df$note.label, addon.id="")
+  dt = data.table(fragment.ind = 1:n,ex.ind=df$ex.ind, view.ind=df$view.ind, type=df$type, type.ind=df$type.ind, chunk.name="",chunk.ind=0,info.name="", highlight.name="", html=vector("list", n), code="", note.ind = df$note.ind, note.label=df$note.label, addon.id="")
   keep.row = rep(TRUE, NROW(dt))
 
-  i = 5
   for (i in seq_len(n)) {
+    #if(i==7) stop()
     if (dt$type[i]=="chunk") {
       header = txt[df$start[i]]
       opt = chunk.opt.string.to.list(header, keep.name=TRUE)
@@ -1498,11 +1593,13 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
         }
         dt$html[[i]] = HTML(markdownToHTML(text=code, fragment.only=CREATE.PS.ENV$fragment.only))
       }
+    } else if (dt$type[i]=="highlight") {
+      highlight = rps$highlights[[dt$type.ind[i]]]
+      html = HTML(highlight$html)
+      dt$html[[i]] = html
+
     } else if (dt$type[i]=="info") {
-      header = txt[df$start[i]]
-      info.name = str.between(header,'"','"')
-      #html = withMathJax(HTML(rps$infos[[info.name]]$html))
-      info = rps$infos[[info.name]]
+      info = rps$infos[[dt$type.ind[i]]]
       html = HTML(info$html)
 
       if (is.true(info$as.note)) {
@@ -1639,7 +1736,9 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
       split.here.macro = "__SPLITHERE__"
       
       html.starts = str_locate_all(txt.line,"<[^/]+?>")[[1]][,"start"]
+      html.starts = html.starts[str_sub(txt.line,start=html.starts-1,end = html.starts-1)!="\\"]#correct for escaped characters
       html.ends = str_locate_all(txt.line,"<[:blank:]*/.+?>")[[1]][,"end"]
+      html.end = html.ends[str_sub(txt.line,start=html.ends-1,end = html.ends-1)!="\\"]#correct for escaped characters
       if(length(html.starts)+length(html.ends)==0) return(txt.line)
       
       #avoid double splits if ends and starts follow each other

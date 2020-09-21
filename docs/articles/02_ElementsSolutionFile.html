@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.8.30.01</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.9.21.01</span>
       </span>
     </div>
 
@@ -266,6 +266,16 @@
 <p>and</p>
 <p><code>#! end_note</code></p>
 <p>will be shown in a note. Chunks inside the note can be solved by users. They should have <code>optional=TRUE</code> in the chunk header.</p>
+</div>
+<div id="highlight-blocks" class="section level2">
+<h2 class="hasAnchor">
+<a href="#highlight-blocks" class="anchor"></a>highlight blocks</h2>
+<p>While info blocks are intended to give background information and are therefore collapsed by default, highlight blocks aim to grab the attention of the user.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode md"><code class="sourceCode markdown"><a class="sourceLine" id="cb12-1" title="1">  #&lt; highlight </a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="bn">    Here is some text which is particulary important. </span></a>
+<a class="sourceLine" id="cb12-3" title="3">  #&gt;  </a></code></pre></div>
+<p>They are only sensible if designing RShiny-problemsets. In the RMD Version the highlight-part is simply ignored and the text inside the block is shown as normal text.</p>
+<p>Various customisations can be done using css. This way it is also possible to design different types of highlight blocks in the same problem set (i.e. for simple Highlights, Tips and Dangers). See the <a href="">example problem set</a> (and the corresponding <a href="https://github.com/LeverageData/RTutor/blob/master/inst/examples/HighlightExample_sol.Rmd">source file</a>) for a more detailed guide on how to use highlight blocks.</p>
 </div>
 <div id="preknit-blocks-just-knit-as-rmarkdown" class="section level2">
 <h2 class="hasAnchor">

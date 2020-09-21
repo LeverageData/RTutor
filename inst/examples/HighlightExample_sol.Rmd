@@ -1,0 +1,267 @@
+#< ignore
+```{r "0_1"}
+library(RTutor)
+library(rmdtools)
+
+current_path <- rstudioapi::getSourceEditorContext()$path
+my_name <- strsplit(current_path,"/")[[1]][3]
+
+# Adapt the working directory below and then run setup chunk in RStudio.
+setwd(paste0("C:/Users/",my_name,"/LeverageData GmbH/Schulungen - General/RTutor Showcases/HighlightBlock"))
+ps.name = "HighlightExample"; sol.file = paste0(ps.name,"_sol.Rmd")
+libs = c("ggplot2") # character vector of all packages you load in the problem set
+
+name.rmd.chunks(sol.file)
+create.ps(sol.file=sol.file, ps.name=ps.name, libs=libs, addons = "quiz", empty.task.txt="# Hier koennen Sie Ihren Quellcode eingeben.")
+
+# The following line directly shows the problem set
+# in the browser
+show.ps(ps.name,launch.browser=TRUE,
+  auto.save.code=FALSE,sample.solution=FALSE, show.download.rmarkdown = FALSE, exercise.btn.props=c("Weiter","position: absolute;right: 0em;margin-right: 20em;margin-bottom: 10em;background-color:#00A5DC;color:white;font-weight: bold;"))
+```
+#>
+
+## Exercise A Guide to Highlight Blocks
+
+### Context of this document and general note
+
+This is a more extensive guide on how to use *highlight* blocks. The source code of this file can be found in the corresponding github-folder: <https://github.com/LeverageData/RTutor/blob/master/inst/examples/HighlightExample_sol.Rmd>. The compiled version can be found at <https://leveragedata.shinyapps.io/HighlightExample/>.
+
+#< highlight "Attention!"
+
+To avoid interpretation in the examples we write `_#<` to start a block and `_#>` to end it. To actually create an highlighting block, `#\<` and `#\>` have to be used.
+
+#>
+<br>
+
+### Basic blocks
+
+#### Default style
+
+<br>
+
+To write a basic highlight block use the following syntax:
+
+```
+_#< highlight 
+
+Here is text. This also works with RMD formatting, e.g. **bolding**.
+
+_#>
+```
+This results in 
+#< highlight 
+
+Here is text. This also works with RMD formatting, e.g. **bolding**.
+
+#>
+
+<br>
+
+#### Changes in default style
+
+<br>
+
+The corresponding css style has the name *highlight_base*. To change the style problem-set wide, it is sufficent to have somewhere in the document (i.e. at the beginning or the end) a style-code block with the wanted style, e.g.:
+
+````
+<style>
+.highlight_base {
+    background-color: #FFFF00;
+    border: 5px dotted red;
+}
+</style>
+````
+Note that the style-definition starts with a `.`.
+
+<br>
+
+#### Changes of a single block
+
+<br>
+
+If one only wants to change the style of a single highlight block, one can give an optional <code>\<style\></code> argument. If one for example wants to avoid changing the default style and only have the changes above in a single highlight block, one can write:
+
+```
+_#< highlight style="background-color: #FFFF00;  border : 5px dotted red;"
+
+Here is text with a different unnamed style.
+
+_#>
+```
+
+#< highlight style="background-color: #FFFF00;  border : 5px dotted red;"
+
+Here is text with a different unnamed style.
+
+#>
+
+Technically speaking this uses the inline-style option <code>style=</code> which overrides the base style css. All css elements are therefore possible. 
+
+<br>
+
+### Named Blocks
+
+<br>
+
+#### Global Blocks
+
+<br>
+
+While sometimes colors are enough, one might want to name the block and have the name displayed. One example can be found at the beginning of this document with the  <code>_#<</code> - Attention note.
+
+One writes
+
+```
+_#< highlight "Attention!"
+
+Here is text with a named style. Math is also possible: Assume $\varepsilon < 0$.
+
+_#>
+```
+to get
+
+#< highlight "Attention!"
+
+Here is text with a named style. Math is also possible: Assume $\varepsilon < 0$.
+
+#>
+
+There exists no default for named styles. They have to be defined via <code>\<style\>-blocks</code>. The name of the title has to be <code>highlight\_title\_</code>*name* and the main body <code>highlight\_base\_</code>*name*. In this instance *name* is the displayed name without spaces and special characters.
+
+The *Attention!* highlights have been styled by putting 
+
+```` 
+<style>
+.highlight_base_Attention {
+    background-color: #FDFFA7;
+    padding: 0 2em 1em;
+    margin: 1em 2.5em 2.5em 2.5em;
+    border: 5px dotted red;
+}
+</style>
+<style>
+.highlight_title_Attention {
+    background: #F9FF00;
+    padding: .6em 2.5em;
+    font-weight: bold;
+    font-size:larger;
+    border: 5px solid red;
+    color:black;
+    top: -17px;
+    left: -16px;
+    display: inline-block;
+    position: relative;
+    
+}
+</style>
+```` 
+
+at the end of the document.
+
+Another example which also informs you about a special name which may not be used is:
+
+#< highlight "You should know:"
+
+It is not possible to give the name **highlight** as in this case it is assumed that the block is unnamed.
+
+#>
+
+with 
+
+```` 
+_#< highlight "You should know:"
+
+It is not possible to give the name **highlight** as in this case it is assumed that the block is unnamed.
+
+_#>
+<style>
+.highlight_base_Youshouldknow {
+    background-color: #88FF8F;
+    padding: 0 2em 1em;
+    margin: 2.5em 2.5em 2.5em 2.5em;
+}
+</style>
+<style>
+.highlight_title_Youshouldknow {
+    background: #24AA2C;
+    padding: .6em 2.5em;
+    font-weight: bold;
+    font-size:larger;
+    color:white;
+    top: -17px;
+    left: -32px;
+    display: inline-block;
+    position: relative;
+}
+</style>
+```` 
+
+<br>
+
+#### Named blocks with idiosyncratic style
+
+<br>
+
+If one wants to change just a single named highlight block, than this is possible using the style options <code>style_title</code> for the title and <code>style_base</code> for the base. If one wants to change only one of them, then only the necessary option has to be provided.
+
+```` 
+_#< highlight "Attention!", style_title="color:red; border: 5px solid red;", style_base="border: 5px dashed red;"
+
+Note that multiple style arguments have to be separated by a `,`. The name is the first, unnamed, argument. 
+
+_#>
+````
+
+leads to:
+
+#< highlight "Attention!", style_title="color:red; border: 5px solid red;", style_base="border: 5px dashed red;"
+
+Note that multiple style arguments have to be separated by a `,`. The name is the first, unnamed, argument. 
+
+#>
+
+<style>
+.highlight_base_Youshouldknow {
+    background-color: #88FF8F;
+    padding: 0 2em 1em;
+    margin: 2.5em 2.5em 2.5em 2.5em;
+}
+</style>
+<style>
+.highlight_title_Youshouldknow {
+    background: #24AA2C;
+    padding: .6em 2.5em;
+    font-weight: bold;
+    font-size:larger;
+    color:white;
+    top: -17px;
+    left: -32px;
+    display: inline-block;
+    position: relative;
+}
+</style>
+<style>
+.highlight_base_Attention {
+    background-color: #FDFFA7;
+    padding: 0 2em 1em;
+    margin: 1em 2.5em 2.5em 2.5em;
+    border: 5px dotted red;
+}
+</style>
+<style>
+.highlight_title_Attention {
+    background: #F9FF00;
+    padding: .6em 2.5em;
+    font-weight: bold;
+    font-size:larger;
+    border: 5px solid red;
+    color:black;
+    top: -17px;
+    left: -16px;
+    display: inline-block;
+    position: relative;
+    
+}
+</style>
+

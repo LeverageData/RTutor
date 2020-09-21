@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the current problem set — get.ps • RTutor</title>
+<title>Changes the txt in a way that the output file after knitr looks similar to the shiny app. — fix.parser.inconsistencies • RTutor</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Get the current problem set — get.ps" />
-<meta property="og:description" content="Either a globally stored problem set or
-if RTutor runs as a web-app the associated problem set
-with the current shiny session" />
+<meta property="og:title" content="Changes the txt in a way that the output file after knitr looks similar to the shiny app. — fix.parser.inconsistencies" />
+<meta property="og:description" content="Several subtle inconsistences exist, where the RMD parser of the shiny app and the RMD parser of knitr differ. This function changes the output code in a way that the expected result of the shiny app can out of the box be achieved by pressing the knitr button." />
 
 
 
@@ -114,19 +112,43 @@ with the current shiny session" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the current problem set</h1>
-    <small class="dont-index">Source: <a href='https://github.com/LeverageData/RTutor/blob/master/R/RTutor.R'><code>R/RTutor.R</code></a></small>
-    <div class="hidden name"><code>get.ps.Rd</code></div>
+    <h1>Changes the txt in a way that the output file after knitr looks similar to the shiny app.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/LeverageData/RTutor/blob/master/R/create_ps.r'><code>R/create_ps.r</code></a></small>
+    <div class="hidden name"><code>fix.parser.inconsistencies.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Either a globally stored problem set or
-if RTutor runs as a web-app the associated problem set
-with the current shiny session</p>
+    <p>Several subtle inconsistences exist, where the RMD parser of the shiny app and the RMD parser of knitr differ. This function changes the output code in a way that the expected result of the shiny app can out of the box be achieved by pressing the knitr button.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get.ps</span>(force.global = <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>fix.parser.inconsistencies</span>(
+  <span class='kw'>txt</span>,
+  fix.lists = <span class='fl'>TRUE</span>,
+  fix.headers = <span class='fl'>TRUE</span>,
+  remove.exercise = <span class='fl'>TRUE</span>,
+  seperate.html = <span class='fl'>TRUE</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>fix.lists</th>
+      <td><p>RMD lists with knitr have to have a trailing blank line. Otherwise the list is only interpreted verbatim. Setting this parameter to `TRUE` (Default) inserts additional blank lines where necessary. Additionally blank lines are removed and replaced with &lt;br&gt;&lt;br&gt; when they would interfere with the list structure (i.e. shiny uses the same list but knitr ends the current list.). For some reason tabs to write more readable html tables break the lists as well using the knitr parsing. They are therefore removed.</p></td>
+    </tr>
+    <tr>
+      <th>fix.headers</th>
+      <td><p>Headers need to have a blank line before them when using knitr.</p></td>
+    </tr>
+    <tr>
+      <th>remove.exercise</th>
+      <td><p>To start a new Exercise the key word "Exercise" is used. We most likely do not want to have it in the header as it also does not appear in the shiny problem set.</p></td>
+    </tr>
+    <tr>
+      <th>seperate.html</th>
+      <td><p>knitr.md does sometimes not process html tags correctly if they do not start in a newline</p></td>
+    </tr>
+    </table>
 
 
   </div>

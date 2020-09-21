@@ -25,11 +25,15 @@ show.ps(ps.name,launch.browser=TRUE,
 
 ### Context of this document and general note
 
-This is a more extensive guide on how to use *highlight* blocks. The source code of this file can be found in the corresponding github-folder: <https://github.com/LeverageData/RTutor/blob/master/inst/examples/HighlightExample_sol.Rmd>. The compiled version can be found at <https://leveragedata.shinyapps.io/HighlightExample/>.
+This is a more extensive guide on how to use *highlight* blocks. 
+
+The source code of this file can be found in the corresponding github-folder: <https://github.com/LeverageData/RTutor/blob/master/inst/examples/HighlightExample_sol.Rmd>. 
+
+The compiled version can be found at <https://leveragedata.shinyapps.io/HighlightExample/>.
 
 #< highlight "Attention!"
 
-To avoid interpretation in the examples we write `_#<` to start a block and `_#>` to end it. To actually create an highlighting block, `#\<` and `#\>` have to be used.
+To avoid interpretation in the examples we write `_#<` to start a block and `_#>` to end it. To actually create a highlight block, `#\<` and `#\>` have to be used.
 
 #>
 <br>

@@ -136,7 +136,7 @@ Here is text with a specified class.
 }
 </style>
 
-Providing a specific class **overrides** the base class. If one wants to add to the base class or chain multiple self-defined classes this is possible too using the underlying css mechanic: 
+Providing a specific class **overrides** the base class. If one wants to add to the base class or chain multiple self-defined classes this is also possible using the underlying css mechanic: 
 
 ```
 _#< highlight class="highlight_base blueborder"
@@ -161,7 +161,7 @@ _#< highlight class="highlight_base blueborder", style="color:blue; margin-right
 
 When providing multiple arguments they have to be seperated by a `,`. 
 
-_2#>
+_#>
 ```
 
 #< highlight class="highlight_base blueborder", style="color:blue; margin-right:50%;"

@@ -34,7 +34,7 @@ inner.hint.for.call.chain = function(stud.expr.li, cde, ps = get.ps(), ce=NULL, 
   
   has.place.holders = sapply(sde.li, has.call.placeholder)
   if (any(has.place.holders)) {
-    txt = paste0("Here is a scrambled solution:\n", scramble.call.chain(call))
+    txt = paste0("Here is a scrambled solution:\n\n", scramble.call.chain(cde, assign.str))
     display(txt)
     return(invisible())
   }
@@ -57,7 +57,7 @@ inner.hint.for.call.chain = function(stud.expr.li, cde, ps = get.ps(), ce=NULL, 
       check.res.li = check.res.li
     ),silent = TRUE)
     if (is(res, "try-error")) {
-      txt = paste0("I could not evaluate all your code without error. Here is a scrambled solution:\n", scramble.call.chain(call))
+      txt = paste0("I could not evaluate all your code without error. Here is a scrambled solution:\n\n", scramble.call.chain(cde, assign.str))
       display(txt)
       return(invisible())
     }
@@ -231,8 +231,12 @@ eval.next.chain.call = function(x, call, envir=parent.frame(), eval.fun = eval, 
   
 }
 
-scramble.call.chain = function(call) {
-  call.str = deparse1(call)
-  call.str = gsub("%>%","%>%\n\t", call.str, fixed=TRUE)
-  scramble.text(call.str,"?",0.5, keep.char=c(" ","\n",">","%","(",")","=", "\t"))
-} 
+scramble.call.chain = function(cde, assign.str="") {
+  parts = sapply(cde$args, function(call) {
+    call.str = deparse1(call)
+    scramble.text(call.str,"?",0.6, keep.char=c(" ","\n",">","%","(",")","=", "\t"))
+  })
+  str = paste0(parts, collapse = " %>%\n\t")
+  str = paste0(assign.str, " = ", str)
+  str
+}  

@@ -1,8 +1,9 @@
 # RTutor (main)
 
-## 2020-09-22 [Only LD Fork]
+## 2020-09-22 
 
-* It is now possible to group styles of highlight blocks using the `class` functionality.
+* [Only LD Fork] It is now possible to group styles of highlight blocks using the `class` functionality.
+* [Merge skranz Fork] Improved hints with dplyr-chains; mostly relevant if used with placeholders.
 
 ## 2020-09-21 [Only LD Fork]
 

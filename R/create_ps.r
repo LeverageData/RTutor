@@ -1714,7 +1714,7 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
     
     #within a list (as seen by indented list.elements, new lines are bad and to be removed and replaced by <br><br>)
     br.line = rep(FALSE,length(txt))
-    if(length(br.line)>3) br.line[blank.lines & c(intendation[-1],FALSE)==c(intendation[-length(intendation)],FALSE) & c(intendation[-1],FALSE)>0] = TRUE
+    if(length(br.line)>3) br.line[blank.lines & c(intendation[-1],FALSE)==c(FALSE,intendation[-length(intendation)]) & c(intendation[-1],FALSE)>0] = TRUE
     if(any(br.line)) txt[br.line] = c("<br><br>")
     
     #When starting a new list, we want to have a newline    

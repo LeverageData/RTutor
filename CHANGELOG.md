@@ -4,6 +4,7 @@
 
 * [Only LD Fork] It is now possible to group styles of highlight blocks using the `class` functionality.
 * [Merge skranz Fork] Improved hints with dplyr-chains; mostly relevant if used with placeholders.
+* [Merge skranz Fork] Change default behavior of show.ps: Now the revert button is on by default.
 
 ## 2020-09-21 [Only LD Fork]
 

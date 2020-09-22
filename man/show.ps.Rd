@@ -23,7 +23,7 @@ show.ps(
   make.web.app = FALSE,
   make.session.ps = make.web.app,
   save.nothing = FALSE,
-  show.revert.btn = FALSE,
+  show.revert.btn = TRUE,
   show.solution.btn = NA,
   show.data.exp = TRUE,
   show.download.rmarkdown = TRUE,

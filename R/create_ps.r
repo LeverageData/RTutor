@@ -1621,7 +1621,7 @@ make.shiny.dt = function(rps, rmd.file, txt = readLines(rmd.file, warn=FALSE)) {
       if (is.true(info$as.note)) {
         collapseId = paste0("collapse_info_",i)
         collapsePanelId = paste0("collapse_panel_info_",i)
-        dt$html[[i]] = bsCollapse(open = NULL, id = collapseId,bsCollapsePanel(paste0("Info: ",info.name),value=collapsePanelId, html))
+        dt$html[[i]] = bsCollapse(open = NULL, id = collapseId,bsCollapsePanel(paste0("Info: ",info$info.name),value=collapsePanelId, html))
       } else {
         dt$html[[i]] = html
       } 

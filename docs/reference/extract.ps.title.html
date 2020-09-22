@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Checks whether the user makes a particular function call in his code or call a particular R statement — check.call • RTutor</title>
+<title>Extracts problem set title — extract.ps.title • RTutor</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Checks whether the user makes a particular function call in his code or call a particular R statement — check.call" />
-<meta property="og:description" content="Checks whether the user makes a particular function call in his code or call a particular R statement" />
+<meta property="og:title" content="Extracts problem set title — extract.ps.title" />
+<meta property="og:description" content="Returns either the first top-level header (prefered) or the value given by te.name. The top-level header has to be before all other ones." />
 
 
 
@@ -112,72 +112,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Checks whether the user makes a particular function call in his code or call a particular R statement</h1>
-    <small class="dont-index">Source: <a href='https://github.com/LeverageData/RTutor/blob/master/R/tests_for_ps.r'><code>R/tests_for_ps.r</code></a></small>
-    <div class="hidden name"><code>check.call.Rd</code></div>
+    <h1>Extracts problem set title</h1>
+    <small class="dont-index">Source: <a href='https://github.com/LeverageData/RTutor/blob/master/R/create_ps.r'><code>R/create_ps.r</code></a></small>
+    <div class="hidden name"><code>extract.ps.title.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Checks whether the user makes a particular function call in his code or call a particular R statement</p>
+    <p>Returns either the first top-level header (prefered) or the value given by te.name. The top-level header has to be before all other ones.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check.call</span>(
-  <span class='kw'>call</span>,
-  check.arg.by.value = <span class='fl'>TRUE</span>,
-  allow.extra.arg = <span class='fl'>FALSE</span>,
-  ignore.arg = <span class='kw'>NULL</span>,
-  success.message = <span class='kw'>NULL</span>,
-  failure.message = <span class='kw'>NULL</span>,
-  no.command.failure.message = <span class='kw'>NULL</span>,
-  ok.if.same.val = <span class='fl'>NA</span>,
-  s3.method = <span class='kw'>NULL</span>,
-  ps = <span class='fu'><a href='get.ps.html'>get.ps</a></span>(),
-  stud.env = <span class='kw'>ps</span><span class='op'>$</span><span class='kw'>stud.env</span>,
-  part = <span class='kw'>ps</span><span class='op'>$</span><span class='kw'>part</span>,
-  stud.expr.li = <span class='kw'>ps</span><span class='op'>$</span><span class='kw'>stud.expr.li</span>,
-  verbose = <span class='fl'>FALSE</span>,
-  noeval = <span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span>(<span class='kw'>ps</span><span class='op'>$</span><span class='kw'>noeval</span>),
-  hint.on.fail = <span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span>(<span class='kw'>ps</span><span class='op'>$</span><span class='kw'>rps</span><span class='op'>$</span><span class='kw'>hint.on.fail</span>),
-  check.cols = <span class='kw'>NULL</span>,
-  sort.cols = <span class='kw'>NULL</span>,
-  is.ggplot = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>extract.ps.title</span>(<span class='kw'>txt</span>, <span class='kw'>te.name</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>call</th>
-      <td><p>the correct function call that shall be checked (not a quoted call)</p></td>
+      <th>txt</th>
+      <td><p>RMD file of problemset</p></td>
     </tr>
     <tr>
-      <th>check.arg.by.value</th>
-      <td><p>if TRUE (default) check whether students arguments have the same value than in given call, even if their unevaluted representation looks different</p></td>
-    </tr>
-    <tr>
-      <th>allow.extra.arg</th>
-      <td><p>if TRUE (not default) the student is allowed to supply additional arguments to the call that were not in the solution. Useful, e.g. if the student shall plot something and is allowed to customize her plot with additional arguments.</p></td>
-    </tr>
-    <tr>
-      <th>ignore.arg</th>
-      <td><p>a vector of argument names that will be ignored when checking correctness</p></td>
-    </tr>
-    <tr>
-      <th>ok.if.same.val</th>
-      <td><p>if TRUE (default) the call will be considered as correct, if it yields the same resulting value as the solution, even if its arguments differ.</p></td>
-    </tr>
-    <tr>
-      <th>hint.on.fail</th>
-      <td><p>Shall automatically be a hint shown if a test fails. By default FALSE, i.e. student has to type <code><a href='hint.html'>hint()</a></code>. Yet, default can be overwritten in call to <code>create.ps</code>.</p></td>
-    </tr>
-    <tr>
-      <th>check.cols</th>
-      <td><p>only relevant if a data frame (or tibble) is computed. An optional character vector of column names. If provided only check whether those columns are correctly computed but ignore other columns. Only works if <code>compare.vals = TRUE</code> (default).</p></td>
-    </tr>
-    <tr>
-      <th>sort.cols</th>
-      <td><p>only relevant if a data frame (or tibble) is computed. An optional character vector of column names. If provided sort the sample solution and student's solution by these columns before comparing. This means that also solutions that are originally sorted in a different fashion are accepted. Useful in combination with <code>check.cols</code>.</p></td>
+      <th>te.name</th>
+      <td><p>value which is used as backup, probably te$ps.name</p></td>
     </tr>
     </table>
 

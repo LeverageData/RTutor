@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">RTutor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.9.21.01</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.9.22.03</span>
       </span>
     </div>
 
@@ -77,7 +77,18 @@
 <p><strong>Original Author: Sebastian Kranz, Ulm University</strong></p>
 <p><strong>with some extensions made by LeverageData</strong></p>
 <p>RTutor is an R package that allows to develop interactive R exercises. Problem sets can be solved off-line or can be hosted in the web with shinyapps.io. Problem sets can be designed as a Markdown .rmd file (to be solved directly in RStudio) or use a browser-based interface powered by RStudio’s Shiny. <s>While the web interface looks nicer, I personally use problem sets in the Markdown format when teaching advanced economic classes.</s> LeverageData mostly works with Shiny Interfaces as they are easier for the general public.</p>
-<p><strong>Note:</strong> This package aims to have all features of the main package by Sebastian Kranz. We work in tight collaboration with him to provide our features to the main package as well. This fork might drift away however to cater to the different needs between the use cases of Prof. Kranz (university courses) and LeverageData Gmbh (paid online courses). The most major differences might arise with the syntax of RTutor. Our goal is to make RTutor (Shiny) problem sets as easy as possible for the creator <em>even if this clashes with otherwise common syntax conventions</em> so that she may focus on the course itself. Other differences might arise out of the Look-and-Feel of the Shiny-Problem sets, were we want to make them look pretty according to our internal ideas which might or might not be in unison with Prof. Kranz. For most practical purposes however it should not matter which of the packages you use.</p>
+</div>
+<div id="differences-to-skranzrtutor-as-of-now" class="section level1">
+<h1 class="hasAnchor">
+<a href="#differences-to-skranzrtutor-as-of-now" class="anchor"></a>Differences to skranz/Rtutor as of now</h1>
+<p>This package aims to have all features of the main package by Sebastian Kranz. We work in tight collaboration with him to provide our features to the main package as well. This fork might drift away however to cater to the different needs between the use cases of Prof. Kranz (university courses) and LeverageData Gmbh (paid online courses). The most major differences might arise with the syntax of RTutor. Our goal is to make RTutor (Shiny) problem sets as easy as possible for the creator <em>even if this clashes with otherwise common syntax conventions</em> so that she may focus on the course itself. Other differences might arise out of the Look-and-Feel of the Shiny-Problem sets, were we want to make them look pretty according to our internal ideas which might or might not be in unison with Prof. Kranz. For most practical purposes however it should not matter which of the packages you use.</p>
+<p>The following differences are most noteworthy:</p>
+<ul>
+<li>Generating a html file through knitr (i.e. working with the _output_solution file to generate a Skript) or generating the shiny-html can lead to different effects/interpreter errors even though the RMD source code is identical. This fork uses various techniques to align both of them; mostly by inserting linebreaks and newlines or deleting them.</li>
+<li>The <strong>Go to next exercise…</strong> button can be flexibly changed in style, position and text.</li>
+<li>It is possible to use <a href="https://leveragedata.shinyapps.io/HighlightExample/">highlight boxes</a> for a more structured learning experience.</li>
+<li>A lot more functionality regarding quizzes. See the <a href="https://leveragedata.shinyapps.io/QuizExamples/">explaining-shiny app</a> and the corresponding <a href="https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd">source code</a> (see also the <a href="https://github.com/skranz/RTutor/issues/31">github-discussion</a>)</li>
+</ul>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -96,7 +107,6 @@
 <h2 class="hasAnchor">
 <a href="#create-your-own-problem-sets" class="anchor"></a>Create your own problem sets</h2>
 <p>Take a look at the <a href="https://leveragedata.github.io/RTutor/articles">manuals</a> for documentation of how to create own problem sets. Also look at the examples below.</p>
-<p>The currently most important differences are regarding the quizzes, where we have currently implemented a stronger feature set: <a href="https://leveragedata.shinyapps.io/QuizExamples/" class="uri">https://leveragedata.shinyapps.io/QuizExamples/</a> and <a href="https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd" class="uri">https://github.com/LeverageData/RTutor/blob/master/inst/examples/QuizExample_sol.Rmd</a> (see also: <a href="https://github.com/skranz/RTutor/issues/31" class="uri">https://github.com/skranz/RTutor/issues/31</a>)</p>
 </div>
 <div id="trying-out-some-problem-sets" class="section level2">
 <h2 class="hasAnchor">

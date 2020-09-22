@@ -1,5 +1,9 @@
 # RTutor (main)
 
+## 2020-09-22 [Only LD Fork]
+
+* It is now possible to group styles of highlight blocks using the `class` functionality.
+
 ## 2020-09-21 [Only LD Fork]
 
 * Having a Top-Level Header implies that this header is also used for the output_solution file instead of the problem set name.

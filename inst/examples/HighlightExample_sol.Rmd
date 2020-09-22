@@ -76,7 +76,7 @@ The corresponding css style has the name *highlight_base*. To change the style p
 }
 </style>
 ````
-Note that the style-definition starts with a `.`.
+Note that the style-definition starts with a `.` and that this block is has not actually been executed.
 
 <br>
 
@@ -101,6 +101,74 @@ Here is text with a different unnamed style.
 #>
 
 Technically speaking this uses the inline-style option <code>style=</code> which overrides the base style css. All css elements are therefore possible. 
+
+<br>
+
+#### Changes of a group of blocks
+
+<br>
+
+If one has groups of unnamed blocks which should have the same style it is recommendes to avoid using the aforementioned style mechanic, as this increases maintenance when changing the style and introduces possible inconsistencies. To define a style for a subgroup of these blocks, it is recommended to define a seperate class which can be provided via the `class` argument:
+
+```
+_#< highlight class="blueborder"
+
+Here is text with a specified class. Note that even though we put the `\<style\>` block directly behind this block this is not necessary. Once defined this class holds for the complete problem set. To avoid clutter it is thus recommended to put them all in one place (e.g. at the very end of the document.)
+
+_#>
+
+<style>
+.blueborder {
+  border : 5px dashed blue;
+}
+</style>
+```
+
+#< highlight class="blueborder"
+
+Here is text with a specified class.
+
+#>
+
+<style>
+.blueborder {
+  border : 5px dashed blue;
+}
+</style>
+
+Providing a specific class **overrides** the base class. If one wants to add to the base class or chain multiple self-defined classes this is possible too using the underlying css mechanic: 
+
+```
+_#< highlight class="highlight_base blueborder"
+
+Note that this also implies that it is not possible to define classes with spaces in them, as this breaks the chaining. 
+
+_#>
+```
+
+#< highlight class="highlight_base blueborder"
+
+Note that this also implies that it is not possible to define classes with spaces in them, as this breaks the chaining. 
+
+#>
+
+This way one can re-use styles for other structures of the problem set.
+
+Styles and classes are compatible and may be used in unison. When doing so, the style takes precedence. 
+
+```
+_#< highlight class="highlight_base blueborder", style="color:blue; margin-right:50%;"
+
+When providing multiple arguments they have to be seperated by a `,`. 
+
+_2#>
+```
+
+#< highlight class="highlight_base blueborder", style="color:blue; margin-right:50%;"
+
+When providing multiple arguments they have to be seperated by a `,`. 
+
+#>
 
 <br>
 
@@ -224,6 +292,29 @@ leads to:
 Note that multiple style arguments have to be separated by a `,`. The name is the first, unnamed, argument. 
 
 #>
+
+<br>
+
+#### Named blocks with classes
+
+<br>
+
+Analogously to the unnamed highlight blocks one can also use classes with named blocks. The arguments are `class_title` for the title and `class_base` for the base.
+
+```
+_#< highlight "Attention!", class_title="highlight_title_Youshouldknow blueborder", style_title="color:blue", class_base="highlight_base", style_base="border: 5px dashed red;"
+
+Example for a named highlight block. Note that we re-use classes which we have defined previously. With the base for example we used the same class as with unnamed blocks. This allows one to have named blocks without having to re-define the classes for every concievable title if one wants to change them often. 
+
+_#>
+```
+
+#< highlight "Attention!", class_title="highlight_title_Youshouldknow blueborder", style_title="color:blue", class_base="highlight_base", style_base="border: 5px dashed red;"
+
+Example for a named highlight block. Note that we re-use classes which we have defined previously. With the base for example we used the same class as with unnamed blocks. This allows one to have named blocks without having to re-define the classes for every concievable title if one wants to change them often. 
+
+#>
+
 
 <style>
 .highlight_base_Youshouldknow {

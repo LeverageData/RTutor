@@ -1043,16 +1043,22 @@ add.te.highlight = function(te) {
   css.name = str_replace_all(str_replace_all(highlight.name,"\\W+"," "),"[:blank:]","")
   
   #Build arguments
-  base.class = ifelse(unnamed,"\"highlight_base\"",str_c("\"highlight_base_",css.name,"\"", collapse = ""))
-  title.class = ifelse(unnamed, NA, str_c("\"highlight_title_",css.name,"\"", collapse=""))
-  css.args = ifelse(!is.null(args$style),str_c("style=\"",args$style,"\"",collapse=""),"")
-  css.args.title = ifelse(!is.null(args$style_title),str_c("style=\"",args$style_title,"\"",collapse=""),"")
-  css.args.base = ifelse(!is.null(args$style_base),str_c("style=\"",args$style_base,"\"",collapse=""),"")
+  base.class = ifelse(unnamed,"highlight_base",str_c("highlight_base_",css.name, collapse = ""))
+  title.class = ifelse(unnamed, NA, str_c("highlight_title_",css.name, collapse=""))
+  
+  css.style = ifelse(!is.null(args$style),str_c("style=\"",args$style,"\"",collapse=""),"")
+  css.class = ifelse(!is.null(args$class),str_c("class=\"",args$class,"\"",collapse=""),str_c("class=\"",base.class,"\"",collapse=""))
+  
+  css.style.title = ifelse(!is.null(args$style_title),str_c("style=\"",args$style_title,"\"",collapse=""),"")
+  css.class.title = ifelse(!is.null(args$class_title),str_c("class=\"",args$class_title,"\"",collapse=""),str_c("class=\"",title.class,"\"",collapse=""))
+  
+  css.style.base = ifelse(!is.null(args$style_base),str_c("style=\"",args$style_base,"\"",collapse=""),"")
+  css.class.base = ifelse(!is.null(args$class_base),str_c("class=\"",args$class_base,"\"",collapse=""),str_c("class=\"",base.class,"\"",collapse=""))
   
   if(unnamed){
-    html = str_c("\n<br><div class=",base.class," ",css.args,">",html,"</div>\n",collapse="")
+    html = str_c("\n<br><div ", css.class," ",css.style,">",html,"</div>\n",collapse="")
   } else {
-    html = str_c("\n<br><div class=",base.class," ",css.args.base, "><div class=",title.class," ", css.args.title,">",highlight.name,"</div>",html,"</div>\n",collapse="")
+    html = str_c("\n<br><div ", css.class.base," ",css.style.base, "><div ", css.class.title," ", css.style.title,">",highlight.name,"</div>",html,"</div>\n",collapse="")
   }
   
 

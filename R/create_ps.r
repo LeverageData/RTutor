@@ -271,7 +271,7 @@ write.output.solution = function(file = paste0(ps.name,"_output_solution.Rmd"), 
   
   out.txt = c(header, out.txt)
   out.txt = name.rmd.chunks(txt = out.txt,only.empty.chunks = FALSE,keep.options = TRUE,valid.file.name = TRUE)
-  out.txt = mark_utf8(out.txt)
+  #out.txt = mark_utf8(out.txt)
   out.txt = fix.parser.inconsistencies(out.txt, fix.lists=TRUE)
   writeLines(out.txt, file, useBytes=TRUE)
 }
@@ -1707,7 +1707,15 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
   }
 
   if(fix.lists){
+    #Lists do not apply within code. Code is therefore taboo
+    code.elements = str_detect(txt, "^[:blank:]*```[^`]*")
+    code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
+    code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
+    code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    
     list.elements = str_detect(txt,"^[:blank:]*(([:digit:]+\\.)|\\+|\\*|\\-)")
+    list.elements[code.taboo] = FALSE
+    
     blank.lines = str_detect(txt,"^[:blank:]*$")
     #2 spaces = 1 tab but all tabs were already changed to spaces at this point.
     intendation = floor(str_count(str_extract(txt,"^[:blank:]*")," ")/2)
@@ -1715,6 +1723,7 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
     #within a list (as seen by indented list.elements, new lines are bad and to be removed and replaced by <br><br>)
     br.line = rep(FALSE,length(txt))
     if(length(br.line)>3) br.line[blank.lines & c(intendation[-1],FALSE)==c(FALSE,intendation[-length(intendation)]) & c(intendation[-1],FALSE)>0] = TRUE
+    br.line[code.taboo] = FALSE
     if(any(br.line)) txt[br.line] = c("<br><br>")
     
     #When starting a new list, we want to have a newline    
@@ -1726,14 +1735,22 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
     txt = vals[order(id)]
     
     #delete tabs in tables
-    table.start = str_detect(txt,"<[:blank:]*table.*>")
-    table.end = str_detect(txt,"<[:blank:]*/.*table.*>")
+    table.start = stringr::str_detect(txt,"<[:blank:]*table.*>")
+    table.end = stringr::str_detect(txt,"<[:blank:]*/.*table.*>")
     table.pos = as.logical(cumsum(table.start-table.end))
-    txt[table.pos] = str_trim(txt[table.pos])
+    txt[table.pos] = stringr::str_trim(txt[table.pos])
   }
   
   if(fix.headers){
+    #Lists do not apply within code. Code is therefore taboo
+    code.elements = str_detect(txt, "^[:blank:]*```[^`]*")
+    code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
+    code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
+    code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    
     headers = str_detect(txt,"^[:blank:]*#+")
+    headers[code.taboo] = FALSE
+    
     blank.lines = str_detect(txt,"^[:blank:]*$")
     has.no.leading.blank = headers&!c(FALSE,blank.lines[-length(blank.lines)])
     has.no.leading.blank.id = which(has.no.leading.blank)

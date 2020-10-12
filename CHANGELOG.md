@@ -1,5 +1,9 @@
 # RTutor (main)
 
+## 2020-10-12 [Only LD Fork]
+
+*  Bugfix regarding generation of outputfile: The parser no longer consideres code-chunk as RMD code.
+
 ## 2020-09-22 
 
 * [Only LD Fork] It is now possible to group styles of highlight blocks using the `class` functionality.

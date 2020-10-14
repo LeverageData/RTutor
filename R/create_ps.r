@@ -1764,6 +1764,11 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
   }
   
   if(seperate.html){
+    code.elements = str_detect(txt, "^[:blank:]*```[^`]*")
+    code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
+    code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
+    code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    
     internal.sep.html = function(txt.line){
       restore.point("internal.sep.html")
       split.here.macro = "__SPLITHERE__"
@@ -1788,7 +1793,17 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
       return(txt.line.sep)
     }
     
-    txt = unlist(sapply(txt,internal.sep.html, USE.NAMES=FALSE))
+    txt.list = list()
+    
+    for(i in seq_along(txt)){
+      if(i %in% code.taboo){
+        txt.list[[i]] = txt[i]
+      } else {
+        txt.list[[i]] = internal.sep.html(txt[i])
+      }
+    }
+    
+    txt = unlist(txt.list)
   }
   
   return(txt)  

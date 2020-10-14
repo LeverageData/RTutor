@@ -2,7 +2,11 @@
 
 ## 2020-10-12 [Only LD Fork]
 
-*  Bugfix regarding generation of outputfile: The parser no longer consideres code-chunk as RMD code.
+*  Bugfix regarding generation of outputfile: The parser no longer considers code-chunk as RMD code - now also regarding html-splits.
+
+## 2020-10-12 [Only LD Fork]
+
+*  Bugfix regarding generation of outputfile: The parser no longer considers code-chunk as RMD code.
 
 ## 2020-09-22 
 

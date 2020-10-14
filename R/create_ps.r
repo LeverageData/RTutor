@@ -182,6 +182,8 @@ load.rps = function(ps.name=NULL,file = paste0(ps.name,".rps")) {
 
 
 parse.sol.rmd = function(sol.file=NULL, txt=NULL, te = get.empty.te()) {
+  restore.point("parse.sol.rmd")
+  
   if (is.null(txt))
     txt = readLines(sol.file, warn=FALSE)
 
@@ -624,9 +626,9 @@ parse.chunk.ends = function(row,str,txt, te) {
 parse.block.starts = function(row,str,txt, te) {
   restore.point("parse.block.starts")
   #if (row==25) stop()
-  if (te$in.block) {
-    stop(paste0(te$chunk.str," in row ", row, " you start a new block without having closed the previous ", te$block.type, " block."), call.=FALSE)
-  }
+  #if (te$in.block) {
+  #  stop(paste0(te$chunk.str," in row ", row, " you start a new block without having closed the previous ", te$block.type, " block."), call.=FALSE)
+  #}
 
   # Add the virtual code block
   if (te$in.chunk & nchar(paste0(str.trim(te$block.txt),collapse=""))>0) {
@@ -1709,9 +1711,14 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
   if(fix.lists){
     #Lists do not apply within code. Code is therefore taboo
     code.elements = str_detect(txt, "^[:blank:]*```[^`]*")
-    code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
-    code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
-    code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    if(any(code.elements)){
+      code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
+      code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
+      code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    } else {
+      code.taboo = rep(FALSE,length(txt))
+    }
+
     
     list.elements = str_detect(txt,"^[:blank:]*(([:digit:]+\\.)|\\+|\\*|\\-)")
     list.elements[code.taboo] = FALSE
@@ -1744,9 +1751,14 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
   if(fix.headers){
     #Lists do not apply within code. Code is therefore taboo
     code.elements = str_detect(txt, "^[:blank:]*```[^`]*")
-    code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
-    code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
-    code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    if(any(code.elements)){
+      code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
+      code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
+      code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    } else {
+      code.taboo = rep(FALSE, length(txt))
+    }
+    
     
     headers = str_detect(txt,"^[:blank:]*#+")
     headers[code.taboo] = FALSE
@@ -1764,6 +1776,18 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
   }
   
   if(seperate.html){
+    code.elements = str_detect(txt, "^[:blank:]*```[^`]*")
+    
+    if(any(code.elements)){
+      code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
+      code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
+      code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
+    } else {
+      code.taboo = rep(FALSE,length(txt))
+    }
+    
+    
+    
     internal.sep.html = function(txt.line){
       restore.point("internal.sep.html")
       split.here.macro = "__SPLITHERE__"
@@ -1788,7 +1812,17 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
       return(txt.line.sep)
     }
     
-    txt = unlist(sapply(txt,internal.sep.html, USE.NAMES=FALSE))
+    txt.list = list()
+    
+    for(i in seq_along(txt)){
+      if(i %in% code.taboo){
+        txt.list[[i]] = txt[i]
+      } else {
+        txt.list[[i]] = internal.sep.html(txt[i])
+      }
+    }
+    
+    txt = unlist(txt.list)
   }
   
   return(txt)  

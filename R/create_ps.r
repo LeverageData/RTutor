@@ -70,7 +70,7 @@ create.ps = function(sol.file, ps.name=NULL, user.name= "ENTER A USER NAME HERE"
   te$empty.task.txt = empty.task.txt
   
   te = parse.sol.rmd(txt=txt, te=te)
-
+  
   te$knit.print.params = nlist(html.data.frame,table.max.rows, round.digits, signif.digits) 
   te$e.points = e.points
   te$chunk.points = chunk.points
@@ -189,6 +189,7 @@ parse.sol.rmd = function(sol.file=NULL, txt=NULL, te = get.empty.te()) {
 
   row = 0
   while (row<length(txt)) {
+    restore.point("parse.sol.rmd.while")
     row = row+1
     te <- parse.sol.line(row=row,txt=txt,te=te)
   }

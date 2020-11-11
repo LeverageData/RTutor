@@ -367,7 +367,7 @@ is.assignment = function(call) {
     return(FALSE)
   
   char.op = as.character(call[[1]])
-  char.op == "=" | char.op == "<-"
+  length(char.op)==1 && (char.op == "=" || char.op == "<-")
 }
 
 

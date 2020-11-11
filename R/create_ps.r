@@ -1776,8 +1776,7 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
   
   if(seperate.html){
     code.elements = str_detect(txt, "^[:blank:]*```[^`]*")
-<<<<<<< HEAD
-    
+
     if(any(code.elements)){
       code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
       code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
@@ -1785,14 +1784,7 @@ fix.parser.inconsistencies = function(txt, fix.lists=TRUE, fix.headers=TRUE, rem
     } else {
       code.taboo = rep(FALSE,length(txt))
     }
-    
-    
-=======
-    code.starts = which(code.elements)[seq(1,sum(code.elements),by=2)]
-    code.ends = which(code.elements)[seq(2,sum(code.elements),by=2)]
-    code.taboo = unlist(sapply(1:length(code.starts),FUN=function(x){code.starts[x]:code.ends[x]}))
->>>>>>> 8b30966cc939d89d8aa13c802af13ff4814eeb4c
-    
+
     internal.sep.html = function(txt.line){
       restore.point("internal.sep.html")
       split.here.macro = "__SPLITHERE__"
